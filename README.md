@@ -34,7 +34,7 @@ CHANNEL = %w[ASD123ASD ASD123123].freeze
 
 ## Other commands
 
-Good luck.
+Good luck
 
 ## Amazing bots
 

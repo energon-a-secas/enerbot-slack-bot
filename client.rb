@@ -1,7 +1,8 @@
 require 'slack-ruby-client'
-require '../enerbot/acl.rb'
-require '../enerbot/Scripts/ssh'
-require '../enerbot/Scripts/random'
+require './acl.rb'
+require './Scripts/ssh'
+require './Scripts/random'
+require './Scripts/rules'
 
 Slack.configure do |config|
   config.token = ENV['SLACK_API_TOKEN']
@@ -27,20 +28,24 @@ end
 client.on :message do |data|
   puts data
   case data.text
-  when 'hola' then
+  when 'enerbot hola' then
     send_message(data, 'holiwis', ':black_square:', 'ENERBOT')
-  when /como va/ then
+  when /enerbot como va/ then
     send_message(data, ':fire::evilparrot::fire:', ':fire:', 'EvilParrot')
-  when 'savage mode' then
+  when 'enerbot savage mode' then
     send_message(data, 'Guau!', ':dog:', 'Doggo')
-  when /consejo/, /pregunta/ then
+  when /enerbot un consejo/, /enerbot una pregunta/ then
     send_message(data, random_advice, ':black_square:', 'ENERBOT')
-  when 'beneficio' then
+  when /enerbot beneficio/ then
     send_message(data, random_benefit, ':black_square:', 'ENERBOT')
-  when 'musica' then
+  when 'enerbot musica' then
     send_message(data, random_music, ':notes:', 'MP3')
-  when 'party' then
+  when 'enerbot party' then
     send_message(data, ':partyparrot:', ':star:', 'PARTY PARROT')
+  when 'enerbot las reglas', 'enerbot da rules', /enerbot the rules/ then
+    send_message(data, rules_energon, ':black_square:', 'ENERBOT')
+  when 'enerbot pack'then
+    send_message(data, pack_energon, ':black_square:', 'ENERBOT')
   when /^bot/ then
     control(data.text.to_s, data.user.to_s, data.channel.to_s)
     if !$output.nil?
@@ -52,7 +57,7 @@ client.on :message do |data|
   when 'self-destruct' then
     send_message(data, 'Adios mundo cruel', ':bomb:', 'ENERBOT')
     abort('Bye')
-  end
+end
 end
 
 client.start!
