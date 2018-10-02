@@ -48,3 +48,16 @@ def random_music
      https://youtu.be/D_P-v1BVQn8
      https://youtu.be/sFrNsSnk8GM].sample
 end
+
+# PACK
+
+def pack_energon
+  <<-RULES
+   c------------u
+ |~energon~|
+ |~energon~|
+ |~energon~|
+ b------------e
+
+  RULES
+end
