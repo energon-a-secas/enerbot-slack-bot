@@ -1,8 +1,8 @@
 require 'slack-ruby-client'
-require '../enerbot/acl.rb'
-require '../enerbot/Scripts/ssh'
-require '../enerbot/Scripts/random'
-require '../enerbot/Scripts/rules'
+require './acl.rb'
+require './Scripts/ssh'
+require './Scripts/random'
+require './Scripts/rules'
 
 Slack.configure do |config|
   config.token = ENV['SLACK_API_TOKEN']
@@ -42,8 +42,10 @@ client.on :message do |data|
     send_message(data, random_music, ':notes:', 'MP3')
   when 'enerbot party' then
     send_message(data, ':partyparrot:', ':star:', 'PARTY PARROT')
-  when 'enerbot las reglas', /enerbot the rules/ then
+  when 'enerbot las reglas', 'enerbot da rules', /enerbot the rules/ then
     send_message(data, rules_energon, ':black_square:', 'ENERBOT')
+  when 'enerbot pack'then
+    send_message(data, pack_energon, ':black_square:', 'ENERBOT')
   when /^bot/ then
     control(data.text.to_s, data.user.to_s, data.channel.to_s)
     if !$output.nil?
@@ -55,7 +57,7 @@ client.on :message do |data|
   when 'self-destruct' then
     send_message(data, 'Adios mundo cruel', ':bomb:', 'ENERBOT')
     abort('Bye')
-  end
+end
 end
 
 client.start!
