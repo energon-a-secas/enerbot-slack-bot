@@ -5,5 +5,3 @@ def rules_energon
    '3. A robot must protect its own existence as long as such protection does not conflict with the First or Second Law.',
    '4. CLASSIFIED']
     end
-
-puts rules_energon
