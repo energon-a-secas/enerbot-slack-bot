@@ -1,6 +1,6 @@
 # Based on @jorgeepunan's 18.js
 
-def cuando_pagan
+def cuando_sept
   x = Date.new(2019, 9, 18)
   y = Time.now.to_date
 
