@@ -14,6 +14,9 @@ GEM
     async-websocket (0.6.1)
       async-io
       websocket-driver (~> 0.7.0)
+    business_time (0.9.3)
+      activesupport (>= 3.2.0)
+      tzinfo
     concurrent-ruby (1.0.5)
     faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
@@ -49,7 +52,8 @@ PLATFORMS
 
 DEPENDENCIES
   async-websocket!
-  net-ssh (~> 5.0)
+  business_time (~> 0.9.3)
+  net-ssh!
   slack-ruby-client!
 
 BUNDLED WITH
