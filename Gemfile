@@ -5,4 +5,3 @@ source 'https://rubygems.org' do
   gem 'business_time'
   gem 'faye-websocket'
 end
-
