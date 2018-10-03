@@ -40,6 +40,8 @@ client.on :message do |data|
     send_message(data, rules_energon, ':black_square:', 'ENERBOT')
   when 'enerbot pack'then
     send_message(data, pack_energon, ':black_square:', 'ENERBOT')
+  when 'enerbot cuanto para el 18'then
+    send_message(data, cuanto_falta, ':black_square:', 'ENERBOT')
   when /^bot/ then
     control(data.text.to_s, data.user.to_s, data.channel.to_s)
     if !$output.nil?
