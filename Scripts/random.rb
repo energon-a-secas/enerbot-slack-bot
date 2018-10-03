@@ -52,12 +52,12 @@ end
 # PACK
 
 def pack_energon
-  <<-RULES
+  <<~CUBE
    c------------u
  |~energon~|
  |~energon~|
  |~energon~|
  b------------e
 
-  RULES
+  CUBE
 end
