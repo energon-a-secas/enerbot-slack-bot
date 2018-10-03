@@ -3,7 +3,7 @@ ENERBOT-RUBY
 
 It's based on the bototo3000, but using the Slack Ruby Client and Ruby instead of Python. Is design for small talks and remote commands over SSH.
 
-He also likes to put music 'recanchera' and give advices when you need them. 
+He also likes cubes. 
 
 ## Install
 It's just this:
