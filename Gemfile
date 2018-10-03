@@ -3,5 +3,6 @@ source 'https://rubygems.org' do
   gem 'slack-ruby-client'
   gem 'net-ssh'
   gem 'business_time'
+  gem 'faye-websocket'
 end
 
