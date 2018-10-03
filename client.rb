@@ -29,19 +29,13 @@ client.on :message do |data|
   puts data
   case data.text
   when 'enerbot hola' then
-    send_message(data, 'holiwis', ':black_square:', 'ENERBOT')
+    send_message(data, '¡Hola!', ':black_square:', 'ENERBOT')
   when /enerbot como va/ then
-    send_message(data, ':fire::evilparrot::fire:', ':fire:', 'EvilParrot')
-  when 'enerbot savage mode' then
-    send_message(data, 'Guau!', ':dog:', 'Doggo')
+    send_message(data, 'Trabajo muy duro, como un esclavo... :musical_note:', ':black_square:', 'ENERBOT')
   when /enerbot un consejo/, /enerbot una pregunta/ then
     send_message(data, random_advice, ':black_square:', 'ENERBOT')
   when /enerbot beneficio/ then
     send_message(data, random_benefit, ':black_square:', 'ENERBOT')
-  when 'enerbot musica' then
-    send_message(data, random_music, ':notes:', 'MP3')
-  when 'enerbot party' then
-    send_message(data, ':partyparrot:', ':star:', 'PARTY PARROT')
   when 'enerbot las reglas', 'enerbot da rules', /enerbot the rules/ then
     send_message(data, rules_energon, ':black_square:', 'ENERBOT')
   when 'enerbot pack'then
