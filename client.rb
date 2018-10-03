@@ -3,6 +3,8 @@ require './acl.rb'
 require './Scripts/ssh'
 require './Scripts/random'
 require './Scripts/rules'
+require './Scripts/18.rb'
+require './Scripts/gardel.rb'
 
 Slack.configure do |config|
   config.token = ENV['SLACK_API_TOKEN']
