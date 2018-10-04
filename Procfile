@@ -1,0 +1,1 @@
+release: ruby bin/bot.rb
