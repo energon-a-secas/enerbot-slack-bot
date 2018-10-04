@@ -1,3 +1,10 @@
+module Fly
+  def self.message(data, text, icon, username)
+    client = Slack::RealTime::Client.new
+    client.web_client.chat_postMessage channel: data.channel, text: text, icon_emoji: icon, username: username
+  end
+end
+
 module Slack
   require 'slack-ruby-client'
   require 'LERN/date'
@@ -20,24 +27,25 @@ module Slack
       puts data
       if 'DBDH58JJU'.include? data.channel
         case data.text
-        when 'enerbotv hola' then
-          client.web_client.chat_postMessage channel: data.channel, text: '¡Hola!', icon_emoji: ':black_square:', username: 'ENERBOT'
-        when /enerbotb como va/ then
-          client.web_client.chat_postMessage channel: data.channel, text: 'Trabajo muy duro, como un esclavo... :musical_note:', icon_emoji: ':black_square:', username: 'ENERBOT'
-        when /enerbotb un consejo/, /enerbot una pregunta/ then
-          client.web_client.chat_postMessage channel: data.channel, text: Quote.advice, icon_emoji: ':black_square:', username: 'ENERBOT'
-        when 'enerbot cuando pagan?'then
-          client.web_client.chat_postMessage channel: data.channel, text: Time_to.gardel, icon_emoji: ':black_square:', username: 'ENERBOT'
+        when 'enerbot hola' then
+          Fly.message(data, '¡Hola!', ':black_square:', 'ENERBOT')
+        when /enerbot como va/ then
+          Fly.message(data, 'Trabajo muy duro, como un esclavo... :musical_note:', ':black_square:', 'ENERBOT')
+        when /enerbot un consejo/, /enerbot una pregunta/ then
+          Fly.message(data, Quote.advice, ':black_square:', 'ENERBOT')
+        when /enerbot beneficio/ then
+          Fly.message(data, Quote.benefit, ':black_square:', 'ENERBOT')
         when 'enerbot las reglas', 'enerbot da rules', /enerbot the rules/ then
-          client.web_client.chat_postMessage channel: data.channel, text: Info.rules, icon_emoji: ':black_square:', username: 'ENERBOT'
-        when 'self-destruct' then
-          abort('Bye')
+          Fly.message(data, Info.rules, ':black_square:', 'ENERBOT')
+        when 'enerbot cuando pagan?'then
+          Fly.message(data, Time_to.gardel, ':black_square:', 'ENERBOT')
+        when 'enerbot cuanto para el 18'then
+          Fly.message(data, Time_to.september, ':black_square:', 'ENERBOT')
         end
       else
         case data.text
-        when /enerbotv como va/ then
-          client.web_client.chat_postMessage channel: data.channel, text: Quote.advice, icon_emoji: ':black_square:', username: 'ENERBOT'
-
+        when /enerbot/ then
+          Fly.message(data, Quote.advice, ':black_square:', 'ENERBOT')
         end
       end
     end
