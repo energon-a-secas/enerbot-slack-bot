@@ -37,9 +37,9 @@ client.on :message do |data|
       Fly.message(data, Quote.benefit, bot_icon, bot_name)
     when /enerbot\s(.*)\s(rules|reglas)$/ then
       Fly.message(data, Info.rules, bot_icon, bot_name)
-    when 'enerbot cu[aá]ndo pagan?'then
+    when /enerbot cu[aá]ndo pagan?/ then
       Fly.message(data, Time_to.gardel, bot_icon, bot_name)
-    when 'enerbot cu[aá]nto para el 18'then
+    when /enerbot cu[aá]nto para el 18/ then
       Fly.message(data, Time_to.september, bot_icon, bot_name)
     end
   else
