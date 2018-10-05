@@ -20,4 +20,16 @@ enerbot <cuando pagan?>
 enerbot <cuanto para el 18?>
     HELP
   end
+
+  def self.pack
+    def pack_energon
+      <<~CUBE
+   c------------u
+ |~energon~|
+ |~energon~|
+ |~energon~|
+ b------------e
+      CUBE
+    end
+    end
 end

@@ -40,6 +40,8 @@ client.on :message do |data|
       Fly.message(data, Quote.advice, bot_icon, bot_name)
     when /enerbot un beneficio/ then
       Fly.message(data, Quote.benefit, bot_icon, bot_name)
+    when /enerbot el pack/ then
+      Fly.message(data, Info.pack, bot_icon, bot_name)
     when /enerbot\s(.*)\s(rules|reglas)$/ then
       Fly.message(data, Info.rules, bot_icon, bot_name)
     when /enerbot cu[aá]ndo pagan?/ then
