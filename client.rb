@@ -27,26 +27,32 @@ client.on :message do |data|
   bot_name = 'ENERBOT'
   if 'DBDH58JJU'.include? data.channel
     case data.text
-    when /enerbot22\s(ayuda|help)$/ then
+    when /enerbot\s(ayuda|help)$/ then
       Fly.message(data, Info.help, bot_icon, bot_name)
-    when 'enerbot22 hola' then
+    when 'enerbot hola' then
       Fly.message(data, '¡Hola!', bot_icon, bot_name)
-    when /enerbot22\s(.*)\s(va|estas)$/ then
+    when /enerbot\s(.*)\s(va|estas)$/ then
       Fly.message(data, Quote.status, bot_icon, bot_name)
-    when /enerbot22\s(.*)\s(consejo|pregunta)$/ then
+    when /enerbot\s(.*)\s(consejo|pregunta)$/ then
       Fly.message(data, Quote.advice, bot_icon, bot_name)
-    when /enerbot22 un \sbeneficio/ then
+    when /enerbot un \sbeneficio/ then
       Fly.message(data, Quote.benefit, bot_icon, bot_name)
-    when /enerbot22\s(.*)\s(rules|reglas)$/ then
+    when /enerbot\s(.*)\s(rules|reglas)$/ then
       Fly.message(data, Info.rules, bot_icon, bot_name)
-    when /enerbot22 cu[aá]ndo pagan?/ then
+    when /enerbot cu[aá]ndo pagan?/ then
       Fly.message(data, Time_to.gardel, bot_icon, bot_name)
-    when /enerbot22 cu[aá]nto para el 18?/ then
+    when /enerbot cu[aá]nto para el 18?/ then
       Fly.message(data, Time_to.september, bot_icon, bot_name)
+    when 'self-destruct' then
+      if 'UABMMNKEC' == data.user
+        abort('bye')
+      else
+        Fly.message(data, 'Meh', bot_icon, bot_name)
+      end
     end
   else
     case data.text
-    when /enerbot22/ then
+    when /enerbot/ then
       Fly.message(data, Quote.advice, bot_icon, bot_name)
     end
   end
