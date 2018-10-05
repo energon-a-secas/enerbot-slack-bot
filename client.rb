@@ -29,17 +29,17 @@ client.on :message do |data|
     case data.text
     when 'enerbot hola' then
       Fly.message(data, '¡Hola!', bot_icon, bot_name)
-    when /enerbot como va/ then
+    when /enerbot\s(.*)\s(va|estas)$/ then
       Fly.message(data, Quote.status, bot_icon, bot_name)
-    when /enerbot un consejo/, /enerbot una pregunta/ then
+    when /enerbot\s(.*)\s(consejo|pregunta)$/ then
       Fly.message(data, Quote.advice, bot_icon, bot_name)
     when /enerbot beneficio/ then
       Fly.message(data, Quote.benefit, bot_icon, bot_name)
-    when 'enerbot las reglas', 'enerbot da rules', /enerbot the rules/ then
+    when /enerbot\s(.*)\s(rules|reglas)$/ then
       Fly.message(data, Info.rules, bot_icon, bot_name)
-    when 'enerbot cuando pagan?'then
+    when 'enerbot cu[aá]ndo pagan?'then
       Fly.message(data, Time_to.gardel, bot_icon, bot_name)
-    when 'enerbot cuanto para el 18'then
+    when 'enerbot cu[aá]nto para el 18'then
       Fly.message(data, Time_to.september, bot_icon, bot_name)
     end
   else
