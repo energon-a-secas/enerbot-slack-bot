@@ -8,12 +8,12 @@ It's based on the bototo3000, but using the Slack Ruby Client and Ruby instead o
 He also likes cubes. 
 
 ## Install
-To get all dependencys you need to install [Bundler](https://bundler.io) (or stay in the dependency hell). Then under the enerbot directory execute:
+You need to install [Bundler](https://bundler.io) to get all dependencies or you could stay in the dependency hell without it. Then under the enerbot directory execute:
 ```
 bundler install
 ```
 
-You need to configure the Slack token for Enerbot and then exported as a environment variable:
+You need to configure and export the Slack token as an environment variable:
 ```
 export SLACK_API_TOKEN=YOUR-TOKEN-03-03-456
 ```
