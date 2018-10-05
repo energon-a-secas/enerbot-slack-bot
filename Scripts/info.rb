@@ -22,7 +22,6 @@ enerbot <cuanto para el 18?>
   end
 
   def self.pack
-    def pack_energon
       <<~CUBE
    c------------u
  |~energon~|
@@ -30,6 +29,5 @@ enerbot <cuanto para el 18?>
  |~energon~|
  b------------e
       CUBE
-    end
-    end
+  end
 end
