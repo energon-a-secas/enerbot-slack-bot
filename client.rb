@@ -3,12 +3,11 @@ require './Scripts/date'
 require './Scripts/info'
 require './Scripts/quote'
 
-
 module Fly
-def self.message(data, text, icon, username)
-  client = Slack::RealTime::Client.new
-  client.web_client.chat_postMessage channel: data.channel, text: text, icon_emoji: icon, username: username
-end
+  def self.message(data, text, icon, username)
+    client = Slack::RealTime::Client.new
+    client.web_client.chat_postMessage channel: data.channel, text: text, icon_emoji: icon, username: username
+  end
 end
 
 Slack.configure do |config|
@@ -21,7 +20,6 @@ client = Slack::RealTime::Client.new
 client.on :hello do
   puts "Successfully connected, welcome '#{client.self.name}' to the '#{client.team.name}' team at https://#{client.team.domain}.slack.com."
 end
-
 
 client.on :message do |data|
   puts data

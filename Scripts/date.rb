@@ -1,4 +1,6 @@
 module Time_to
+  # Based on @jorgeepunan's 18.js
+
   def self.september
     x = Date.new(2019, 9, 18)
     y = Time.now.to_date
@@ -12,6 +14,8 @@ module Time_to
     end
   end
 
+  # Based on @hectorpalmatellez's gardel.js
+
   def self.gardel
     require 'date'
     require 'business_time'
@@ -24,6 +28,6 @@ module Time_to
           ''
         end
 
-    d == 0 ? '¡Hoy pagan!' : "Falta#{p} #{d} días para que paguen."
+    d == 0 ? '¡Hoy pagan!' : "Falta#{p} #{d} días hábiles para que paguen."
   end
 end

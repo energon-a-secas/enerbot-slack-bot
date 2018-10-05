@@ -1,4 +1,6 @@
 module Quote
+  # Based on juanbrujo's 8ball.js
+
   def self.advice
     ['En mi opinión, sí',
      'Es cierto',
@@ -20,7 +22,9 @@ module Quote
      'Mis fuentes me dicen que no',
      'Las perspectivas no son buenas',
      'Muy dudoso'].sample
-  end
+    end
+
+  # Based on lgaticaq's beneficios.js
 
   def self.benefit
     ['Tómate la tarde libre, proletario.',
@@ -35,6 +39,6 @@ module Quote
   end
 
   def self.status
-  ['Trabajo muy duro, como un esclavo... :musical_note:'].sample
+    ['Trabajo muy duro, como un esclavo... :musical_note:'].sample
   end
 end
