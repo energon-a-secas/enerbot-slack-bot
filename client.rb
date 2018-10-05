@@ -36,9 +36,9 @@ client.on :message do |data|
       Fly.message(data, '¡Hola!', bot_icon, bot_name)
     when /enerbot\s(.*)\s(va|estas)$/ then
       Fly.message(data, Quote.status, bot_icon, bot_name)
-    when /enerbot\s(.*)\s(consejo|pregunta)$/ then
+    when /enerbot\s(.*)\s(consejo|pregunta)(.*)?/ then
       Fly.message(data, Quote.advice, bot_icon, bot_name)
-    when /enerbot un \sbeneficio/ then
+    when /enerbot un beneficio/ then
       Fly.message(data, Quote.benefit, bot_icon, bot_name)
     when /enerbot\s(.*)\s(rules|reglas)$/ then
       Fly.message(data, Info.rules, bot_icon, bot_name)
