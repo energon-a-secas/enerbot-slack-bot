@@ -25,7 +25,10 @@ client.on :message do |data|
   puts data
   bot_icon = ':black_square:'
   bot_name = 'ENERBOT'
-  if 'DBDH58JJU'.include? data.channel
+  bot_admin = ENV['SLACK_USERS']
+  bot_channel = ENV['SLACK_CHANNELS']
+
+  if bot_channel.include? data.channel
     case data.text
     when /enerbot\s(ayuda|help)$/ then
       Fly.message(data, Info.help, bot_icon, bot_name)
@@ -44,7 +47,7 @@ client.on :message do |data|
     when /enerbot cu[aá]nto para el 18?/ then
       Fly.message(data, Time_to.september, bot_icon, bot_name)
     when 'self-destruct' then
-      if 'UABMMNKEC' == data.user
+      if bot_admin.include? data.user
         abort('bye')
       else
         Fly.message(data, 'Meh', bot_icon, bot_name)
