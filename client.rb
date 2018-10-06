@@ -23,7 +23,7 @@ end
 
 client.on :message do |data|
   puts data
-  bot_icon = ':black_square:'
+  bot_icon = ':energon:'
   bot_name = 'ENERBOT'
   bot_admin = ENV['SLACK_USERS']
   bot_channel = ENV['SLACK_CHANNELS']
