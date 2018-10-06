@@ -38,7 +38,7 @@ client.on :message do |data|
       Fly.message(data, Quote.status, bot_icon, bot_name)
     when /[Ee]nerbot\s(.*)\s(consejo|pregunta)(.*)?/ then
       Fly.message(data, Quote.advice, bot_icon, bot_name)
-    when /[Ee]nerbot un beneficio/ then
+    when /[Ee]nerbot(.*)beneficio/ then
       Fly.message(data, Quote.benefit, bot_icon, bot_name)
     when /[Ee]nerbot(.*)pack/ then
       Fly.message(data, Info.pack, bot_icon, bot_name)
