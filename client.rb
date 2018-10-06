@@ -30,26 +30,27 @@ client.on :message do |data|
 
   if bot_channel.include? data.channel
     case data.text
-    when /enerbot\s(ayuda|help)$/ then
+    when /[Ee]nerbot\s(ayuda|help)$/ then
       Fly.message(data, Info.help, bot_icon, bot_name)
-    when 'enerbot hola' then
+    when /[Ee]nerbot hola/ then
       Fly.message(data, '¡Hola!', bot_icon, bot_name)
-    when /enerbot\s(.*)\s(va|estas)$/ then
+    when /[Ee]nerbot\s(.*)\s(va|estas)$/ then
       Fly.message(data, Quote.status, bot_icon, bot_name)
-    when /enerbot\s(.*)\s(consejo|pregunta)(.*)?/ then
+    when /[Ee]nerbot\s(.*)\s(consejo|pregunta)(.*)?/ then
       Fly.message(data, Quote.advice, bot_icon, bot_name)
-    when /enerbot un beneficio/ then
+    when /[Ee]nerbot(.*)beneficio/ then
       Fly.message(data, Quote.benefit, bot_icon, bot_name)
-    when /enerbot(.*)pack/ then
+    when /[Ee]nerbot(.*)pack/ then
       Fly.message(data, Info.pack, bot_icon, bot_name)
-    when /enerbot\s(.*)\s(rules|reglas)$/ then
+    when /[Ee]nerbot\s(.*)\s(rules|reglas)$/ then
       Fly.message(data, Info.rules, bot_icon, bot_name)
-    when /enerbot cu[aá]ndo pagan?/ then
+    when /[Ee]nerbot cu[aá]ndo pagan?/ then
       Fly.message(data, Time_to.gardel, bot_icon, bot_name)
-    when /enerbot cu[aá]nto para el 18?/ then
+    when /[Ee]nerbot cu[aá]nto para el 18?/ then
       Fly.message(data, Time_to.september, bot_icon, bot_name)
     when 'self-destruct' then
       if bot_admin.include? data.user
+        Fly.message(data, 'Bye', bot_icon, bot_name)
         abort('bye')
       else
         Fly.message(data, 'Meh', bot_icon, bot_name)
