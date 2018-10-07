@@ -13,7 +13,7 @@ module Info
     <<~HELP
 >>> enerbot <hola>
  enerbot <va | estas>
- enerbot <consejo | pregunta> <...> <?>
+ enerbot <consejo | pregunta> <...> ?
  enerbot <beneficio>
  enerbot <reglas | rules>
  enerbot <cuando pagan?>
