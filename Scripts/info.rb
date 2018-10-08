@@ -11,13 +11,13 @@ module Info
 
   def self.help
     <<~HELP
->>>enerbot hola
-enerbot como <va | estas>
-enerbot <un consejo | una pregunta>
-enerbot un beneficio
-enerbot <las | da | the> <reglas | rules>
-enerbot <cuando pagan?>
-enerbot <cuanto para el 18?>
+>>> enerbot <hola>
+ enerbot <va | estas>
+ enerbot <consejo | pregunta> <...> ?
+ enerbot <beneficio>
+ enerbot <reglas | rules>
+ enerbot <cuando pagan?>
+ enerbot <cuanto para el 18?>
     HELP
   end
 

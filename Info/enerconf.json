@@ -1,0 +1,17 @@
+{
+  "attachments": [
+    {
+      "mrkdwn_in": [
+        "text"
+      ],
+      "author_name": "EnerConf 2018 | Oct. 22-24",
+      "author_link": "https://energon.cloud",
+      "text": ":energon: *Join us at ENERCONF 2018* :energon:",
+      "fields": [
+        {
+          "value": "Energon presents its annual user and technology conference. Each year we bring together our security community to share knowledge on DevOps, Blockchain, Digital Transformation, and if we have time to spare, security."
+        }
+      ]
+    }
+  ]
+}
