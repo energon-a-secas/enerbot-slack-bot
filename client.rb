@@ -5,6 +5,7 @@ require './Scripts/quote'
 
 module Fly
   def self.message(data, text, icon, username)
+    puts data
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data.channel,
                                        text: text,
@@ -13,6 +14,7 @@ module Fly
   end
 
   def self.response(data, path, attachments, icon, username)
+    puts data
     read_file = File.read("./Info/#{path}")
     ex_json = JSON.parse(read_file)
     attachments = ex_json[attachments]
@@ -38,7 +40,6 @@ client.on :hello do
 end
 
 client.on :message do |data|
-  puts data
   bot_icon = ':energon:'
   bot_name = 'ENERBOT'
   bot_admin = ENV['SLACK_USERS']
