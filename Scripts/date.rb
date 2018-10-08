@@ -17,17 +17,17 @@ module Time_to
   # Based on @hectorpalmatellez's gardel.js
 
   def self.gardel
-    require 'date'
-    require 'business_time'
-    now = Date.today
-    month_end = Date.today.end_of_month
-    d = now.business_days_until(month_end)
-    p = if d > 1
+    require 'week_of_month'
+
+    date = Date.parse(Date.today.to_s)
+    last = Date.parse((date.end_of_month.downto(date).find{|day| day.working_day? }).to_s)
+    d = last.mjd - date.mjd - 2
+    p = if date.mjd > 1
           'n'
         else
           ''
         end
 
-    d == 0 ? '¡Hoy pagan!' : "Falta#{p} #{d} días hábiles para que paguen."
+    d == 0 ? '¡Hoy pagan!' : "Falta#{p} #{d} días para que paguen."
   end
 end
