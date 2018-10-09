@@ -13,5 +13,20 @@
         }
       ]
     }
+  ],
+  "talks": [
+    {
+      "mrkdwn_in": [
+        "text"
+      ],
+      "author_name": "EnerConf 2018 Confirmed Talk",
+      "author_link": "https://energon.cloud",
+      "text": ":energon: Merging PRs on public transportation",
+      "fields": [
+        {
+          "value": "Let's discuss about trying to approve PRs on your shitty smartphone onboard the 210 aka 'The Liberty Bus', avoiding threats like the uncle driver' fast and furious braking skills, and Fat Byron looking over your shoulder seeking blood and credentials."
+        }
+      ]
+    }
   ]
 }

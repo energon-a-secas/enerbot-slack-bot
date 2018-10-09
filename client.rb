@@ -68,6 +68,8 @@ client.on :message do |data|
     when /^enerbot info/i then
       if data.text.include? 'How'
         Fly.response(data, 'example.json', 'attachments', bot_icon, bot_name)
+      elsif data.text.include? 'enerconf talks'
+        Fly.response(data, 'enerconf.json', 'talks', bot_icon, bot_name)
       else
         Fly.response(data, 'enerconf.json', 'attachments', bot_icon, bot_name)
       end
