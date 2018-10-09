@@ -21,7 +21,7 @@ module Fly
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage as_user: true,
                                        channel: data.channel,
-                                       text: 'Revisando mi BD',
+                                       text: 'Revisando mi BD :buffer:',
                                        icon_emoji: icon,
                                        username: username,
                                        attachments: attachments
