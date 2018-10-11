@@ -27,7 +27,7 @@ module Fly
                                        attachments: attachments
   end
 
-  def self.write(msg, text, icon, username)
+  def self.write(chan, text, icon, username)
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: msg,
                                        text: text,
@@ -83,8 +83,8 @@ client.on :message do |data|
       end
     when /^enerbot di/ then
       if bot_admin.include? data.user
-        msn = data.text.to_s.split(/\benerbot di \b/) * ''
-        Fly.write('C3W4PHU7K', msn, bot_icon, bot_name)
+        text = data.text.to_s.split(/\benerbot di \b/) * ''
+        Fly.write('GD8172Q22', text, bot_icon, bot_name)
       end
     when 'self-destruct' then
       if bot_admin.include? data.user
