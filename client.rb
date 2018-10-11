@@ -26,6 +26,14 @@ module Fly
                                        username: username,
                                        attachments: attachments
   end
+
+  def self.write(msg, text, icon, username)
+    client = Slack::RealTime::Client.new
+    client.web_client.chat_postMessage channel: msg,
+                                       text: text,
+                                       icon_emoji: icon,
+                                       username: username
+  end
 end
 
 Slack.configure do |config|
@@ -72,6 +80,11 @@ client.on :message do |data|
         Fly.response(data, 'enerconf.json', 'talks', bot_icon, bot_name)
       else
         Fly.response(data, 'enerconf.json', 'attachments', bot_icon, bot_name)
+      end
+    when /^enerbot di/ then
+      if bot_admin.include? data.user
+        msn = data.text.to_s.split(/\benerbot di \b/) * ''
+        Fly.write('C3W4PHU7K', msn, bot_icon, bot_name)
       end
     when 'self-destruct' then
       if bot_admin.include? data.user
