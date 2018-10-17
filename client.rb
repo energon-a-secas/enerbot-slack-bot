@@ -29,7 +29,7 @@ module Fly
 
   def self.write(chan, text, icon, username)
     client = Slack::RealTime::Client.new
-    client.web_client.chat_postMessage channel: msg,
+    client.web_client.chat_postMessage channel: chan,
                                        text: text,
                                        icon_emoji: icon,
                                        username: username
@@ -84,7 +84,7 @@ client.on :message do |data|
     when /^enerbot di/ then
       if bot_admin.include? data.user
         text = data.text.to_s.split(/\benerbot di \b/) * ''
-        Fly.write('GD8172Q22', text, bot_icon, bot_name)
+        Fly.write('C3W4PHU7K', text, bot_icon, bot_name)
       end
     when 'self-destruct' then
       if bot_admin.include? data.user
