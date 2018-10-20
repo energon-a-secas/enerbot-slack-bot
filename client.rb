@@ -4,13 +4,14 @@ require './Scripts/info'
 require './Scripts/quote'
 require './functions'
 
-BOT_ICON=':energon:'
-BOT_NAME='ENERBOT'
+BOT_ICON = ':energon:'
+BOT_NAME = 'ENERBOT'
 BOT_ADMINS = ENV['SLACK_USERS']
 BOT_CHANNELS = ENV['SLACK_CHANNELS']
+BOT_TOKEN = ENV['SLACK_TOKEN']
 
 Slack.configure do |config|
-  config.token = ENV['SLACK_API_TOKEN']
+  config.token = BOT_TOKEN
   config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
 end
 
