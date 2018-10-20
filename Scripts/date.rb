@@ -20,7 +20,7 @@ module Time_to
     require 'week_of_month'
 
     date = Date.parse(Date.today.to_s)
-    last = Date.parse((date.end_of_month.downto(date).find{|day| day.working_day? }).to_s)
+    last = Date.parse(date.end_of_month.downto(date).find(&:working_day?).to_s)
     d = last.mjd - date.mjd - 2
     p = if date.mjd > 1
           'n'
