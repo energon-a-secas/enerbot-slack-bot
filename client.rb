@@ -6,6 +6,7 @@ require './Scripts/quote'
 BOT_ICON=':energon:'
 BOT_NAME='ENERBOT'
 
+# Works somehow
 module Resp
   def self.message(data, text)
     puts data
@@ -16,7 +17,7 @@ module Resp
                                        username: BOT_NAME
   end
 
-  def self.response(data, path, attachments)
+  def self.event(data, path, attachments)
     puts data
     read_file = File.read("./Info/#{path}")
     ex_json = JSON.parse(read_file)
@@ -30,9 +31,9 @@ module Resp
                                        attachments: attachments
   end
 
-  def self.write(chan, text)
+  def self.write(data, text)
     client = Slack::RealTime::Client.new
-    client.web_client.chat_postMessage channel: chan,
+    client.web_client.chat_postMessage channel: data,
                                        text: text,
                                        icon_emoji: BOT_ICON,
                                        username: BOT_NAME
@@ -47,7 +48,7 @@ end
 client = Slack::RealTime::Client.new
 
 client.on :hello do
-  puts "Successfully connected, welcome '#{client.self.name}' to the '#{client.team.name}' team at https://#{client.team.domain}.slack.com."
+  puts "Welcome '#{client.self.name}' to the '#{client.team.name}' team"
 end
 
 client.on :message do |data|
@@ -76,16 +77,16 @@ client.on :message do |data|
       Resp.message(data, Time_to.september)
     when /^enerbot info/i then
       if data.text.include? 'How'
-        Resp.response(data, 'example.json', 'attachments')
+        Resp.event(data, 'example.json', 'attachments')
       elsif data.text.include? 'enerconf talks'
-        Resp.response(data, 'enerconf.json', 'talks')
+        Resp.event(data, 'enerconf.json', 'talks')
       else
-        Resp.response(data, 'enerconf.json', 'attachments')
+        Resp.event(data, 'enerconf.json', 'attachments')
       end
     when /^enerbot di/ then
       if bot_admin.include? data.user
-        text = data.text.to_s.split(/\benerbot di \b/) * ''
-        Resp.write('C3W4PHU7K', text)
+        text = data.text.to_s.split(/\benerbot di/) * ''
+        Resp.write('GD8172Q22', text)
       end
     when 'self-destruct' then
       if bot_admin.include? data.user
