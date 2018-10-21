@@ -32,20 +32,6 @@ module Resp
 end
 
 # If you find yourself in a hole, stop digging
-module Info
-  def self.events(data)
-    case data.text
-    when /How/
-      Resp.event(data, 'example.json', 'attachments')
-    when /eventos$/
-      Resp.event(data, 'events.json', 'events')
-    when /talks$/
-      Resp.event(data, 'events.json', 'talks')
-    end
-  end
-end
-
-# It should look like this
 module Case
   def self.bot(data)
     text = data.text.to_s.split(/\benerbot/) * ''
@@ -67,9 +53,20 @@ module Case
     when /cu[aá]nto para el 18?/i then
       Resp.message(data, Time_to.september)
     when /info/i then
-      Info.events(data)
+      Case.events(data)
     end
     end
+
+  def self.events(data)
+    case data.text
+    when /How/
+      Resp.event(data, 'example.json', 'attachments')
+    when /eventos$/
+      Resp.event(data, 'events.json', 'events')
+    when /talks$/
+      Resp.event(data, 'events.json', 'talks')
+    end
+  end
 
   def self.say(data)
     text = data.text.to_s.split(/\benersay/) * ''
