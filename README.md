@@ -30,3 +30,7 @@ We currently are not supporting the SSH feature. Stay tune for more news.
 ## Amazing bots
 
 * [Huemul](https://github.com/devschile/huemul)
+
+## License
+
+See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).

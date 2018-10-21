@@ -1,47 +1,21 @@
 require 'slack-ruby-client'
 require './Scripts/date'
-require './Scripts/info'
+require './Scripts/system'
 require './Scripts/quote'
+require './Scripts/ssh'
+require './core'
 
-BOT_ICON=':energon:'
-BOT_NAME='ENERBOT'
-
-# Works somehow
-module Resp
-  def self.message(data, text)
-    puts data
-    client = Slack::RealTime::Client.new
-    client.web_client.chat_postMessage channel: data.channel,
-                                       text: text,
-                                       icon_emoji: BOT_ICON,
-                                       username: BOT_NAME
-  end
-
-  def self.event(data, path, attachments)
-    puts data
-    read_file = File.read("./Info/#{path}")
-    ex_json = JSON.parse(read_file)
-    attachments = ex_json[attachments]
-    client = Slack::RealTime::Client.new
-    client.web_client.chat_postMessage as_user: true,
-                                       channel: data.channel,
-                                       text: 'Revisando mi BD :buffer:',
-                                       icon_emoji: BOT_ICON,
-                                       username: BOT_NAME,
-                                       attachments: attachments
-  end
-
-  def self.write(data, text)
-    client = Slack::RealTime::Client.new
-    client.web_client.chat_postMessage channel: data,
-                                       text: text,
-                                       icon_emoji: BOT_ICON,
-                                       username: BOT_NAME
-  end
-end
+BOT_ICON = ':energon:'.freeze
+BOT_NAME = 'ENERBOT'.freeze
+BOT_ADMINS = ENV['SLACK_USERS']
+BOT_CHANNELS = ENV['SLACK_CHANNELS']
+BOT_TOKEN = ENV['SLACK_API_TOKEN']
+HOST_SSH = ENV['HOST_SSH']
+USER_SSH = ENV['USER_SSH']
+PASS_SSH = ENV['PASS_SSH']
 
 Slack.configure do |config|
-  config.token = ENV['SLACK_API_TOKEN']
+  config.token = BOT_TOKEN
   config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
 end
 
@@ -52,54 +26,17 @@ client.on :hello do
 end
 
 client.on :message do |data|
-  bot_admin = ENV['SLACK_USERS']
-  bot_channel = ENV['SLACK_CHANNELS']
-
-  if bot_channel.include? data.channel
+  if BOT_CHANNELS.include? data.channel
     case data.text
-    when /^enerbot\s(ayuda|help)$/i then
-      Resp.message(data, Info.help)
-    when /^enerbot hola/i then
-      Resp.message(data, '¡Hola!')
-    when /^enerbot\s(.*)\s(va|estas)$/i then
-      Resp.message(data, Quote.status)
-    when /^enerbot\s(.*)\s(consejo|pregunta)(.*?)/i then
-      Resp.message(data, Quote.advice)
-    when /^enerbot(.*)beneficio/i then
-      Resp.message(data, Quote.benefit)
-    when /^enerbot(.*)pack/i then
-      Resp.message(data, Info.pack)
-    when /^enerbot\s(.*)\s(rules|reglas)$/i then
-      Resp.message(data, Info.rules)
-    when /^enerbot cu[aá]ndo pagan?/i then
-      Resp.message(data, Time_to.gardel)
-    when /^enerbot cu[aá]nto para el 18?/i then
-      Resp.message(data, Time_to.september)
-    when /^enerbot info/i then
-      if data.text.include? 'How'
-        Resp.event(data, 'example.json', 'attachments')
-      elsif data.text.include? 'enerconf talks'
-        Resp.event(data, 'enerconf.json', 'talks')
-      else
-        Resp.event(data, 'enerconf.json', 'attachments')
-      end
-    when /^enerbot di/ then
-      if bot_admin.include? data.user
-        text = data.text.to_s.split(/\benerbot di/) * ''
-        Resp.write('GD8172Q22', text)
-      end
-    when 'self-destruct' then
-      if bot_admin.include? data.user
-        Resp.message(data, 'Bye')
-        abort('bye')
-      else
-        Resp.message(data, 'Meh')
-      end
-    end
-  else
-    case data.text
-    when /enerbot/ then
-      Resp.message(data, Quote.advice)
+    when /^enerbot/i then
+      Case.bot(data)
+    when /^enersay/ then
+      Case.say(data) if BOT_ADMINS.include? data.user
+    when /^enerssh/ then
+      text = Remote.ssh(data)
+      Resp.message(data, text) if BOT_ADMINS.include? data.user
+    when /^enershut/ then
+      Resp.message(data, 'Bye') && abort('bye') if BOT_ADMINS.include? data.user
     end
   end
 end

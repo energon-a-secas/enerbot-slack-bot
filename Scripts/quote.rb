@@ -41,4 +41,10 @@ module Quote
   def self.status
     ['Trabajo muy duro, como un esclavo... :musical_note:'].sample
   end
+
+  def self.search
+    ['Revisando mi BD :buffer:',
+     ':wait_latam:',
+     ':micdrop:'].sample
+  end
 end
