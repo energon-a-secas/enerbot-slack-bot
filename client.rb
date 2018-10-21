@@ -3,7 +3,7 @@ require './Scripts/date'
 require './Scripts/system'
 require './Scripts/quote'
 require './Scripts/ssh'
-require './functions'
+require './core'
 
 BOT_ICON = ':energon:'.freeze
 BOT_NAME = 'ENERBOT'.freeze
