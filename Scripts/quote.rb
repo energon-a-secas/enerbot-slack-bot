@@ -47,5 +47,4 @@ module Quote
      ':wait_latam:',
      ':micdrop:'].sample
   end
-
 end

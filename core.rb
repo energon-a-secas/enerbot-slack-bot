@@ -73,5 +73,3 @@ module Case
     Resp.write('GD8172Q22', text)
   end
 end
-
-
