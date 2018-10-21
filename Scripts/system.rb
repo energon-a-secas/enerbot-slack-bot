@@ -1,4 +1,4 @@
-module Info
+module System
   def self.rules
     <<~RULES
    0. A robot may not harm humanity, or, by inaction, allow humanity to come to harm.
@@ -11,7 +11,8 @@ module Info
 
   def self.help
     <<~HELP
->>> enerbot <hola>
+>>> Whatever you do never feed it after midnight
+ enerbot <hola>
  enerbot <va | estas>
  enerbot <consejo | pregunta> <...> ?
  enerbot <beneficio>
@@ -30,4 +31,5 @@ module Info
  b------------e
       CUBE
   end
+
 end

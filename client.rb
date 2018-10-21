@@ -1,6 +1,6 @@
 require 'slack-ruby-client'
 require './Scripts/date'
-require './Scripts/info'
+require './Scripts/system'
 require './Scripts/quote'
 require './Scripts/ssh'
 require './functions'
@@ -35,6 +35,8 @@ client.on :message do |data|
     when /^enerssh/ then
       text = Remote.ssh(data)
       Resp.message(data, text) if BOT_ADMINS.include? data.user
+    when /^enershut/ then
+      Resp.message(data, 'Bye') && abort('bye') if BOT_ADMINS.include? data.user
     end
   end
 end
