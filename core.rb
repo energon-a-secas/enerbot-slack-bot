@@ -70,6 +70,6 @@ module Case
 
   def self.say(data)
     text = data.text.to_s.split(/\benersay/) * ''
-    Resp.write('GD8172Q22', text)
+    Resp.write('C3W4PHU7K', text)
   end
 end
