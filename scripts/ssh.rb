@@ -5,7 +5,7 @@ require 'net/ssh'
 module Remote
   def self.ssh(data)
     text = data.text.to_s.split(/\benerssh/) * ''
-    Net::SSH.start(HOST_SSH, USER_SSH, password: PASS_SSH) do |ssh|
+    Net::SSH.start(BotValue::HOST_SSH, BotValue::USER_SSH, password: BotValue::PASS_SSH) do |ssh|
       ssh.exec!(text.to_s)
     end
   end

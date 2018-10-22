@@ -5,8 +5,8 @@ module Resp
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data.channel,
                                        text: text,
-                                       icon_emoji: BOT_ICON,
-                                       username: BOT_NAME
+                                       icon_emoji: BotValue::BOT_ICON,
+                                       username: BotValue::BOT_NAME
   end
 
   def self.event(data, path, attachments)
@@ -17,8 +17,8 @@ module Resp
     client.web_client.chat_postMessage as_user: true,
                                        channel: data.channel,
                                        text: Quote.search,
-                                       icon_emoji: BOT_ICON,
-                                       username: BOT_NAME,
+                                       icon_emoji: BotValue::BOT_ICON,
+                                       username: BotValue::BOT_NAME,
                                        attachments: parsed_file[attachments]
   end
 
@@ -26,8 +26,8 @@ module Resp
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data,
                                        text: text,
-                                       icon_emoji: BOT_ICON,
-                                       username: BOT_NAME
+                                       icon_emoji: BotValue::BOT_ICON,
+                                       username: BotValue::BOT_NAME
   end
 end
 

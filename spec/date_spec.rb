@@ -1,4 +1,4 @@
-require './Scripts/date'
+require './scripts/date'
 require 'date'
 
 context 'Return' do
