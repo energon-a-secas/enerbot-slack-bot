@@ -2,7 +2,6 @@ require './Scripts/date'
 require 'date'
 
 context 'Return' do
-
   specify 'days left to September 18' do
     Time_to.september == String
   end
@@ -10,5 +9,4 @@ context 'Return' do
   specify 'end of the month' do
     Time_to.gardel == String
   end
-
 end
