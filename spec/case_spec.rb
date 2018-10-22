@@ -11,7 +11,9 @@ class BotValue
   BOT_PHRASES = ['enerbot hola',
                  'enerbot pregunta',
                  'enerbot beneficio',
-                 'enerbot pack'].freeze
+                 'enerbot cuándo pagan',
+                 'enerbot cuando pagan?',
+                 'enerbot cuanto para el 18?'].freeze
   BOT_CUSTOM = ['enersay123',
                 'enersay 123',
                 'enersayasd',
