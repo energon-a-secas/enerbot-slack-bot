@@ -48,9 +48,9 @@ module Case
       Resp.message(data, System.pack)
     when /(rules|reglas)$/i then
       Resp.message(data, System.rules)
-    when /cu[aá]ndo pagan?/i then
+    when /cu[aá]ndo pagan/i then
       Resp.message(data, Time_to.gardel)
-    when /cu[aá]nto para el 18?/i then
+    when /cu[aá]nto para el 18/i then
       Resp.message(data, Time_to.september)
     when /info/i then
       Case.events(data)
