@@ -46,11 +46,11 @@ context 'Parse' do
   end
 end
 
-context 'Send' do
-  specify 'message' do
-    BotValue::BOT_CUSTOM.each do |i|
-      MESSAGE = i
-    Case.say(Fake)
-    end
-  end
-end
+# context 'Send' do
+#   specify 'message' do
+#     BotValue::BOT_CUSTOM.each do |i|
+#       MESSAGE = i
+#     Case.say(Fake)
+#     end
+#   end
+# end
