@@ -53,7 +53,7 @@ module Case
     when /cu[aá]nto para el 18/i then
       Resp.message(data, Time_to.september)
     when /password/i then
-      Resp.message(data, rand(36 ** 36).to_s(36))
+      Resp.message(data, "#{rand(36 ** 36).to_s(36)}!")
     when /info/i then
       Case.events(data)
     end
