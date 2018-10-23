@@ -65,8 +65,10 @@ module Case
 
   def self.events(data)
     case data.text
-    when /How/
-      Resp.event(data, 'example.json', 'attachments')
+    when /fuq/
+      Resp.event(data, 'security.json', 'fuq')
+    when /faq/
+      Resp.event(data, 'security.json', 'faq')
     when /eventos$/
       Resp.event(data, 'events.json', 'events')
     when /talks$/
