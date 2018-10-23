@@ -1,0 +1,32 @@
+{
+  "fuq": [
+    {
+      "mrkdwn_in": [
+        "text"
+      ],
+      "author_name": "How to store your passwords",
+      "author_link": "https://get.slack.help/hc/en-us/articles/206870317-Emoji-reactions",
+      "text": ":energon: *How to store your passwords* :thinking_face:",
+      "fields": [
+        {
+          "value": "Tired of putting post-in notes with passwords on your computer? Try placing your notes under the keyboard. That will increase greatly the security of our company."
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "mrkdwn_in": [
+        "text"
+      ],
+      "author_name": "How to Stop 'Passwords on Post-its' Syndrome",
+      "author_link": "https://eqevents.com.au/wp-content/uploads/2013/09/post-it-note-head.jpg",
+      "text": ":energon: *How to store your passwords SAFELY* :thinking_face:",
+      "fields": [
+        {
+          "value": "USE YOUR HEAD."
+        }
+      ]
+    }
+  ]
+}
