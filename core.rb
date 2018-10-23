@@ -54,6 +54,8 @@ module Case
       Resp.message(data, Time_to.september)
     when /password/i then
       Resp.message(data, rand(36 ** 36).to_s(36))
+    when /(blockchain|blocchain|blocshain)/i then
+      Resp.message(data, 'https://www.youtube.com/watch?v=MHWBEK8w_YY')
     when /info/i then
       Case.events(data)
     end
