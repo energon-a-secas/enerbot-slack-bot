@@ -3,6 +3,7 @@ require './scripts/date'
 require './scripts/system'
 require './scripts/quote'
 require './scripts/ssh'
+require './scripts/2fa'
 require './core'
 
 class BotValue

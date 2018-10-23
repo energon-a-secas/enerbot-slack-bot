@@ -58,6 +58,8 @@ module Case
       Resp.message(data, 'https://www.youtube.com/watch?v=MHWBEK8w_YY')
     when /info/i then
       Case.events(data)
+    when /2fa/i then
+      Resp.message(data, Totp.gen(data))
     end
     end
 
