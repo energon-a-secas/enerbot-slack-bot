@@ -20,15 +20,27 @@ Each one of this, must be the begin of the like, because yeah, why not.
 
 This method let us isolate the core functions in the `core.rb` file, where we put the ugly stuff that does the magic for our needs.
 
-## Configuration
+## Getting started
+
+### Prerequisites
+
+* Install [Ruby](https://www.ruby-lang.org/es/documentation/installation/). If you want to, off course.
+* Install [Bundler](https://bundler.io) to get all dependencies or you could stay in the dependency abyss by installing each dependency manually. It's your choice.
+
+
+### Installing
 Download the repository.
 ```
 git clone https://github.com/energonrocks/enerbot.git
 ```
-You need to install [Bundler](https://bundler.io) to get all dependencies or if you prefer stay in the dependency hell installing each dependency manually. Then inside of the enerbot repository execute:
+
+Inside of the enerbot repository use bundler.
 ```
+cd enerbot
 bundler install
 ```
+
+### Configuring
 
 You need to export the following parameters as environment variables:
  * SLACK_API_TOKEN: it lets you connect the bot with de Slack space.
