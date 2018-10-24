@@ -53,7 +53,7 @@ module Case
     when /cu[aá]nto para el 18/i then
       Resp.message(data, Time_to.september)
     when /password/i then
-      Resp.message(data, "#{rand(36 ** 36).to_s(36)}!")
+      Resp.message(data, Pass.gen(data))
     when /(blockchain|blocchain|blocshain)/i then
       Resp.message(data, 'https://www.youtube.com/watch?v=MHWBEK8w_YY')
     when /info/i then
