@@ -73,6 +73,8 @@ module Case
       Resp.event(data, 'events.json', 'events')
     when /talks$/
       Resp.event(data, 'events.json', 'talks')
+    when /tips$/
+      Resp.event(data, 'meets.json', 'tips')
     end
   end
 
