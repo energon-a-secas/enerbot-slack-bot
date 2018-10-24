@@ -44,7 +44,6 @@ module Quote
 
   def self.search
     ['Revisando mi BD :buffer:',
-     ':wait_latam:',
-     ':micdrop:'].sample
+     ':wait_latam:'].sample
   end
 end

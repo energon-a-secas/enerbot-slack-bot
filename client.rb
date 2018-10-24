@@ -3,6 +3,8 @@ require './scripts/date'
 require './scripts/system'
 require './scripts/quote'
 require './scripts/ssh'
+require './scripts/pass'
+require './scripts/tc'
 require './scripts/2fa'
 require './core'
 

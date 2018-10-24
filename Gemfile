@@ -4,5 +4,7 @@ source 'https://rubygems.org' do
   gem 'faye-websocket'
   gem 'net-ssh'
   gem 'slack-ruby-client'
+  gem 'passgen'
   gem 'rotp'
+  gem 'credy'
 end

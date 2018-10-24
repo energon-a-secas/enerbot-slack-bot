@@ -53,11 +53,13 @@ module Case
     when /cu[aá]nto para el 18/i then
       Resp.message(data, Time_to.september)
     when /password/i then
-      Resp.message(data, "#{rand(36 ** 36).to_s(36)}!")
+      Resp.message(data, Pass.gen(data))
     when /(blockchain|blocchain|blocshain)/i then
       Resp.message(data, 'https://www.youtube.com/watch?v=MHWBEK8w_YY')
     when /info/i then
       Case.events(data)
+    when /(tc)/i then
+      Resp.message(data, Credit.gen(data))
     when /2fa/i then
       Resp.message(data, Totp.gen(data))
     end
@@ -65,12 +67,16 @@ module Case
 
   def self.events(data)
     case data.text
-    when /How/
-      Resp.event(data, 'example.json', 'attachments')
+    when /fuq/
+      Resp.event(data, 'security.json', 'fuq')
+    when /faq/
+      Resp.event(data, 'security.json', 'faq')
     when /eventos$/
       Resp.event(data, 'events.json', 'events')
     when /talks$/
       Resp.event(data, 'events.json', 'talks')
+    when /tips$/
+      Resp.event(data, 'meets.json', 'tips')
     end
   end
 
