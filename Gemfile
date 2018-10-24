@@ -6,4 +6,5 @@ source 'https://rubygems.org' do
   gem 'slack-ruby-client'
   gem 'passgen'
   gem 'rotp'
+  gem 'credy'
 end
