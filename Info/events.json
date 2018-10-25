@@ -14,6 +14,21 @@
       ]
     }
   ],
+  "events2": [
+    {
+      "mrkdwn_in": [
+        "text"
+      ],
+      "author_name": "Ener-Live-Ry",
+      "author_link": "https://energon.cloud",
+      "text": "El equipo de Ener-Delivery, responsables del *Serverless Enerbot in the GCP*, los invitamos a:",
+      "fields": [
+        {
+          "value": "*Showcase Energon Experience* :energon: \n:calendar:  *viernes 26Oct* a las *13:00hrs* \n:book: *Agenda* \n- Roadmap updates \n- EnerCore Security Upgrade \n- Need CI :mariopipeline: \n- Vulnerability Analysis  \n- Credit card creator for Payments \n\n:pushpin:  Desde *Ivan's residence*\n:movie_camera:  meet.google.com/abc-din"
+        }
+      ]
+    }
+  ],
   "talks": [
     {
       "mrkdwn_in": [
