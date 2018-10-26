@@ -83,6 +83,18 @@ This is helpful when you are wondering where "everything collapsed".
 
 We want to, we are trying. Currently we can force the testing of cases in a specified channel, it's hilarious.
 
+### Docker
+
+Run a container with enerbot just to be popular.
+
+```
+docker build -t enerbot .
+docker run -e SLACK_API="YOUR-TOKEN-XX-XX-XXX" -e SLACK_ADMINS="XXXXXX" -e SLACK_CHANNELS="XXXXXX" --name="enerbot" enerbot
+```
+
+Alternative you can just put your credentials on the makefile and the run `make deploy`
+
+
 ### SSH
 
 Is intended to execute define commands in a remote host or a bastion, still in beta.
@@ -99,6 +111,8 @@ enerssh bot YOUR_COMMAND
 
 ## Contributing :heart: 
 
+If you have any doubts or you want to see a new feature, please feel free to contact us by open an issue.
+
 ## License
 
-See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
+See the [LICENSE](LICENSE) file for license rights and limitations (MIT).
