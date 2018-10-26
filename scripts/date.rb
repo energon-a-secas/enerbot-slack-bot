@@ -12,11 +12,14 @@ module Time_to
 
     d = (x - y).to_i
 
+    message = ":chile: "
     if d == 0
-      return ':chile: ¡Hoy es 18! ¡A emborracharte!'
+      message += "¡Hoy es 18! ¡A emborracharte!."
     else
-      return ":chile: Quedan #{d} días pa'l 18 de septiembre."
+      message += d == 1 ? "Queda #{d} dia" : "Quedan #{d} dias"
+      message += " pa'l 18 de septiembre."
     end
+    return message
   end
 
   # Based on @hectorpalmatellez's gardel.js
