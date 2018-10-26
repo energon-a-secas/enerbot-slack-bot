@@ -2,8 +2,13 @@ module Time_to
   # Based on @jorgeepunan's 18.js
 
   def self.september
-    x = Date.new(2019, 9, 18)
-    y = Time.now.to_date
+    y = Date.today
+    year = y.strftime("%Y").to_i;
+    if (y.strftime("%-m").to_i == 9 and y.strftime("%-d").to_i > 18) || (y.strftime("%-m").to_i > 9)
+      year += 1
+    end
+
+    x = Date.new(year, 9, 18)
 
     d = (x - y).to_i
 
