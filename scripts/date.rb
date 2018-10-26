@@ -3,7 +3,7 @@ module Time_to
 
   def self.september
     y = Date.today
-    year = y.strftime("%Y").to_i;
+    year = y.strftime("%Y").to_i
     if (y.strftime("%-m").to_i == 9 and y.strftime("%-d").to_i > 18) || (y.strftime("%-m").to_i > 9)
       year += 1
     end
