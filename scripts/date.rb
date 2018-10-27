@@ -12,14 +12,8 @@ module Time_to
 
     d = (x - y).to_i
 
-    message = ":chile: "
-    if d == 0
-      message += "¡Hoy es 18! ¡A emborracharte!."
-    else
-      message += d == 1 ? "Queda #{d} dia" : "Quedan #{d} dias"
-      message += " pa'l 18 de septiembre."
-    end
-    return message
+    f = d == 1 ? "Queda #{d} día" : "Quedan #{d} días"
+    d == 0 ? ":chile: ¡Hoy es 18! ¡A emborracharte!." : ":chile: #{f} pa'l 18 de septiembre."
   end
 
   # Based on @hectorpalmatellez's gardel.js
@@ -30,12 +24,8 @@ module Time_to
     date = Date.parse(Date.today.to_s)
     last = Date.parse(date.end_of_month.downto(date).find(&:working_day?).to_s)
     d = last.mjd - date.mjd - 2
-    p = if date.mjd > 1
-          'n'
-        else
-          ''
-        end
+    p = date.mjd > 1 ? "Faltan #{d} días" : "Falta #{d} día"
 
-    d == 0 ? '¡Hoy pagan!' : "Falta#{p} #{d} días para que paguen."
+    d == 0 ? '¡Hoy pagan!' : "#{p} para que paguen."
   end
 end
