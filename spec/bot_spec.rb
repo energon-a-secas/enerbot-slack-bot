@@ -2,6 +2,7 @@ require 'slack-ruby-client'
 require './scripts/quote'
 require './scripts/system'
 require './scripts/date'
+require './scripts/pass'
 require './core'
 
 class BotValue

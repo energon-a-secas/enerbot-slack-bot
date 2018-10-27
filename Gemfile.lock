@@ -14,9 +14,6 @@ GEM
     async-websocket (0.6.1)
       async-io
       websocket-driver (~> 0.7.0)
-    business_time (0.9.3)
-      activesupport (>= 3.2.0)
-      tzinfo
     concurrent-ruby (1.0.5)
     credy (0.2.1)
       thor (~> 0.19.1)
@@ -55,19 +52,20 @@ GEM
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
+    week_of_month (1.2.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   async-websocket!
-  business_time!
   credy!
   faye-websocket!
   net-ssh!
   passgen!
   rotp!
   slack-ruby-client!
+  week_of_month!
 
 BUNDLED WITH
    1.16.5
