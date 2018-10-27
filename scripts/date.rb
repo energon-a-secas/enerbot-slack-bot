@@ -12,7 +12,7 @@ module Time_to
 
     d = (x - y).to_i
 
-    f = d == 1 ? "Queda #{d} día" : "Quedan #{d} días"
+    f = d == 1 ? "Falta #{d} día" : "Faltan #{d} días"
     d == 0 ? ":chile: ¡Hoy es 18! ¡A emborracharte!." : ":chile: #{f} pa'l 18 de septiembre."
   end
 
