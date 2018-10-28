@@ -34,10 +34,11 @@ end
 # If you find yourself in a hole, stop digging
 module Case
   def self.bot(data)
-    text = data.text.to_s.split(/\benerbot/) * ''
-    case text
+    case data.text
     when /hola/i then
       Resp.message(data, '¡Hola!')
+    when /(help|ayuda)/i then
+      Resp.message(data, System.help)
     when /(va|estas)/i then
       Resp.message(data, Quote.status)
     when /(consejo|pregunta)(.*?)/i then
@@ -55,7 +56,7 @@ module Case
     when /password/i then
       Resp.message(data, Pass.gen(data))
     when /(blockchain|blocchain|blocshain)/i then
-      Resp.message(data, 'https://www.youtube.com/watch?v=MHWBEK8w_YY')
+      Resp.message(data, 'https://youtu.be/MHWBEK8w_YY')
     when /info/i then
       Case.events(data)
     when /(tc)/i then
@@ -86,10 +87,10 @@ module Case
 
   def self.say(data)
     if BotValue::BOT_ADMINS.include?(data.user)
-      text = data.text.to_s.split(/\benersay/) * ''
-      Resp.write('C3W4PHU7K', text)
+      d = data.text.split
+      Resp.write(d[1], d[2..-1].join(' '))
     else
-      Resp.write('#bots', text)
+      Resp.write('#bots', d[2..-1].join(' '))
     end
   end
 end
