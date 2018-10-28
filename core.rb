@@ -55,7 +55,7 @@ module Case
     when /password/i then
       Resp.message(data, Pass.gen(data))
     when /(blockchain|blocchain|blocshain)/i then
-      Resp.message(data, 'https://www.youtube.com/watch?v=MHWBEK8w_YY')
+      Resp.message(data, 'https://youtu.be/MHWBEK8w_YY')
     when /info/i then
       Case.events(data)
     when /(tc)/i then
