@@ -34,8 +34,7 @@ end
 # If you find yourself in a hole, stop digging
 module Case
   def self.bot(data)
-    text = data.text.to_s.split(/\benerbot/) * ''
-    case text
+    case data.text
     when /hola/i then
       Resp.message(data, '¡Hola!')
     when /(va|estas)/i then
