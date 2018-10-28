@@ -87,10 +87,10 @@ module Case
 
   def self.say(data)
     if BotValue::BOT_ADMINS.include?(data.user)
-      text = data.text.to_s.split(/\benersay/) * ''
-      Resp.write('C3W4PHU7K', text)
+      d = data.text.split
+      Resp.write(d[1], d[2..-1].join(' '))
     else
-      Resp.write('#bots', text)
+      Resp.write('#bots', d[2..-1].join(' '))
     end
   end
 end
