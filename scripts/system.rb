@@ -13,13 +13,23 @@ module System
   def self.help
     <<-HEREDOC
 >>>Whatever you do never feed it after midnight
+
  enerbot <hola>
  enerbot <va | estas>
- enerbot <consejo | pregunta> <...> ?
+ enerbot <consejo | pregunta>
  enerbot <beneficio>
  enerbot <reglas | rules>
  enerbot <cuando pagan?>
- enerbot <cuanto para el 18?>
+ enerbot <cuanto para el 18>
+ enerbot <pack>
+ enerbot <password> <sec>
+ enerbot <tc> VALUE
+ enerbot <2fa> VALUE
+ enerbot <blockchain>
+ enerbot <info> <eventos | talks | tips | enerlive | institute>
+ enerbot <faq>
+ enerbot <fuq>
+
     HEREDOC
   end
 
