@@ -39,7 +39,7 @@ describe '#bot' do
         'enersay #bots testing:energon:',
         'enersay #bots :energon::energon::energon:',
         'enersay #bots :newalert: testing :energon:'
-      ].each do |text|""
+      ].each do |text|
         MESSAGE = text
         Case.say(Fake)
       end
