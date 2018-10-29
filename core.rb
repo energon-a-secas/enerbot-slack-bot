@@ -63,6 +63,8 @@ module Case
       Resp.message(data, Credit.gen(data))
     when /2fa/i then
       Resp.message(data, Totp.gen(data))
+    when /random/i then
+      Resp.message(data, Rand.value(data))
     end
     end
 
