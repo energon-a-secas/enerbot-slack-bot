@@ -39,7 +39,7 @@ module Case
       Resp.message(data, '¡Hola!')
     when /(help|ayuda)/i then
       Resp.message(data, System.help)
-    when /(va|estas)/i then
+    when /(estas)/i then
       Resp.message(data, Quote.status)
     when /(consejo|pregunta)(.*?)/i then
       Resp.message(data, Quote.advice)
@@ -63,6 +63,8 @@ module Case
       Resp.message(data, Credit.gen(data))
     when /2fa/i then
       Resp.message(data, Totp.gen(data))
+    when /random/i then
+      Resp.message(data, Rand.value(data))
     end
     end
 
