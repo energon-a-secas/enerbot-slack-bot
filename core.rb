@@ -39,7 +39,7 @@ module Case
       Resp.message(data, '¡Hola!')
     when /(help|ayuda)/i then
       Resp.message(data, System.help)
-    when /(estas)/i then
+    when /(va|estas)/i then
       Resp.message(data, Quote.status)
     when /(consejo|pregunta)(.*?)/i then
       Resp.message(data, Quote.advice)
