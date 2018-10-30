@@ -65,8 +65,10 @@ module Case
       Resp.message(data, Totp.gen(data))
     when /random/i then
       Resp.message(data, Rand.value(data))
+    when /pr[oó]ximo feriado$/i
+      Resp.message(data, Time_to.holiday_count)
     end
-    end
+  end
 
   def self.events(data)
     case data.text
