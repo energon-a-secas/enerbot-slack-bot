@@ -30,7 +30,7 @@ module Time_to
   end
 
   # Based con @victorsanmartin's proximo-feriado.js
-  def self.holidays_count
+  def self.holiday_count
     holidays = JSON.parse(Net::HTTP.get(URI('https://www.feriadosapp.com/api/holidays.json')))
     
     message = "No hay feriados :thinking: :scream:"
