@@ -28,4 +28,26 @@ module Time_to
 
     d == 0 ? '¡Hoy pagan!' : "#{p} para que paguen."
   end
+
+  # Based con @victorsanmartin's proximo-feriado.js
+  def self.holiday_count
+    holidays = JSON.parse(Net::HTTP.get(URI('https://www.feriadosapp.com/api/holidays.json')))
+    
+    message = "No hay feriados :thinking: :scream:"
+
+    holidays['data'].each do |holiday|
+      countdown = (Date.parse(holiday['date']) - Date.today).to_i
+      laws = holiday['law'].join(" - ").downcase
+      if countdown == 0
+        message = "Hoy es feriado en :chile:, se celebra *#{holiday['title']}* (feriado #{holiday['extra'].downcase}, declarado por #{laws})"
+        break
+      elsif countdown > 0
+        plural = countdown > 1 ? "s" : ""
+        message = "Próximo feriado en :chile: es en #{countdown} día#{plural} (#{holiday['date']}), se celebra *#{holiday['title']}* (feriado #{holiday['extra'].downcase}, declarado por #{laws})"  
+        break
+      end
+    end
+    
+    return message
+  end
 end
