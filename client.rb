@@ -40,7 +40,7 @@ client.on :message do |data|
   when /^enerssh/ then
     Resp.message(data, Remote.ssh(data))
   when /^enershut/ then
-    System.kill if BotValue::BOT_ADMINS.include? data.user
+    Resp.message(data, System.kill) && abort('bye') if BotValue::BOT_ADMINS.include? data.user
   end
 end
 
