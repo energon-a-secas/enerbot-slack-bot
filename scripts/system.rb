@@ -33,6 +33,7 @@ module System
     HEREDOC
   end
 
+  # Based on juanbrujo's ql.js
   def self.pack
     <<-HEREDOC
    c------------u
@@ -41,5 +42,29 @@ module System
  |~energon~|
  b------------e
     HEREDOC
+  end
+
+  def self.kill
+    a = <<-HEREDOC
+(҂._.)
+<,╤╦╤─ ҉ - - - - :energon:
+/--\\
+    HEREDOC
+    b = <<-HEREDOC
+\n \
+━━━━━┓\n \
+┓┓┓┓┓┃  \n \
+┓┓┓┓┓┃     :energon: ~ chaoooooo
+┓┓┓┓┓┃
+┓┓┓┓┓┃
+┓┓┓┓┓┃
+┓┓┓┓┓┃
+    HEREDOC
+    c = <<-HEREDOC
+:bomb: :bomb: :bomb:
+:bomb: :energon: :bomb: :fire: ~ adiós mundo cruel
+:bomb: :bomb: :bomb:
+    HEREDOC
+    [a, b, c].sample
   end
 end
