@@ -67,6 +67,8 @@ module Case
       Resp.message(data, Rand.value(data))
     when /pr[oó]ximo feriado$/i
       Resp.message(data, Time_to.holiday_count)
+    when /hor[oó]scopo/i
+      Resp.message(data, Pedro.engel(data))
     end
   end
 
