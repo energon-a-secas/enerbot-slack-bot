@@ -21,11 +21,11 @@ module Pedro
       signo = api['horoscopo'][option]
       <<~HEREDOC
       Horóscopo para *#{option}* hoy: #{Date.today}
-      *Amor :heart::* #{signo['amor']}
-      *Salud :medical_symbol::* #{signo['salud']}
-      *Dinero :moneybag::* #{signo['dinero']}
-      *Color :art::* #{signo['color']}
-      *Número :8ball::* #{signo['numero']}
+      :heart:*Amor:* #{signo['amor']}
+      :medical_symbol:*Salud:* #{signo['salud']}
+      :moneybag:*Dinero:* #{signo['dinero']}
+      :art:*Color:* #{signo['color']}
+      :8ball:*Número:* #{signo['numero']}
       HEREDOC
     else
       "[WARN] No es canon #{option}"
