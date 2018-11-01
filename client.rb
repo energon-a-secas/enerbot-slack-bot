@@ -7,6 +7,7 @@ require './scripts/pass'
 require './scripts/tc'
 require './scripts/2fa'
 require './scripts/random'
+require './scripts/horoscopo'
 require './core'
 
 class BotValue
