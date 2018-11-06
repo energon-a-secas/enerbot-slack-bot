@@ -8,6 +8,7 @@ require './scripts/tc'
 require './scripts/2fa'
 require './scripts/random'
 require './scripts/horoscopo'
+require './scripts/kino'
 require './core'
 
 class BotValue

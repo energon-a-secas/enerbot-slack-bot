@@ -69,6 +69,8 @@ module Case
       Resp.message(data, Time_to.holiday_count)
     when /hor[oó]scopo/i
       Resp.message(data, Pedro.engel(data))
+    when /dame n[uú]meros para el kino/i
+      Resp.message(data, Kino.numeros)
     end
   end
 
@@ -94,7 +96,10 @@ module Case
   def self.say(data)
     if BotValue::BOT_ADMINS.include?(data.user)
       d = data.text.split
-      Resp.write(d[1], d[2..-1].join(' '))
+      puts d[1].to_s
+      puts d[1]
+      puts d[1]
+      Resp.write(d[1].to_s, d[2..-1].join(' '))
     else
       Resp.write('#bots', d[2..-1].join(' '))
     end
