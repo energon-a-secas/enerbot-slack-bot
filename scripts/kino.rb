@@ -2,7 +2,7 @@
 module Kino
 
   def self.numeros
-    k = (1..30).to_a.shuffle!
+    k = (1..25).to_a.shuffle!
     p = (1..100).to_a.shuffle!
     n = k[0..13].sort.join(', ')
     p ":crystal_ball: Números: #{n} \n #{Kino.status(p[0])} Probabilidad de ganar: #{p[0]}%"
