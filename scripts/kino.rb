@@ -4,12 +4,12 @@ module Kino
   def self.numeros
     k = (1..30).to_a.shuffle!
     p = (1..100).to_a.shuffle!
-    n = k[0..6].join(' ')
+    n = k[0..13].join(' ')
     p ":crystal_ball: Números: #{n} \n #{Kino.status(p[0])} Probabilidad de ganar: #{p[0]}%"
   end
 
-  def self.status(l)
-    case l
+  def self.status(per)
+    case per
     when 1..10
       ':thunder_cloud_and_rain:'
     when 11..20
