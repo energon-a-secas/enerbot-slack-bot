@@ -9,6 +9,7 @@ require './scripts/2fa'
 require './scripts/random'
 require './scripts/horoscopo'
 require './scripts/kino'
+require './scripts/securityCheck'
 require './core'
 
 class BotValue
