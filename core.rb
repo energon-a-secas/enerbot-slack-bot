@@ -71,6 +71,8 @@ module Case
       Resp.message(data, Pedro.engel(data))
     when /dame n[uú]meros para el kino/i
       Resp.message(data, Kino.numeros)
+    when /analiza/i
+      Resp.message(data, Peyo.check(data))
     end
   end
 
