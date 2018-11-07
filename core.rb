@@ -73,7 +73,6 @@ module Case
       Resp.message(data, Kino.numeros)
     when /analiza/i
       Resp.message(data, Peyo.check(data))
-    end
     when /kick up 4d3d3d3/i
       Resp.message(data, 'http://i.imgur.com/noJWe.gif')
     end
