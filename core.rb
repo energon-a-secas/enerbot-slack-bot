@@ -74,6 +74,9 @@ module Case
     when /analiza/i
       Resp.message(data, Peyo.check(data))
     end
+    when /kick up 4d3d3d3/i then
+      Resp.message(data, 'http://i.imgur.com/noJWe.gif')
+    end
   end
 
   def self.events(data)
