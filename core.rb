@@ -75,6 +75,8 @@ module Case
       Resp.message(data, Peyo.check(data))
     when /kick up 4d3d3d3/i
       Resp.message(data, 'http://i.imgur.com/noJWe.gif')
+    when /(hat wobble|flahrgunnstow)/i
+      Resp.message(data, 'https://i.imgur.com/SOlzkvP.gif')
     end
   end
 
