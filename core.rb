@@ -34,11 +34,12 @@ end
 # If you find yourself in a hole, stop digging
 module Case
   def self.bot(data)
-    text = data.text.to_s.split(/\benerbot/) * ''
-    case text
+    case data.text
     when /hola/i then
       Resp.message(data, '¡Hola!')
-    when /(va|estas)/i then
+    when /(help|ayuda)/i then
+      Resp.message(data, System.help)
+    when /(c[oó]mo est[aá]s)/i then
       Resp.message(data, Quote.status)
     when /(consejo|pregunta)(.*?)/i then
       Resp.message(data, Quote.advice)
@@ -52,24 +53,57 @@ module Case
       Resp.message(data, Time_to.gardel)
     when /cu[aá]nto para el 18/i then
       Resp.message(data, Time_to.september)
+    when /password/i then
+      Resp.message(data, Pass.gen(data))
+    when /(blockchain|blocchain|blocshain)/i then
+      Resp.message(data, 'https://youtu.be/MHWBEK8w_YY')
     when /info/i then
       Case.events(data)
+    when /(tc)/i then
+      Resp.message(data, Credit.gen(data))
+    when /2fa/i then
+      Resp.message(data, Totp.gen(data))
+    when /random/i then
+      Resp.message(data, Rand.value(data))
+    when /pr[oó]ximo feriado$/i
+      Resp.message(data, Time_to.holiday_count)
+    when /hor[oó]scopo/i
+      Resp.message(data, Pedro.engel(data))
+    when /dame n[uú]meros para el kino/i
+      Resp.message(data, Kino.numeros)
+    when /analiza/i
+      Resp.message(data, Peyo.check(data))
     end
-    end
+  end
 
   def self.events(data)
     case data.text
-    when /How/
-      Resp.event(data, 'example.json', 'attachments')
+    when /fuq/
+      Resp.event(data, 'security.json', 'fuq')
+    when /faq/
+      Resp.event(data, 'security.json', 'faq')
     when /eventos$/
       Resp.event(data, 'events.json', 'events')
     when /talks$/
       Resp.event(data, 'events.json', 'talks')
+    when /tips$/
+      Resp.event(data, 'meets.json', 'tips')
+    when /enerlive$/
+      Resp.event(data, 'events.json', 'events2')
+    when /institute$/
+      Resp.event(data, 'institute.json', 'degrees')
     end
   end
 
   def self.say(data)
-    text = data.text.to_s.split(/\benersay/) * ''
-    Resp.write('C3W4PHU7K', text)
+    if BotValue::BOT_ADMINS.include?(data.user)
+      d = data.text.split
+      puts d[1].to_s
+      puts d[1]
+      puts d[1]
+      Resp.write(d[1].to_s, d[2..-1].join(' '))
+    else
+      Resp.write('#bots', d[2..-1].join(' '))
+    end
   end
 end

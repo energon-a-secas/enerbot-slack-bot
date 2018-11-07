@@ -2,16 +2,18 @@ module Time_to
   # Based on @jorgeepunan's 18.js
 
   def self.september
-    x = Date.new(2019, 9, 18)
-    y = Time.now.to_date
+    y = Date.today
+    year = y.strftime("%Y").to_i
+    if (y.strftime("%-m").to_i == 9 and y.strftime("%-d").to_i > 18) || (y.strftime("%-m").to_i > 9)
+      year += 1
+    end
+
+    x = Date.new(year, 9, 18)
 
     d = (x - y).to_i
 
-    if d == 0
-      return ':chile: ¡Hoy es 18! ¡A emborracharte!'
-    else
-      return ":chile: Quedan #{d} días pa'l 18 de septiembre."
-    end
+    f = d == 1 ? "Falta #{d} día" : "Faltan #{d} días"
+    d == 0 ? ":chile: ¡Hoy es 18! ¡A emborracharte!." : ":chile: #{f} pa'l 18 de septiembre."
   end
 
   # Based on @hectorpalmatellez's gardel.js
@@ -22,12 +24,30 @@ module Time_to
     date = Date.parse(Date.today.to_s)
     last = Date.parse(date.end_of_month.downto(date).find(&:working_day?).to_s)
     d = last.mjd - date.mjd - 2
-    p = if date.mjd > 1
-          'n'
-        else
-          ''
-        end
+    p = date.mjd > 1 ? "Faltan #{d} días" : "Falta #{d} día"
 
-    d == 0 ? '¡Hoy pagan!' : "Falta#{p} #{d} días para que paguen."
+    d == 0 ? '¡Hoy pagan!' : "#{p} para que paguen."
+  end
+
+  # Based con @victorsanmartin's proximo-feriado.js
+  def self.holiday_count
+    holidays = JSON.parse(Net::HTTP.get(URI('https://www.feriadosapp.com/api/holidays.json')))
+    
+    message = "No hay feriados :thinking: :scream:"
+
+    holidays['data'].each do |holiday|
+      countdown = (Date.parse(holiday['date']) - Date.today).to_i
+      laws = holiday['law'].join(" - ").downcase
+      if countdown == 0
+        message = "Hoy es feriado en :chile:, se celebra *#{holiday['title']}* (feriado #{holiday['extra'].downcase}, declarado por #{laws})"
+        break
+      elsif countdown > 0
+        plural = countdown > 1 ? "s" : ""
+        message = "Próximo feriado en :chile: es en #{countdown} día#{plural} (#{holiday['date']}), se celebra *#{holiday['title']}* (feriado #{holiday['extra'].downcase}, declarado por #{laws})"  
+        break
+      end
+    end
+    
+    return message
   end
 end

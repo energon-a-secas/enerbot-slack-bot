@@ -3,6 +3,13 @@ require './scripts/date'
 require './scripts/system'
 require './scripts/quote'
 require './scripts/ssh'
+require './scripts/pass'
+require './scripts/tc'
+require './scripts/2fa'
+require './scripts/random'
+require './scripts/horoscopo'
+require './scripts/kino'
+require './scripts/securityCheck'
 require './core'
 
 class BotValue
@@ -28,18 +35,15 @@ client.on :hello do
 end
 
 client.on :message do |data|
-  if BotValue::BOT_CHANNELS.include? data.channel
-    case data.text
-    when /^enerbot/i then
-      Case.bot(data)
-    when /^enersay/ then
-      Case.say(data) if BotValue::BOT_ADMINS.include? data.user
-    when /^enerssh/ then
-      text = Remote.ssh(data)
-      Resp.message(data, text) if BotValue::BOT_ADMINS.include? data.user
-    when /^enershut/ then
-      Resp.message(data, 'Bye') && abort('bye') if BotValue::BOT_ADMINS.include? data.user
-    end
+  case data.text
+  when /^enerbot/i then
+    Case.bot(data)
+  when /^enersay/ then
+    Case.say(data)
+  when /^enerssh/ then
+    Resp.message(data, Remote.ssh(data))
+  when /^enershut/ then
+    Resp.message(data, System.kill) && abort('bye') if BotValue::BOT_ADMINS.include? data.user
   end
 end
 
