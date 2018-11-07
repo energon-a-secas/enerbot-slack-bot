@@ -74,7 +74,7 @@ module Case
     when /analiza/i
       Resp.message(data, Peyo.check(data))
     end
-    when /kick up 4d3d3d3/i then
+    when /kick up 4d3d3d3/i
       Resp.message(data, 'http://i.imgur.com/noJWe.gif')
     end
   end
