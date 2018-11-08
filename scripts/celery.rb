@@ -1,6 +1,6 @@
 module Celery
   def self.load(data)
-    case data
+    case data.text
     when /celery/i
       'https://i.imgur.com/6MqOJUg.gif'
     when /tayne/i
