@@ -11,6 +11,7 @@ require './scripts/horoscopo'
 require './scripts/kino'
 require './scripts/securityCheck'
 require './scripts/celery'
+require './scripts/lingo'
 require './core'
 
 class BotValue
