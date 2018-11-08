@@ -72,10 +72,10 @@ module Case
       Resp.message(data, Kino.numeros)
     when /analiza/i
       Resp.message(data, Peyo.check(data))
-    when /kick up 4d3d3d3/i
-      Resp.message(data, 'http://i.imgur.com/noJWe.gif')
     when /(faq|fuq)/i
       Case.events(data)
+    when /(celery|tayne|oyster|wobble|4d3d3d3|flarhgunnstow)/i
+      Resp.message(data, Celery.load(data))
     end
   end
 
