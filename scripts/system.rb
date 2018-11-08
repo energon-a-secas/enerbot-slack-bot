@@ -12,9 +12,9 @@ module System
 
   def self.help
     <<-HEREDOC
->>>Whatever you do never feed it after midnight
-
- enerbot <hola>
+>>>Whatever you do *never feed it after midnight*
+ Avalaible Commands:
+```enerbot <hola>
  enerbot <va | estas>
  enerbot <consejo | pregunta>
  enerbot <beneficio>
@@ -29,6 +29,12 @@ module System
  enerbot <info> <eventos | talks | tips | enerlive | institute>
  enerbot <faq>
  enerbot <fuq>
+ enerbot ramdom
+ enerbot kick up 4d3d3d3  
+ enerbot proximo feriado
+ enerbot horoscopo <signo>
+ enerbot dame numeros para el kino
+ enerbot analiza <url>```
 
     HEREDOC
   end
