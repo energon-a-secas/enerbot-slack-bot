@@ -7,4 +7,5 @@ source 'https://rubygems.org' do
   gem 'passgen'
   gem 'rotp'
   gem 'credy'
+  gem 'stock_quote'
 end
