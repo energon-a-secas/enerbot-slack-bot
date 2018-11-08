@@ -10,6 +10,7 @@ require './scripts/random'
 require './scripts/horoscopo'
 require './scripts/kino'
 require './scripts/securityCheck'
+require './scripts/celery'
 require './core'
 
 class BotValue
