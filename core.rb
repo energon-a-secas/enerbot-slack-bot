@@ -76,6 +76,8 @@ module Case
       Case.events(data)
     when /(celery|tayne|oyster|wobble|4d3d3d3|flarhgunnstow)/i
       Resp.message(data, Celery.load(data))
+    when /c[oó]mo se dice/i 
+      Resp.message(data, Lingo.translate(data))
     end
   end
 
