@@ -12,6 +12,7 @@ require './scripts/kino'
 require './scripts/securityCheck'
 require './scripts/celery'
 require './scripts/lingo'
+require './scripts/stock'
 require './core'
 
 class BotValue
