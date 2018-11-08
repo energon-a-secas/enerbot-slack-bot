@@ -14,27 +14,27 @@ module System
     <<-HEREDOC
 >>>Whatever you do *never feed it after midnight*
  Avalaible Commands:
-```enerbot <hola>
-enerbot <va | estas>
-enerbot <consejo | pregunta>
-enerbot <beneficio>
-enerbot <reglas | rules>
-enerbot <cuando pagan?>
-enerbot <cuanto para el 18>
-enerbot <pack>
-enerbot <password> <sec>
-enerbot <tc> VALUE
-enerbot <2fa> VALUE
-enerbot <blockchain>
-enerbot <info> <eventos | talks | tips | enerlive | institute>
-enerbot <faq>
-enerbot <fuq>
-enerbot ramdom
-enerbot kick up 4d3d3d3  
-enerbot proximo feriado
-enerbot horoscopo <signo>
-enerbot dame numeros para el kino
-enerbot analiza <url>```
+``` enerbot <hola>
+ enerbot <va | estas>
+ enerbot <consejo | pregunta>
+ enerbot <beneficio>
+ enerbot <reglas | rules>
+ enerbot <cuando pagan?>
+ enerbot <cuanto para el 18>
+ enerbot <pack>
+ enerbot <password> <sec>
+ enerbot <tc> VALUE
+ enerbot <2fa> VALUE
+ enerbot <blockchain>
+ enerbot <info> <eventos | talks | tips | enerlive | institute>
+ enerbot <faq>
+ enerbot <fuq>
+ enerbot ramdom
+ enerbot kick up 4d3d3d3  
+ enerbot proximo feriado
+ enerbot horoscopo <signo>
+ enerbot dame numeros para el kino
+ enerbot analiza <url>```
 
     HEREDOC
   end
