@@ -14,8 +14,7 @@ module Resp
     json_file = File.read("./Info/#{path}")
     parsed_file = JSON.parse(json_file)
     client = Slack::RealTime::Client.new
-    client.web_client.chat_postMessage as_user: true,
-                                       channel: data.channel,
+    client.web_client.chat_postMessage channel: data.channel,
                                        text: Quote.search,
                                        icon_emoji: BotValue::BOT_ICON,
                                        username: BotValue::BOT_NAME,
