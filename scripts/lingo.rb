@@ -13,7 +13,7 @@ module Lingo
 
         params = data.text.split(' ')
         toLanguage = params[-1]
-        toTranslate = data.text.split(' en ')[0].split("enerbot como se dice ")[1]
+        toTranslate = data.text.split(' en: ')[0].split("enerbot como se dice ")[1]
 
         if languages.keys.include? toLanguage and not toTranslate.to_s.empty?
             url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=es&tl=" + languages[toLanguage] + "&dt=t&q=" + URI::encode(toTranslate)
