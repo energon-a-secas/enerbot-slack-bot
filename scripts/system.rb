@@ -26,15 +26,21 @@ module System
  enerbot <tc> VALUE
  enerbot <2fa> VALUE
  enerbot <blockchain>
- enerbot <info> <eventos | talks | tips | enerlive | institute>
+ enerbot <info> <eventos | talks | tips | enerlive | institute>
  enerbot <faq>
  enerbot <fuq>
- enerbot ramdom
- enerbot kick up 4d3d3d3  
- enerbot proximo feriado
- enerbot horoscopo <signo>
- enerbot dame numeros para el kino
- enerbot analiza <url>```
+ enerbot <random> 
+ enerbot <proximo feriado>
+ enerbot <horoscopo> <signo>
+ enerbot <dame numeros para el kino>
+ enerbot <analiza> <url>
+ enerbot <kick> <4d3d3d3>
+ enerbot <celery>
+ enerbot <tayne>
+ enerbot <hat wobble | flarhgunnstow>
+ enerbot <oyster>
+ enerbot <como se dice> <text> <en> <idioma>
+ enerbot <accion> <latam> ``` 
 
     HEREDOC
   end
