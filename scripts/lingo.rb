@@ -11,9 +11,10 @@ module Lingo
         flags =  {"ingles" => ":uk:", "español" => ":es:", "frances" => ":fr:", "portugues" => ":flag-pt:", "ruso" => ":ru:", "aleman" => ":de:",
             "chino" => ":flag-cn:", "japones" => ":jp:", "italiano" => ":it:", "argentino" => ":ar:", "chileno" => ":flag-cl:", "brasileño" => ":flag-br:"}
 
-        params = data.text.split(' ')
-        toLanguage = params[-1]
-        toTranslate = data.text.split(' en: ')[0].split("enerbot como se dice ")[1]
+        toTranslate, toLanguage = '',''
+        if match = data.text.match(/enerbot como se dice (.*) en (.*?)$/i)
+            toTranslate, toLanguage = match.captures
+        end
 
         if languages.keys.include? toLanguage and not toTranslate.to_s.empty?
             url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=es&tl=" + languages[toLanguage] + "&dt=t&q=" + URI::encode(toTranslate)
