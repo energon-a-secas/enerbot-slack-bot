@@ -13,6 +13,7 @@ require './scripts/securityCheck'
 require './scripts/celery'
 require './scripts/lingo'
 require './scripts/stock'
+require './scripts/qr'
 require './core'
 
 class BotValue
