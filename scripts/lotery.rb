@@ -1,11 +1,11 @@
 # This module use AI
-module Kino
+module Lotery
 
-  def self.numeros
+  def self.numbers
     k = (1..25).to_a.shuffle!
     p = (1..100).to_a.shuffle!
     n = k[0..13].sort.join(', ')
-    p ":crystal_ball: Números: #{n} \n #{Kino.status(p[0])} Probabilidad de ganar: #{p[0]}%"
+    p ":crystal_ball: Números: #{n} \n #{Lotery.status(p[0])} Probabilidad de ganar: #{p[0]}%"
   end
 
   def self.status(per)
@@ -33,7 +33,17 @@ module Kino
     end
   end
 
-  def self.ganador
-    p 'You tried'
+  def self.winnerNums
+    require 'Nokogiri'
+    require 'open-uri'
+
+    doc = Nokogiri::HTML(open('https://losresultados.info/kino/'))
+    title = doc.search('.entry-title').inner_text.to_s
+    nums = doc.search('table').first.inner_text.to_s
+    p <<~HEREDOC
+#{title}
+Números #{nums.scan(/../)}
+    HEREDOC
+
   end
 end

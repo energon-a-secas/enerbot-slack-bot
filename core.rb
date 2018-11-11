@@ -69,7 +69,7 @@ module Case
     when /hor[oó]scopo/i
       Resp.message(data, Pedro.engel(data))
     when /dame n[uú]meros para el kino/i
-      Resp.message(data, Kino.numeros)
+      Resp.message(data, Lotery.numeros)
     when /analiza/i
       Resp.message(data, Peyo.check(data))
     when /(faq|fuq)/i
@@ -80,6 +80,8 @@ module Case
       Resp.message(data, Lingo.translate(data))
     when /(accion latam|valor accion|acciones latam|stock latam)/i
       Resp.message(data, Stock.fetch(data))
+    when /resultados kino/
+      Resp.message(data, Lotery.winnerNums)
     end
   end
 
