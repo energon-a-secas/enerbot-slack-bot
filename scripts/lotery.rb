@@ -1,6 +1,5 @@
 # This module use AI
 module Lotery
-
   def self.num
     k = (1..25).to_a.shuffle!
     p = (1..100).to_a.shuffle!
@@ -44,6 +43,5 @@ module Lotery
 #{title}
 :trophy: *Números:* #{nums.scan(/../).join(', ')}.
     HEREDOC
-
   end
 end
