@@ -10,7 +10,7 @@ module Stock
     if match = text.match(/^enerbot valor acci[oó]n (.*?)$/i)
       search = match.captures[0]
     end
-    if search && (!search.empty? && search !~ /energon/i)
+    if search && search !~ /energon/i
       uri = "http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=#{search}&region=1&lang=en&callback=YAHOO.Finance.SymbolSuggest.ssCallback"
       resultSet = Net::HTTP.get(URI(uri)).match(/YAHOO.Finance.SymbolSuggest.ssCallback\((.*?)\)\;/).captures
       symbols = JSON.parse(resultSet[0])
