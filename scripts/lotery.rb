@@ -42,7 +42,7 @@ module Lotery
     nums = doc.search('table').first.inner_text.to_s
     p <<-HEREDOC
 #{title}
-Números: #{nums.scan(/../).join(',')}
+:trophy: *Números:* #{nums.scan(/../).join(', ')}.
     HEREDOC
 
   end
