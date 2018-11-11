@@ -33,13 +33,13 @@ module System
  enerbot <proximo feriado>
  enerbot <horoscopo> <signo>
  enerbot <dame numeros para el kino>
- enerbot <analiza> <url>
+ enerbot <analiza> <URL>
  enerbot <kick> <4d3d3d3>
  enerbot <celery>
  enerbot <tayne>
  enerbot <hat wobble | flarhgunnstow>
  enerbot <oyster>
- enerbot <como se dice> <text> <en> <idioma>
+ enerbot <como se dice> <TEXT> <en> <IDIOMA>
  enerbot <accion> <latam> ``` 
 
     HEREDOC
