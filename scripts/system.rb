@@ -40,7 +40,7 @@ module System
  enerbot <hat wobble | flarhgunnstow>
  enerbot <oyster>
  enerbot <como se dice> <TEXTO> <en> <IDIOMA>
- enerbot <accion> <latam> 
+ enerbot <valor accion> <ENTIDAD> 
  enerbot <qr> <TEXTO> ``` 
 
     HEREDOC
