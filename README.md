@@ -24,9 +24,25 @@ This method let us isolate the core functions in the `core.rb` file, where we pu
 
 ### Prerequisites
 
+A computer.
+
 * Install [Ruby](https://www.ruby-lang.org/es/documentation/installation/). If you want to, off course.
+* Install [Ruby Version Management](https://rvm.io/rvm/install). RVM lets you easily work with multiple versions of Ruby. 
 * Install [Bundler](https://bundler.io) to get all dependencies or you could stay in the dependency abyss by installing each dependency manually. It's your choice.
 
+
+We highly recommend you to use the Ruby 2.5.1 version because it works on our machines. You can check your current version with:
+
+```
+ruby --version
+```
+
+You can install and change to a new version using [RVM](https://rvm.io/rvm/basics) with the following commands:
+
+```
+rvm install 2.5.1
+rvm use 2.5.1
+```
 
 ### Installing
 Download the repository.
