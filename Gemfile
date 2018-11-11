@@ -8,4 +8,5 @@ source 'https://rubygems.org' do
   gem 'rotp'
   gem 'credy'
   gem 'stock_quote'
+  gem 'nokogiri'
 end
