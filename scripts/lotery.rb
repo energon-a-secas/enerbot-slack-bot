@@ -1,7 +1,7 @@
 # This module use AI
 module Lotery
 
-  def self.numbers
+  def self.num
     k = (1..25).to_a.shuffle!
     p = (1..100).to_a.shuffle!
     n = k[0..13].sort.join(', ')
@@ -40,9 +40,9 @@ module Lotery
     doc = Nokogiri::HTML(open('https://losresultados.info/kino/'))
     title = doc.search('.entry-title').inner_text.to_s
     nums = doc.search('table').first.inner_text.to_s
-    p <<~HEREDOC
+    p <<-HEREDOC
 #{title}
-Números #{nums.scan(/../)}
+Números: #{nums.scan(/../).join(',')}
     HEREDOC
 
   end
