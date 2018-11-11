@@ -78,10 +78,10 @@ module Case
       Resp.message(data, Celery.load(data))
     when /c[oó]mo se dice/i 
       Resp.message(data, Lingo.translate(data))
-    when /(accion latam|valor accion|acciones latam|stock latam)/i
-      Resp.message(data, Stock.fetch(data))
     when /resultados kino/
       Resp.message(data, Lotery.winnerNums)
+    when /(valor acci[óo]n (.*?)$)/i
+      Resp.message(data, Stock.fetch(data.text))
     end
   end
 
