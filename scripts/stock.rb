@@ -21,7 +21,7 @@ module Stock
         end
       }
     elsif search =~ /energon/i
-      message = 'ENERGON : ' + rand(300).to_s + ' USD\n'
+      message = 'ENERGON : ' + rand(300).to_s + " USD\n"
     end
     unless message.empty?
       "Precios de accion para #{search}:\n#{message}"
