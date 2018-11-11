@@ -39,8 +39,9 @@ module System
  enerbot <tayne>
  enerbot <hat wobble | flarhgunnstow>
  enerbot <oyster>
- enerbot <como se dice> <TEXT> <en> <IDIOMA>
- enerbot <accion> <latam> ``` 
+ enerbot <como se dice> <TEXTO> <en> <IDIOMA>
+ enerbot <accion> <latam> 
+ enerbot <qr> <TEXTO> ``` 
 
     HEREDOC
   end

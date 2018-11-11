@@ -10,4 +10,5 @@ source 'https://rubygems.org' do
   gem 'stock_quote'
   gem 'nokogiri'
   gem 'rubysl-open-uri'
+  gem 'shorturl'
 end

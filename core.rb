@@ -82,6 +82,8 @@ module Case
       Resp.message(data, Lotery.winnerNums)
     when /(valor acci[óo]n (.*?)$)/i
       Resp.message(data, Stock.fetch(data.text))
+    when /qr/i
+      Resp.message(data, QR.generate(data.text))
     end
   end
 

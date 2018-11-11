@@ -56,6 +56,7 @@ GEM
     rotp (4.0.2)
       addressable (~> 2.5)
     rubysl-open-uri (2.0.0)
+    shorturl (1.0.0)
     slack-ruby-client (0.13.1)
       activesupport
       faraday (>= 0.9)
@@ -91,6 +92,7 @@ DEPENDENCIES
   passgen!
   rotp!
   rubysl-open-uri!
+  shorturl!
   slack-ruby-client!
   stock_quote!
   week_of_month!
