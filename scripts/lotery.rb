@@ -34,7 +34,7 @@ module Lotery
   end
 
   def self.winnerNums
-    require 'Nokogiri'
+    require 'nokogiri'
     require 'open-uri'
 
     doc = Nokogiri::HTML(open('https://losresultados.info/kino/'))
