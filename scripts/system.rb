@@ -16,15 +16,15 @@ module System
  Avalaible Commands:
 ``` enerbot <hola>
  enerbot <va | estas>
- enerbot <consejo | pregunta>
+ enerbot <consejo | pregunta> <TEXTO>
  enerbot <beneficio>
  enerbot <reglas | rules>
  enerbot <cuando pagan?>
  enerbot <cuanto para el 18>
  enerbot <pack>
  enerbot <password> <sec>
- enerbot <tc> VALUE
- enerbot <2fa> VALUE
+ enerbot <tc> <TARJETA>
+ enerbot <2fa> <SECRET>
  enerbot <blockchain>
  enerbot <info> <eventos | talks | tips | enerlive | institute>
  enerbot <faq>
@@ -33,6 +33,7 @@ module System
  enerbot <proximo feriado>
  enerbot <horoscopo> <signo>
  enerbot <dame numeros para el kino>
+ enerbot <resultados kino>
  enerbot <analiza> <URL>
  enerbot <kick> <4d3d3d3>
  enerbot <celery>
