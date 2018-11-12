@@ -1,15 +1,46 @@
 {
-  "first_contest": [
+  "general_info": [
     {
       "mrkdwn_in": [
         "text"
       ],
       "author_name": "Energon Corp :tm:",
       "author_link": "https://energon.cloud",
-      "text": "*FIRST ENERGON AWARDS :trophy: | Nov. 12-23 2018* :mega:",
+      "text": "FIRST ENERGON AWARDS :trophy: | Nov. 12-23 2018 :mega: *Información General*",
       "fields": [
         {
-          "value": "¿Estás buscando conseguir un cubo de *ENERGON* del bueno? ¿Los :autobot:s no te dejan? ¿los :decepticon:s tampoco? ~_¿tay angurri ’elmanito?_~ Participa en uno de los siguientes concursos:\n\n*SecDevSecOpsSec*: envía un pull request a alguno de nuestros servicios:\n- :robot_face: *enerbot* - https://github.com/energonrocks/enerbot\n- :art: *website* - https://github.com/energonrocks/website\n- :humo: :coffin: *enegon-cli* - https://github.com/energonrocks/energon-cli\n\n*Diseña tu cubo*: deja volar tu imaginación y diseña tu propio cubo.\n- :energon: *cubo*- youtu.be/Pid3my0nHSc\n- :black_square: *cuadrado* - es.wikipedia.org/wiki/Cuadrado\n\nEnergon Corp no se encuentra afiliado a ningún partido de Cybertron, los cubos están sujetos a disponibilidad de stock. Infórmese sobre la garantía estatal de los depósitos.\n\n\nPremios SecDevSecOpsSec:\n:first_place_medal: un cubo de :energon: y un certificado Gold con código QR.\nsecond_place_medal: un cubo de :energon: y un certificado Silver con código QR.\n:third_place_medal: un certificado de participación :youtried: :sadparrot:\n\n_Premios sujetos a cambios. En el mejor de los casos, menos cubos y más QR_\n\n*Reglas:*\nEl objetivo de este concurso es premiar la idea, más que al desarrollo en sí. Aún así *el desarrollo es necesario*. Debido a esto, la ayuda de Energon’s Research And Studies Certifications Area puede ser entregada, en caso que las funcionalidades tengan problemas y/o necesiten alguna modificación para ser utilizadas en enerbot. Horarios de atención: 18:01 - 18:30.\nMientras más funcionalidades y/o mejoras agregues, más posibilidades tienes de ganar.\nEnergon Corp se reserva el derecho de aprobación de Pull Requests, en caso que representen una vulnerabilidad tanto como para la organización como para alguno de los servicios de ENERGON.\n\n*Votación:*\nLa votación se realizará el día *viernes 23 de Noviembre* mediante un /poll, donde los miembros pertenecientes a este canal podrán votar por todas las funcionalidades que estos consideren útiles y/o innovadoras.\n:one: Cada voto, valdrá un 1 punto.\n:two: Si la funcionalidad está orientada a ChatOps y Seguridad, valdrá 2.\n:three: El jurado, compuesto por {*CLASSIFIED*} (los cuales no participarán de esta competencia) y cuyo voto valdrá 3 puntos. Además, solo podrán votar por una única funcionalidad.\n\n\n*Premios Diseña tu cubo:*\nfirst_place_medal: Un cubo de :energon:\n*Reglas:*\nDiseñar el próximo logo de :energon: en base a los siguientes requisitos:\n\nSer un cubo o en su defecto un cuadrado.\nLos mas original posible.\n\n*Votación:*\n\nLa votación se realizará el día *viernes 23 de Noviembre* mediante un /poll siguiendo las mismas reglas para votar que en el concurso del SecDevSecOpsSec:\n:one: Cada voto, valdrá un 1 punto.\n:two: Si la funcionalidad está orientada a ChatOps y Seguridad, valdrá 2.\n:three: El jurado, compuesto por {*CLASSIFIED*} (los cuales no participarán de esta competencia) y cuyo voto valdrá 3 puntos. Además, solo podrán votar por una única funcionalidad.\n\n\n:energon: _¡«Que gane el mas mejol!»_ :energon:"
+          "value": "¿Estás buscando conseguir un cubo de *ENERGON* del bueno? ¿Los :autobot:s no te dejan? ¿los :decepticon:s tampoco? ~_¿tay angurri ’elmanito?_~ Participa en uno de los siguientes concursos:\n\n*SecDevSecOpsSec*: `enerbot info contest SDSOS`\n*Diseña tu cubo*: `enerbot info contest diseña`\n\n~Energon Corp no se encuentra afiliado a ningún partido de Cybertron, los cubos están sujetos a disponibilidad de stock. Infórmese sobre la garantía estatal de los depósitos.~\n\n:energon: _¡«Que gane el mas mejol»!_ :energon:\n"
+        }
+      ]
+    }
+  ],
+
+  "SDSOS": [
+    {
+      "mrkdwn_in": [
+        "text"
+      ],
+      "author_name": "Energon Corp :tm:",
+      "author_link": "https://energon.cloud",
+      "text": "FIRST ENERGON AWARDS :trophy: | Nov. 12-23 2018 :mega: *SecDevSecOpsSec*",
+      "fields": [
+        {
+          "value": "Envía un pull request a alguno de nuestros servicios:\n- :robot_face: *enerbot* - https://github.com/energonrocks/enerbot\n- :art: *website* - https://github.com/energonrocks/website\n- :humo: :coffin: *enegon-cli* - https://github.com/energonrocks/energon-cli\n\n*Premios SecDevSecOpsSec:*\n:first_place_medal: un cubo de :energon: y un certificado Gold con código QR.\n:second_place_medal: un cubo de :energon: y un certificado Silver con código QR.\n:third_place_medal: un certificado de participación :youtried: :sadparrot:\n\n_Premios sujetos a cambios. En el mejor de los casos, menos cubos y más QR_\n\n*Reglas:*\nEl objetivo de este concurso es premiar la idea, más que al desarrollo en sí. Aún así *el desarrollo es necesario*. Debido a esto, la ayuda de Energon’s Research And Studies Certifications Area puede ser entregada, en caso que las funcionalidades tengan problemas y/o necesiten alguna modificación para ser utilizadas en enerbot. Horarios de atención: 18:01 - 18:30.\nMientras más funcionalidades y/o mejoras agregues, más posibilidades tienes de ganar.\nEnergon Corp se reserva el derecho de aprobación de Pull Requests, en caso que representen una vulnerabilidad tanto como para la organización como para alguno de los servicios de ENERGON.\n\n*Votación:*\nLa votación se realizará el día *viernes 23 de Noviembre* mediante un /poll, donde los miembros pertenecientes a este canal podrán votar por todas las funcionalidades que estos consideren útiles y/o innovadoras.\n:one: Cada voto, valdrá un 1 punto.\n:two: Si la funcionalidad está orientada a ChatOps y Seguridad, valdrá 2.\n:three: El jurado, compuesto por {} (los cuales no participarán de esta competencia) y cuyo voto valdrá 3 puntos. Además, solo podrán votar por una única funcionalidad."
+        }
+      ]
+    }
+  ],
+  "design": [
+    {
+      "mrkdwn_in": [
+        "text"
+      ],
+      "author_name": "Energon Corp :tm:",
+      "author_link": "https://energon.cloud",
+      "text": "FIRST ENERGON AWARDS :trophy: | Nov. 12-23 2018 :mega: *Diseña tu cubo*",
+      "fields": [
+        {
+          "value": "Deja volar tu imaginación y diseña tu propio cubo.\n- :energon: *cubo*- youtu.be/Pid3my0nHSc\n- :black_square: *cuadrado* - es.wikipedia.org/wiki/Cuadrado\n\n*Premios Diseña tu cubo:*\nfirst_place_medal: Un cubo de :energon:\n\n*Reglas:*\nDiseñar el próximo logo de :energon: en base a los siguientes requisitos:\nSer un cubo o en su defecto un cuadrado.\nLo mas original posible.\n\n*Votación:*\nLa votación se realizará el día *viernes 23 de Noviembre* mediante un /poll siguiendo las mismas reglas para votar que en el concurso del SecDevSecOps:\n:one: Cada voto, valdrá un 1 punto.\n:two: Si la funcionalidad está orientada a ChatOps y Seguridad, valdrá 2.\n:three: El jurado, compuesto por {} (los cuales no participarán de esta competencia) y cuyo voto valdrá 3 puntos. Además, solo podrán votar por una única funcionalidad."
         }
       ]
     }
