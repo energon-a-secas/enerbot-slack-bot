@@ -84,6 +84,8 @@ module Case
       Resp.message(data, Stock.fetch(data.text))
     when /qr/i
       Resp.message(data, QR.generate(data.text))
+    when /wikipedia/i
+      Resp.message(data, Vieja.sapear(data))
     end
   end
 
