@@ -1,3 +1,4 @@
+# Information of the enercore
 module System
   def self.rules
     <<-HEREDOC
@@ -24,14 +25,14 @@ module System
  enerbot <pack>
  enerbot <password> <sec>
  enerbot <tc> <TARJETA>
- enerbot <2fa> <SECRET>
- enerbot <blockchain>
+ enerbot <2fa> <KEY>
+ enerbot <blockchain | blocchain | blocshain>
  enerbot <info> <eventos | talks | tips | enerlive | institute>
  enerbot <faq>
  enerbot <fuq>
- enerbot <random> 
+ enerbot <random> <VALUE> <VALUE> <VALUE>
  enerbot <proximo feriado>
- enerbot <horoscopo> <signo>
+ enerbot <horoscopo> <SIGNO>
  enerbot <dame numeros para el kino>
  enerbot <resultados kino>
  enerbot <analiza> <URL>

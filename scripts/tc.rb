@@ -1,3 +1,4 @@
+# Needs a lot of improvement
 module Credit
   def self.gen(data)
     require 'credy'

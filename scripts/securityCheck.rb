@@ -1,8 +1,9 @@
-require 'json'
-require 'net/http'
-
+# Module for Peyo's security adventures
 module Peyo
   def self.check(data)
+    require 'json'
+    require 'net/http'
+
     url = data.text.split[2].split('|')[1].chomp('>')
     analisis = JSON.parse(Net::HTTP.get(URI('https://sitecheck.sucuri.net/api/v2/?scan=' + url)))
     recommendations = analisis['RECOMMENDATIONS']['LIST']

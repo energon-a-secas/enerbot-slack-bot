@@ -1,3 +1,4 @@
+# Module for blockchain
 module Celery
   def self.load(data)
     case data.text

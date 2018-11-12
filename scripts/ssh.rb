@@ -1,9 +1,9 @@
-require 'rubygems'
-require 'net/ssh'
-
-# Works with the power of friendship
+# Module powered by friendship
 module Remote
   def self.ssh(data)
+    require 'rubygems'
+    require 'net/ssh'
+
     if BotValue::BOT_ADMINS.include? data.user
       text = data.text.to_s.split(/\benerssh/) * ''
       Net::SSH.start(BotValue::HOST_SSH, BotValue::USER_SSH, password: BotValue::PASS_SSH) do |ssh|

@@ -1,7 +1,8 @@
-#Ignore the long url, please.
+# Ignore the long url, please.
 module QR
   def self.generate(data)
     require 'shorturl'
+
     textQR = 'https://energon.cloud'
     if match = data.match(/qr (.*?)$/i)
       textQR = match.captures[0]

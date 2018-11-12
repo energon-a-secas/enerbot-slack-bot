@@ -1,10 +1,10 @@
-require 'json'
-require 'net/http'
-require 'uri'
-
+# Module for language
 module Lingo
-  
     def self.translate(data)
+        require 'json'
+        require 'net/http'
+        require 'uri'
+
         languages =  {"ingles" => "en", "español" => "es", "frances" => "fr", "portugues" => "pt", "ruso" => "ru", "aleman" => "de",
             "chino" => "zh", "japones" => "ja", "italiano" => "it", "argentino" => "es", "chileno" => "es", "brasileño" => "pt"}
 

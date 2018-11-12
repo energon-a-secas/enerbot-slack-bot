@@ -1,4 +1,4 @@
-# This module use AI
+# Module for stuff related to lotery
 module Lotery
   def self.num
     k = (1..25).to_a.shuffle!
