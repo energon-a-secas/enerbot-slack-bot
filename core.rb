@@ -103,6 +103,8 @@ module Case
       Resp.event(data, 'events.json', 'events2')
     when /institute$/
       Resp.event(data, 'institute.json', 'degrees')
+    when /contest$/
+      Resp.event(data, 'contest.json', 'first_contest')
     end
   end
 
