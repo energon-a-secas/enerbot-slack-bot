@@ -1,3 +1,4 @@
+# Information of the enercore
 module System
   def self.rules
     <<-HEREDOC

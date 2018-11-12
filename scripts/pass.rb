@@ -1,6 +1,8 @@
+# Module that generates a password and sometimes it's secure
 module Pass
   def self.gen(data)
     require 'passgen'
+
     if data.text.include? 'sec'
       Passgen.generate(symbols: true, length: 36, digits_before: 3)
     else

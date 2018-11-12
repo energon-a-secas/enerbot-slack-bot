@@ -1,6 +1,6 @@
+# Module that makes enerbot talk
 module Quote
   # Based on juanbrujo's 8ball.js
-
   def self.advice
     ['En mi opinión, sí',
      'Es cierto',
@@ -25,7 +25,6 @@ module Quote
     end
 
   # Based on lgaticaq's beneficios.js
-
   def self.benefit
     ['Tómate la tarde libre, proletario.',
      '¡4 semanas de vacaciones pagadas!',

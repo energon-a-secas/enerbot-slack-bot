@@ -1,8 +1,9 @@
-require 'json'
-require 'net/http'
-
+# Module dedicated to Security
 module Pedro
   def self.engel(data)
+    require 'json'
+    require 'net/http'
+
     option = data.text.split[2]
     signos = %w[aries
                 tauro
@@ -28,7 +29,11 @@ module Pedro
       :8ball:*Número:* #{signo['numero']}
       HEREDOC
     else
-      "[WARN] No es canon #{option}"
+      if 'ofiuco' == option
+        ':enerfiuco:'
+      else
+        "[WARN] No es canon #{option}"
+      end
     end
   end
 end
