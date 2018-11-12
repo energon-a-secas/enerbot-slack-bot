@@ -25,7 +25,7 @@ module System
  enerbot <pack>
  enerbot <password> <sec>
  enerbot <tc> <TARJETA>
- enerbot <2fa> <SECRET>
+ enerbot <2fa> <KEY>
  enerbot <blockchain | blocchain | blocshain>
  enerbot <info> <eventos | talks | tips | enerlive | institute>
  enerbot <faq>
