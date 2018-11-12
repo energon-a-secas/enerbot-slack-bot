@@ -34,7 +34,7 @@ end
 module Case
   def self.bot(data)
     case data.text
-    when /hola/i then
+    when /\s(hello|hola)$/i then
       Resp.message(data, '¡Hola!')
     when /(help|ayuda)/i then
       Resp.message(data, System.help)
@@ -76,7 +76,7 @@ module Case
       Case.events(data)
     when /(celery|tayne|oyster|wobble|4d3d3d3|flarhgunnstow)/i
       Resp.message(data, Celery.load(data))
-    when /c[oó]mo se dice/i 
+    when /c[oó]mo se dice/i
       Resp.message(data, Lingo.translate(data))
     when /resultados kino/
       Resp.message(data, Lotery.winnerNums)
@@ -109,9 +109,6 @@ module Case
   def self.say(data)
     if BotValue::BOT_ADMINS.include?(data.user)
       d = data.text.split
-      puts d[1].to_s
-      puts d[1]
-      puts d[1]
       Resp.write(d[1].to_s, d[2..-1].join(' '))
     else
       Resp.write('#bots', d[2..-1].join(' '))
