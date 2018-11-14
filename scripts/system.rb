@@ -43,7 +43,8 @@ module System
  enerbot <oyster>
  enerbot <como se dice> <TEXTO> <en> <IDIOMA>
  enerbot <valor accion> <ENTIDAD> 
- enerbot <qr> <TEXTO> ``` 
+ enerbot <qr> <TEXTO>
+ enerbot <vuelo> <NUMERO DE VUELO> ``` 
 
     HEREDOC
   end
