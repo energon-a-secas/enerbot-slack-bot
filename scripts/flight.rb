@@ -1,3 +1,4 @@
+# Module for flights (you don't say...)
 require 'json'
 require 'date'
 require 'open-uri'
