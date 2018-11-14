@@ -86,6 +86,8 @@ module Case
       Resp.message(data, QR.generate(data.text))
     when /wikipedia/i
       Resp.message(data, Vieja.sapear(data))
+    when /vuelo/i
+      Resp.message(data, Flight.info(data.text))
     end
   end
 
