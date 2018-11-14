@@ -22,11 +22,11 @@ module Flight
                 depTime = depEstTime.to_s > Time.now.to_datetime.to_s ? 'Next' : 'Last'
                 arrTime = arrEstTime.to_s > Time.now.to_datetime.to_s ? 'Next' : 'Last'
 
-                message = "*Flight #{js['flights'][flightKey]['friendlyIdent']}*\n"
-                message += "*From* #{js['flights'][flightKey]['origin']['friendlyLocation']}\n"
-                message += "*to* #{js['flights'][flightKey]['destination']['friendlyLocation']}\n"
-                message += "*#{depTime} Departure:* #{depEstTime.strftime("%Y-%m-%d %H:%M:%S %:z")}\n"
-                message += "*#{arrTime} Arrival:* #{arrEstTime.strftime("%Y-%m-%d %H:%M:%S %:z")}"
+                message = ":airplane: *Flight #{js['flights'][flightKey]['friendlyIdent']}*\n"
+                message += ":cityscape: *From* #{js['flights'][flightKey]['origin']['friendlyLocation']}\n"
+                message += ":cityscape: *To* #{js['flights'][flightKey]['destination']['friendlyLocation']}\n"
+                message += ":airplane_departure: *#{depTime} Departure:* #{depEstTime.strftime("%Y-%m-%d %H:%M:%S %:z")}\n"
+                message += ":airplane_arriving: *#{arrTime} Arrival:* #{arrEstTime.strftime("%Y-%m-%d %H:%M:%S %:z")}"
             end
         end
         <<-HEREDOC
