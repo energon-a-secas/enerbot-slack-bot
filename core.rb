@@ -88,6 +88,8 @@ module Case
       Resp.message(data, Vieja.sapear(data))
     when /vuelo/i
       Resp.message(data, Flight.info(data.text))
+    when /clima/i
+	    Resp.message(data, Ivan.torres(data.text))
     end
   end
 

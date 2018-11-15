@@ -44,7 +44,8 @@ module System
  enerbot <como se dice> <TEXTO> <en> <IDIOMA>
  enerbot <valor accion> <ENTIDAD> 
  enerbot <qr> <TEXTO>
- enerbot <vuelo> <NUMERO DE VUELO> ``` 
+ enerbot <vuelo> <NUMERO DE VUELO>  
+ enerbot <clima> <LOCALIDAD> ``` 
 
     HEREDOC
   end

@@ -16,6 +16,7 @@ require './scripts/lingo'
 require './scripts/stock'
 require './scripts/qr'
 require './scripts/flight'
+require './scripts/weather'
 require './core'
 
 class BotValue
