@@ -8,7 +8,7 @@ module Ivan
         if match = text.match(/clima\s(.*?)$/i)
             location = match.captures[0]
         end
-        html = open("https://wttr.in/#{location}", 'User-Agent' => 'curl/7.62.0').read
+        html = open("https://wttr.in/#{location}?m", 'User-Agent' => 'curl/7.62.0').read
         weather = ''
         html.split(/\n/).each do |line|
             if !line.match(/\s+┌─────────────┐\s+/)
