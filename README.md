@@ -56,6 +56,8 @@ cd enerbot
 bundler install
 ```
 
+Optionally, you can take all the magic of ENERGON to your current Slack space by importing our beloved crafted custom emojis, and be the coolest kid in the hood. Please, refer to [Add custom emoji](https://get.slack.help/hc/en-us/articles/206870177-Add-custom-emoji).
+
 ### Configuring
 
 You need to export the following parameters as environment variables:
