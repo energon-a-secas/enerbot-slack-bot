@@ -33,98 +33,91 @@ end
 # If you find yourself in a hole, stop digging
 module Case
   def self.bot(data)
-    case data.text
-    when /\s(hello|hola)$/i
-      z = '¡Hola!'
-    when /(help|ayuda)/i
-      z = System.help
-    when /(c[oó]mo est[aá]s)/i
-      z = Quote.status
-    when /(consejo|pregunta)(.*?)/i
-      z = Quote.advice
-    when /(.*)beneficio/i
-      z = Quote.benefit
-    when /pack$/i
-      z = System.pack
-    when /(rules|reglas)$/i
-      z = System.rules
-    when /cu[aá]ndo pagan/i
-      z = Time_to.gardel
-    when /cu[aá]nto para el 18/i
-      z = Time_to.september
-    when /password/i
-      z = Pass.gen(data)
-    when /(blockchain|blocchain|blocshain)/i
-      z = 'https://youtu.be/MHWBEK8w_YY'
-    when /info/i
-      Case.events(data)
-    when /(tc)/i
-      z = Credit.gen(data)
-    when /2fa/i
-      z = Totp.gen(data)
-    when /random/i
-      z = Rand.value(data)
-    when /pr[oó]ximo feriado$/i
-      z = Time_to.holiday_count
-    when /hor[oó]scopo/i
-      z = Pedro.engel(data)
-    when /dame n[uú]meros para el kino/i
-      z = Lotery.num
-    when /analiza/i
-      z = Peyo.check(data)
-    when /(faq|fuq)/i
-      Case.events(data)
-    when /(celery|tayne|oyster|wobble|4d3d3d3|flarhgunnstow)/i
-      z = Celery.load(data)
-    when /c[oó]mo se dice/i
-      z = Lingo.translate(data)
-    when /resultados kino/
-      z = Lotery.winnerNums
-    when /(valor acci[óo]n (.*?)$)/i
-      z = Stock.fetch(data.text)
-    when /qr/i
-      z = QR.generate(data.text)
-    when /wikipedia/i
-      z = Vieja.sapear(data)
-    when /vuelo/i
-      z = Flight.info(data.text)
-    when /clima/i
-      z = Ivan.torres(data.text)
-    end
+    z = case data.text
+        when /\s(hello|hola)$/i
+          '¡Hola!'
+        when /(help|ayuda)/i
+          System.help
+        when /(c[oó]mo est[aá]s)/i
+          Quote.status
+        when /(consejo|pregunta)(.*?)/i
+          Quote.advice
+        when /(.*)beneficio/i
+          Quote.benefit
+        when /pack$/i
+          System.pack
+        when /(rules|reglas)$/i
+          System.rules
+        when /cu[aá]ndo pagan/i
+          Time_to.gardel
+        when /cu[aá]nto para el 18/i
+          Time_to.september
+        when /password/i
+          Pass.gen(data)
+        when /(blockchain|blocchain|blocshain)/i
+          'https://youtu.be/MHWBEK8w_YY'
+        when /info/i
+          Case.events(data)
+        when /(tc)/i
+          Credit.gen(data)
+        when /2fa/i
+          Totp.gen(data)
+        when /random/i
+          Rand.value(data)
+        when /pr[oó]ximo feriado$/i
+          Time_to.holiday_count
+        when /hor[oó]scopo/i
+          Pedro.engel(data)
+        when /dame n[uú]meros para el kino/i
+          Lotery.num
+        when /analiza/i
+          Peyo.check(data)
+        when /(faq|fuq)/i
+          Case.events(data)
+        when /(celery|tayne|oyster|wobble|4d3d3d3|flarhgunnstow)/i
+          Celery.load(data)
+        when /c[oó]mo se dice/i
+          Lingo.translate(data)
+        when /resultados kino/
+          Lotery.winnerNums
+        when /(valor acci[óo]n (.*?)$)/i
+          Stock.fetch(data.text)
+        when /qr/i
+          QR.generate(data.text)
+        when /wikipedia/i
+          Vieja.sapear(data)
+        when /vuelo/i
+          Flight.info(data.text)
+        when /clima/i
+          Ivan.torres(data.text)
+        end
 
     Resp.message(data, z)
   end
 
   def self.events(data)
-    as = [{ file: 'security.json', op1: 'fuq', op2: 'faq' },
-          { file: 'events.json', op1: 'events', op2: 'events2', op3: 'talks' },
-          { file: 'institute.json', op1: 'degrees', op2: 'talks' },
-          { file: 'meets.json', op1: 'tips' },
-          { file: 'contest.json', op1: 'general', op2: 'SDSOS', op3: 'design' }]
-
     case data.text
-    when /fuq/ then y = (as[0][:file]).to_s, z = (as[0][:op1]).to_s
-    when /faq/ then y = (as[0][:file]).to_s
-                    z = as[0][:op2].to_s
-    when /eventos$/ then y = as[1][:file].to_s
-                         z = as[1][:op1].to_s
-    when /talks$/ then y = as[1][:file].to_s
-                       z = as[1][:op3].to_s
-    when /tips$/ then y = as[3][:file].to_s
-                      z = as[3][:op1].to_s
-    when /enerlive$/ then y = as[1][:file].to_s
-                          z = as[1][:op2].to_s
-    when /institute$/ then y = as[2][:file].to_s
-                           z = as[2][:op2].to_s
-    when /contest general_info$/ then y = as[4][:file].to_s
-                                      z = as[4][:op1].to_s
-    when /contest SDSOS$/ then y = as[4][:file].to_s
-                               z = as[4][:op2].to_s
-    when /contest diseña$/ then y = as[4][:file].to_s
-                                z = as[4][:op3].to_s
+    when /fuq/
+      Resp.event(data, 'security.json', 'fuq')
+    when /faq/
+      Resp.event(data, 'security.json', 'faq')
+    when /eventos$/
+      Resp.event(data, 'events.json', 'events')
+    when /talks$/
+      Resp.event(data, 'events.json', 'talks')
+    when /tips$/
+      Resp.event(data, 'meets.json', 'tips')
+    when /enerlive$/
+      Resp.event(data, 'events.json', 'events2')
+    when /institute$/
+      Resp.event(data, 'institute.json', 'degrees')
+    when /contest general_info$/
+      Resp.event(data, 'contest.json', 'general_info')
+    when /contest SDSOS$/
+      Resp.event(data, 'contest.json', 'SDSOS')
+    when /contest diseña$/
+      Resp.event(data, 'contest.json', 'design')
     end
-
-    Resp.event(data, y, z)
   end
 
   def self.say(data)
