@@ -33,7 +33,7 @@ end
 # If you find yourself in a hole, stop digging
 module Case
   def self.bot(data)
-    if data.text.match(/(fuq|faq|info)/)
+    if data.text =~ /(fuq|faq|info)/
       Case.events(data)
     else
       z = case data.text
@@ -92,7 +92,6 @@ module Case
           end
       Resp.message(data, z)
     end
-
   end
 
   def self.events(data)
@@ -126,7 +125,6 @@ module Case
            end
 
     Resp.event(data, y, z)
-
   end
 
   def self.say(data)
