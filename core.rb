@@ -95,18 +95,6 @@ module Case
     Resp.message(data, z)
   end
 
-  def self.say(data)
-    if BotValue::BOT_ADMINS.include?(data.user)
-      d = data.text.split
-      Resp.write(d[1].to_s, d[2..-1].join(' '))
-    else
-      Resp.write('#bots', d[2..-1].join(' '))
-    end
-  end
-end
-
-# Meh
-module Events
   def self.events(data)
     as = [{ file: 'security.json', op1: 'fuq', op2: 'faq' },
           { file: 'events.json', op1: 'events', op2: 'events2', op3: 'talks' },
@@ -115,28 +103,36 @@ module Events
           { file: 'contest.json', op1: 'general', op2: 'SDSOS', op3: 'design' }]
 
     case data.text
-    when /fuq/ then y = as[0][:file]
-                    z = as[0][:op1]
-    when /faq/ then y = as[0][:file]
-                    z = as[0][:op2]
-    when /eventos$/ then y = as[1][:file]
-                         z = as[1][:op1]
-    when /talks$/ then y = as[1][:file]
-                       z = as[1][:op3]
-    when /tips$/ then y = as[3][:file]
-                      z = as[3][:op1]
-    when /enerlive$/ then y = as[1][:file]
-                          z = as[1][:op2]
-    when /institute$/ then y = as[2][:file]
-                           z = as[2][:op2]
-    when /contest general_info$/ then y = as[4][:file]
-                                      z = as[4][:op1]
-    when /contest SDSOS$/ then y = as[4][:file]
-                               z = as[4][:op2]
-    when /contest diseña$/ then y = as[4][:file]
-                                z = as[4][:op3]
+    when /fuq/ then y = (as[0][:file]).to_s, z = (as[0][:op1]).to_s
+    when /faq/ then y = (as[0][:file]).to_s
+                    z = as[0][:op2].to_s
+    when /eventos$/ then y = as[1][:file].to_s
+                         z = as[1][:op1].to_s
+    when /talks$/ then y = as[1][:file].to_s
+                       z = as[1][:op3].to_s
+    when /tips$/ then y = as[3][:file].to_s
+                      z = as[3][:op1].to_s
+    when /enerlive$/ then y = as[1][:file].to_s
+                          z = as[1][:op2].to_s
+    when /institute$/ then y = as[2][:file].to_s
+                           z = as[2][:op2].to_s
+    when /contest general_info$/ then y = as[4][:file].to_s
+                                      z = as[4][:op1].to_s
+    when /contest SDSOS$/ then y = as[4][:file].to_s
+                               z = as[4][:op2].to_s
+    when /contest diseña$/ then y = as[4][:file].to_s
+                                z = as[4][:op3].to_s
     end
 
     Resp.event(data, y, z)
+  end
+
+  def self.say(data)
+    if BotValue::BOT_ADMINS.include?(data.user)
+      d = data.text.split
+      Resp.write(d[1].to_s, d[2..-1].join(' '))
+    else
+      Resp.write('#bots', d[2..-1].join(' '))
+    end
   end
 end
