@@ -33,65 +33,66 @@ end
 # If you find yourself in a hole, stop digging
 module Case
   def self.bot(data)
-    z = case data.text
-        when /\s(hello|hola)$/i
-          '¡Hola!'
-        when /(help|ayuda)/i
-          System.help
-        when /(c[oó]mo est[aá]s)/i
-          Quote.status
-        when /(consejo|pregunta)(.*?)/i
-          Quote.advice
-        when /(.*)beneficio/i
-          Quote.benefit
-        when /pack$/i
-          System.pack
-        when /(rules|reglas)$/i
-          System.rules
-        when /cu[aá]ndo pagan/i
-          Time_to.gardel
-        when /cu[aá]nto para el 18/i
-          Time_to.september
-        when /password/i
-          Pass.gen(data)
-        when /(blockchain|blocchain|blocshain)/i
-          'https://youtu.be/MHWBEK8w_YY'
-        when /info/i
-          Case.events(data)
-        when /(tc)/i
-          Credit.gen(data)
-        when /2fa/i
-          Totp.gen(data)
-        when /random/i
-          Rand.value(data)
-        when /pr[oó]ximo feriado$/i
-          Time_to.holiday_count
-        when /hor[oó]scopo/i
-          Pedro.engel(data)
-        when /dame n[uú]meros para el kino/i
-          Lotery.num
-        when /analiza/i
-          Peyo.check(data)
-        when /(faq|fuq)/i
-          Case.events(data)
-        when /(celery|tayne|oyster|wobble|4d3d3d3|flarhgunnstow)/i
-          Celery.load(data)
-        when /c[oó]mo se dice/i
-          Lingo.translate(data)
-        when /resultados kino/
-          Lotery.winnerNums
-        when /(valor acci[óo]n (.*?)$)/i
-          Stock.fetch(data.text)
-        when /qr/i
-          QR.generate(data.text)
-        when /wikipedia/i
-          Vieja.sapear(data)
-        when /vuelo/i
-          Flight.info(data.text)
-        when /clima/i
-          Ivan.torres(data.text)
-        end
-    Resp.message(data, z)
+    if data.text.match(/(fuq|faq|info)/)
+      Case.events(data)
+    else
+      z = case data.text
+          when /\s(hello|hola)$/i
+            '¡Hola!'
+          when /(help|ayuda)/i
+            System.help
+          when /(c[oó]mo est[aá]s)/i
+            Quote.status
+          when /(consejo|pregunta)(.*?)/i
+            Quote.advice
+          when /(.*)beneficio/i
+            Quote.benefit
+          when /pack$/i
+            System.pack
+          when /(rules|reglas)$/i
+            System.rules
+          when /cu[aá]ndo pagan/i
+            Time_to.gardel
+          when /cu[aá]nto para el 18/i
+            Time_to.september
+          when /password/i
+            Pass.gen(data)
+          when /(blockchain|blocchain|blocshain)/i
+            'https://youtu.be/MHWBEK8w_YY'
+          when /(tc)/i
+            Credit.gen(data)
+          when /2fa/i
+            Totp.gen(data)
+          when /random/i
+            Rand.value(data)
+          when /pr[oó]ximo feriado$/i
+            Time_to.holiday_count
+          when /hor[oó]scopo/i
+            Pedro.engel(data)
+          when /dame n[uú]meros para el kino/i
+            Lotery.num
+          when /analiza/i
+            Peyo.check(data)
+          when /(celery|tayne|oyster|wobble|4d3d3d3|flarhgunnstow)/i
+            Celery.load(data)
+          when /c[oó]mo se dice/i
+            Lingo.translate(data)
+          when /resultados kino/
+            Lotery.winnerNums
+          when /(valor acci[óo]n (.*?)$)/i
+            Stock.fetch(data.text)
+          when /qr/i
+            QR.generate(data.text)
+          when /wikipedia/i
+            Vieja.sapear(data)
+          when /vuelo/i
+            Flight.info(data.text)
+          when /clima/i
+            Ivan.torres(data.text)
+          end
+      Resp.message(data, z)
+    end
+
   end
 
   def self.events(data)
