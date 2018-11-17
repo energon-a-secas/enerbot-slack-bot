@@ -1,9 +1,22 @@
 require 'slack-ruby-client'
-require './scripts/quote'
-require './scripts/system'
 require './scripts/date'
+require './scripts/system'
+require './scripts/quote'
+require './scripts/ssh'
 require './scripts/pass'
 require './scripts/tc'
+require './scripts/2fa'
+require './scripts/random'
+require './scripts/horoscopo'
+require './scripts/lotery'
+require './scripts/securityCheck'
+require './scripts/wikipedia'
+require './scripts/celery'
+require './scripts/lingo'
+require './scripts/stock'
+require './scripts/qr'
+require './scripts/flight'
+require './scripts/weather'
 require './core'
 
 class BotValue
@@ -37,6 +50,15 @@ describe '#bot' do
           'enerbot beneficio',
           'enerbot cuándo pagan',
           'enerbot password',
+          'enerbot password sec',
+          'enerbot 2fa asadasd',
+          'enerbot random 1 2 3',
+          'enerbot horoscopo piscis',
+          'enerbot resultados kino',
+          'enerbot valor accion energon',
+          'enerbot qr hola',
+          'enerbot vuelo LAN122',
+          'enerbot clima',
           'enerbot cuanto para el 18?'
       ].each do |text|
         MESSAGE = text
@@ -47,10 +69,6 @@ describe '#bot' do
     it 'send credit cards to #bots' do
       [
           'enerbot tc bankcard',
-          'enerbot tc mastercard',
-          'enerbot tc solo',
-          'enerbot tc visa',
-          'enerbot tc meh',
           'enerbot tc masterca'
       ].each do |text|
         MESSAGE = text
