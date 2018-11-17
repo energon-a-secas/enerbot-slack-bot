@@ -112,7 +112,7 @@ module Events
           { file: 'events.json', op1: 'events', op2: 'events2', op3: 'talks' },
           { file: 'institute.json', op1: 'degrees', op2: 'talks' },
           { file: 'meets.json', op1: 'tips' },
-          { file: 'contest.json', op1: 'general_info', op2: 'SDSOS', op3: 'design' }]
+          { file: 'contest.json', op1: 'general', op2: 'SDSOS', op3: 'design' }]
 
     case data.text
     when /fuq/ then y = as[0][:file]
