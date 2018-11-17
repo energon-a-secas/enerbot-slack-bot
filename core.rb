@@ -91,33 +91,41 @@ module Case
         when /clima/i
           Ivan.torres(data.text)
         end
-
     Resp.message(data, z)
   end
 
   def self.events(data)
-    case data.text
-    when /fuq/
-      Resp.event(data, 'security.json', 'fuq')
-    when /faq/
-      Resp.event(data, 'security.json', 'faq')
-    when /eventos$/
-      Resp.event(data, 'events.json', 'events')
-    when /talks$/
-      Resp.event(data, 'events.json', 'talks')
-    when /tips$/
-      Resp.event(data, 'meets.json', 'tips')
-    when /enerlive$/
-      Resp.event(data, 'events.json', 'events2')
-    when /institute$/
-      Resp.event(data, 'institute.json', 'degrees')
-    when /contest general_info$/
-      Resp.event(data, 'contest.json', 'general_info')
-    when /contest SDSOS$/
-      Resp.event(data, 'contest.json', 'SDSOS')
-    when /contest diseña$/
-      Resp.event(data, 'contest.json', 'design')
-    end
+    as = [{ file: 'security.json', op1: 'fuq', op2: 'faq' },
+          { file: 'events.json', op1: 'events', op2: 'events2', op3: 'talks' },
+          { file: 'institute.json', op1: 'degrees', op2: 'talks' },
+          { file: 'meets.json', op1: 'tips' },
+          { file: 'contest.json', op1: 'general', op2: 'SDSOS', op3: 'design' }]
+
+    y, z = case data.text
+           when /fuq/
+             [(as[0][:file]).to_s, (as[0][:op1]).to_s]
+           when /faq/
+             [(as[1][:file]).to_s, (as[1][:op2]).to_s]
+           when /eventos$/
+             [(as[1][:file]).to_s, (as[1][:op1]).to_s]
+           when /talks$/
+             [(as[1][:file]).to_s, (as[1][:op2]).to_s]
+           when /tips$/
+             [(as[3][:file]).to_s, (as[3][:op1]).to_s]
+           when /enerlive$/
+             [(as[1][:file]).to_s, (as[1][:op2]).to_s]
+           when /institute$/
+             [(as[2][:file]).to_s, (as[2][:op2]).to_s]
+           when /contest general_info$/
+             [(as[4][:file]).to_s, (as[4][:op1]).to_s]
+           when /contest SDSOS$/
+             [(as[4][:file]).to_s, (as[4][:op2]).to_s]
+           when /contest diseña$/
+             [(as[4][:file]).to_s, (as[4][:op3]).to_s]
+           end
+
+    Resp.event(data, y, z)
+
   end
 
   def self.say(data)
