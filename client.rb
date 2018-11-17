@@ -25,9 +25,6 @@ class BotValue
   BOT_ADMINS = ENV['SLACK_USERS']
   BOT_CHANNELS = ENV['SLACK_CHANNELS']
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
-  HOST_SSH = ENV['HOST_SSH']
-  USER_SSH = ENV['USER_SSH']
-  PASS_SSH = ENV['PASS_SSH']
 end
 
 Slack.configure do |config|
