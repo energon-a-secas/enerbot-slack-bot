@@ -47,19 +47,23 @@ describe '#bot' do
       [
           'enerbot hola',
           'enerbot pregunta',
+          'enerbot como estas',
           'enerbot beneficio',
+          'enerbot pack',
+          'enerbot rules',
           'enerbot cuándo pagan',
+          'enerbot cuanto para el 18',
           'enerbot password',
           'enerbot password sec',
           'enerbot 2fa asadasd',
           'enerbot random 1 2 3',
           'enerbot horoscopo piscis',
           'enerbot resultados kino',
+          'enerbot dame numeros para el kino',
           'enerbot valor accion energon',
           'enerbot qr hola',
           'enerbot vuelo LAN122',
-          'enerbot clima',
-          'enerbot cuanto para el 18?'
+          'enerbot clima'
       ].each do |text|
         MESSAGE = text
         Case.bot(Fake)
