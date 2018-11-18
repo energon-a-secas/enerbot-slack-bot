@@ -30,6 +30,6 @@ run:
 	 		-e $(CHANNELS) \
 	 		--name=$(NAME) $(NAME):latest
 
-unit-test: init
+unit: init
 	@/bin/echo -n "[ENERGON] Running tests"
 	@rspec --color spec/
