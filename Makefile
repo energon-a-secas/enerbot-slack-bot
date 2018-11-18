@@ -14,6 +14,7 @@ clean:
 	@docker rm -fv enerbot
 	@docker rmi -f $(NAME):$(VERSION)
 	@docker rmi -f $(NAME):latest
+
 init:
 	@bundle check
 
