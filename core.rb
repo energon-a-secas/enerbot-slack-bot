@@ -103,28 +103,28 @@ module Case
 
     y, z = case data.text
            when /fuq/
-             [as[0][:file], as[0][:op1]]
+             [0, :op1]
            when /faq/
-             [as[0][:file], as[0][:op2]]
+             [0, :op2]
            when /eventos$/
-             [as[1][:file], as[1][:op1]]
+             [1, :op1]
            when /talks$/
-             [as[1][:file], as[1][:op3]]
+             [1, :op3]
            when /tips$/
-             [as[3][:file], as[3][:op1]]
+             [3, :op1]
            when /enerlive$/
-             [as[1][:file], as[1][:op2]]
+             [1, :op2]
            when /institute$/
-             [as[2][:file], as[2][:op2]]
+             [2, :op2]
            when /contest general_info$/
-             [as[4][:file], as[4][:op1]]
+             [4, :op1]
            when /contest SDSOS$/
-             [as[4][:file], as[4][:op2]]
+             [4, :op2]
            when /contest diseña$/
-             [as[4][:file], as[4][:op3]]
+             [4, :op3]
            end
 
-    Resp.event(data, y, z)
+    Resp.event(data, as[y][:file], as[y][z])
   end
 
   def self.say(data)
