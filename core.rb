@@ -129,10 +129,11 @@ module Case
 
   def self.say(data)
     if BotValue::BOT_ADMINS.include?(data.user)
-      d = data.text.split
-      Resp.write(d[1].to_s, d[2..-1].join(' '))
+      text = data.text.split
+      mess = text[2..-1].join(' ')
+      Resp.write(text[1].to_s, mess)
     else
-      Resp.write('#bots', d[2..-1].join(' '))
+      Resp.write('#bots', mess)
     end
   end
 end
