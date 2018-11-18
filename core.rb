@@ -57,27 +57,27 @@ module Case
              when /cu[aá]nto para el 18/i
                Time_to.september
              when /password/i
-               Pass.gen(data)
+               Pass.gen(text)
              when /(blockchain|blocchain|blocshain)/i
                'https://youtu.be/MHWBEK8w_YY'
              when /(tc)/i
-               Credit.gen(data)
+               Credit.gen(text)
              when /2fa/i
-               Totp.gen(data)
+               Totp.gen(text)
              when /random/i
-               Rand.value(data)
+               Rand.value(text)
              when /pr[oó]ximo feriado$/i
                Time_to.holiday_count
              when /hor[oó]scopo/i
-               Pedro.engel(data)
+               Pedro.engel(text)
              when /dame n[uú]meros para el kino/i
                Lotery.num
              when /analiza/i
-               Peyo.check(data)
+               Peyo.check(text)
              when /(celery|tayne|oyster|wobble|4d3d3d3|flarhgunnstow)/i
-               Celery.load(data)
+               Celery.load(text)
              when /c[oó]mo se dice/i
-               Lingo.translate(data)
+               Lingo.translate(text)
              when /resultados kino/
                Lotery.winnerNums
              when /(valor acci[óo]n (.*?)$)/i
@@ -85,7 +85,7 @@ module Case
              when /qr/i
                QR.generate(text)
              when /wikipedia/i
-               Vieja.sapear(data)
+               Vieja.sapear(text)
              when /vuelo/i
                Flight.info(text)
              when /clima/i
