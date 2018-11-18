@@ -1,8 +1,11 @@
+# Why not?
 module Totp
-  def self.gen(data)
+  def self.gen(text)
     require 'rotp'
-    holi = data.text.to_s.split(/\b2fa /)
-    totp = ROTP::TOTP.new(holi[1])
-    p "Current OTP: #{totp.now}"
+    if match = text.match(/2fa (.*?)$/i)
+      key = match.captures[0]
+    end
+    totp = ROTP::TOTP.new(key)
+    "Current OTP: #{totp.now}"
   end
 end
