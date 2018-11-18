@@ -1,13 +1,9 @@
 # Needs a lot of improvement
 module Credit
-  def self.gen(data)
+  def self.gen(text)
     require 'credy'
-    text = data.text.split[2]
-    tarjetas = %w[mastercard
-                  solo
-                  visa
-                  americanexpress
-                  bankcard]
+    text = text.split[2]
+    tarjetas = %w[mastercard solo visa bankcard]
     if tarjetas.include? text
       puts data
       datos = Credy::CreditCard.generate options = { type: text }
