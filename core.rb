@@ -95,7 +95,7 @@ module Case
   end
 
   def self.events(data)
-    as = [{ file: 'security.json', op1: 'fuq', op2: 'faq' },
+    dc = [{ file: 'security.json', op1: 'fuq', op2: 'faq' },
           { file: 'events.json', op1: 'events', op2: 'events2', op3: 'talks' },
           { file: 'institute.json', op1: 'degrees', op2: 'talks' },
           { file: 'meets.json', op1: 'tips' },
@@ -122,9 +122,9 @@ module Case
                    [4, :op2]
                  when /contest diseña$/
                    [4, :op3]
-           end
-
-    Resp.event(data, as[file][:file], as[file][info])
+                 end
+    mess = dc[file]
+    Resp.event(data, mess[:file], mess[info])
   end
 
   def self.say(data)
