@@ -1,7 +1,7 @@
 # Module for blockchain
 module Celery
-  def self.load(data)
-    case data.text
+  def self.load(text)
+    case text
     when /celery/i then 'https://i.imgur.com/6MqOJUg.gif'
     when /tayne/i then 'https://i.gifer.com/3zzS.gif'
     when /(hat wobble|flarhgunnstow)/i then 'https://i.imgur.com/SOlzkvP.gif'

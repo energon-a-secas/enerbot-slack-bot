@@ -5,7 +5,6 @@ module Credit
     text = text.split[2]
     tarjetas = %w[mastercard solo visa bankcard]
     if tarjetas.include? text
-      puts data
       datos = Credy::CreditCard.generate options = { type: text }
       'Beta feature ' + datos.to_s
     else
