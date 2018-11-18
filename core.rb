@@ -33,10 +33,11 @@ end
 # If you find yourself in a hole, stop digging
 module Case
   def self.bot(data)
-    if data.text =~ /(fuq|faq|info)/
+    text = data.text
+    if text =~ /(fuq|faq|info)/
       Case.events(data)
     else
-      mess = case data.text
+      mess = case text
              when /\s(hello|hola)$/i
                '¡Hola!'
              when /(help|ayuda)/i
@@ -80,15 +81,15 @@ module Case
              when /resultados kino/
                Lotery.winnerNums
              when /(valor acci[óo]n (.*?)$)/i
-               Stock.fetch(data.text)
+               Stock.fetch(text)
              when /qr/i
-               QR.generate(data.text)
+               QR.generate(text)
              when /wikipedia/i
                Vieja.sapear(data)
              when /vuelo/i
-               Flight.info(data.text)
+               Flight.info(text)
              when /clima/i
-               Ivan.torres(data.text)
+               Ivan.torres(text)
           end
       Resp.message(data, mess)
     end
