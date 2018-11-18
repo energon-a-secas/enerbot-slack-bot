@@ -76,7 +76,7 @@ describe '#bot' do
           'enerbot tc masterca'
       ].each do |text|
         MESSAGE = text
-        Resp.message(Fake, Credit.gen(Fake))
+        Case.bot(Fake)
       end
     end
   end
