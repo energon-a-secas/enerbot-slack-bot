@@ -1,6 +1,6 @@
 # Module for language
 module Lingo
-    def self.translate(data)
+    def self.translate(text)
         require 'json'
         require 'net/http'
         require 'uri'
@@ -12,7 +12,7 @@ module Lingo
             "chino" => ":flag-cn:", "japones" => ":jp:", "italiano" => ":it:", "argentino" => ":ar:", "chileno" => ":flag-cl:", "brasileño" => ":flag-br:"}
 
         toTranslate, toLanguage = '',''
-        if match = data.text.match(/enerbot como se dice (.*) en (.*?)$/i)
+        if match = text.match(/enerbot como se dice (.*) en (.*?)$/i)
             toTranslate, toLanguage = match.captures
         end
 

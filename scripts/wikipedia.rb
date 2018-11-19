@@ -1,10 +1,10 @@
 # Module for Peyo's security adventures
 module Vieja
-  def self.sapear(data)
+  def self.sapear(text)
     require 'json'
     require 'net/http'
 
-    frase = data.text.split[2]
+    frase = text.split[2]
     busqueda = JSON.parse(Net::HTTP.get(URI('https://es.wikipedia.org/w/api.php?action=opensearch&search=' + frase +'&limit=10&format=json')))
     
     stringRespuesta = "OPCIONES \n"

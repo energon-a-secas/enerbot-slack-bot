@@ -53,8 +53,8 @@ describe '#bot' do
           'enerbot info enerlive',
           'enerbot info institute',
           'enerbot info contest general_info',
-          'enerbot info SDSOS',
-          'enerbot info diseña'
+          'enerbot info contest SDSOS',
+          'enerbot info contest diseña'
       ].each do |text|
         MESSAGE = text
         Case.bot(Fake)

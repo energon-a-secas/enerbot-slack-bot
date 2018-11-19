@@ -1,10 +1,10 @@
 # Module dedicated to Security
 module Pedro
-  def self.engel(data)
+  def self.engel(text)
     require 'json'
     require 'net/http'
 
-    option = data.text.split[2]
+    option = text.split[2]
     signos = %w[aries
                 tauro
                 geminis
