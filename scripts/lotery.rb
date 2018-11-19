@@ -1,10 +1,16 @@
+require 'nokogiri'
+require 'open-uri'
+
 # Module for stuff related to lotery
 module Lotery
   def self.num
     k = (1..25).to_a.shuffle!
     p = (1..100).to_a.shuffle!
     n = k[0..13].sort.join(', ')
-    p ":crystal_ball: Números: #{n} \n #{Lotery.status(p[0])} Probabilidad de ganar: #{p[0]}%"
+    <<-HEREDOC
+    :crystal_ball: Números: #{n}
+    #{Lotery.status(p[0])} Probabilidad de ganar: #{p[0]}%"
+    HEREDOC
   end
 
   def self.status(per)
@@ -32,16 +38,13 @@ module Lotery
     end
   end
 
-  def self.winnerNums
-    require 'nokogiri'
-    require 'open-uri'
-
+  def self.winner_nums
     doc = Nokogiri::HTML(open('https://losresultados.info/kino/'))
     title = doc.search('.entry-title').inner_text.to_s
     nums = doc.search('table').first.inner_text.to_s
-    p <<-HEREDOC
-#{title}
-:trophy: *Números:* #{nums.scan(/../).join(', ')}.
+    <<-HEREDOC
+    #{title}
+    :trophy: *Números:* #{nums.scan(/../).join(', ')}.
     HEREDOC
   end
 end
