@@ -3,7 +3,6 @@
 FEATURES:
 
 * Lotery, Weather, 2fa, Saint Seiya, Wikipedia, Security, QR and translate stuff. 
-* Unit testing (#Ener-00)
 
 ENHANCEMENTS:
 
