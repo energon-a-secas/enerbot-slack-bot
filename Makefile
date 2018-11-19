@@ -1,18 +1,36 @@
 VERSION=0.1.1
 NAME="enerbot"
-SLACK_API=""
-SLACK_ADMINS=""
-SLACK_CHANNELS=""
+
+API="SLACK_API_TOKEN=xoxb-"
+ADMINS="SLACK_ADMINS="
+CHANNELS="SLACK_CHANNELS="
 
 build:
-	docker build -t $(NAME):$(VERSION) .
-	docker tag $(NAME):$(VERSION) $(NAME):latest
-
-run:
-	docker rm -fv enerbot
-	docker run -e $(SLACK_API) -e $(SLACK_ADMINS) -e $(SLACK_CHANNELS) --name=$(NAME) $(NAME):latest
+	@/bin/echo -n "[ENERGON] Building image for $(NAME):$(VERSION)"
+	@docker build -t $(NAME):$(VERSION) .
+	@docker tag $(NAME):$(VERSION) $(NAME):latest
 
 clean:
-	docker rm -fv enerbot
-	docker rmi -f $(NAME):$(VERSION)
-	docker rmi -f $(NAME):latest
+	@docker rm -fv enerbot
+	@docker rmi -f $(NAME):$(VERSION)
+	@docker rmi -f $(NAME):latest
+
+init:
+	@bundle check
+
+rubocop: init
+	@/bin/echo -n "[ENERGON] Running Rubocop"
+	@rubocop -a .
+
+run:
+	@/bin/echo -n "[ENERGON] Running $(NAME):latest"
+	@docker rm -fv enerbot
+	@docker run -d -it \
+	 		-e $(API) \
+	 		-e $(ADMINS) \
+	 		-e $(CHANNELS) \
+	 		--name=$(NAME) $(NAME):latest
+
+unit: init
+	@/bin/echo -n "[ENERGON] Running tests"
+	@rspec --color spec/
