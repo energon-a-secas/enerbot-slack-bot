@@ -42,10 +42,10 @@ module System
  enerbot <hat wobble | flarhgunnstow>
  enerbot <oyster>
  enerbot <como se dice> <TEXTO> <en> <IDIOMA>
- enerbot <valor accion> <ENTIDAD> 
+ enerbot <valor accion> <ENTIDAD>
  enerbot <qr> <TEXTO>
- enerbot <vuelo> <NUMERO DE VUELO>  
- enerbot <clima> <LOCALIDAD> ``` 
+ enerbot <vuelo> <NUMERO DE VUELO>
+ enerbot <clima> <LOCALIDAD> ```
 
     HEREDOC
   end

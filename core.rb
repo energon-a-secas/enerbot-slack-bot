@@ -53,9 +53,9 @@ module Case
              when /(rules|reglas)$/i
                System.rules
              when /cu[aá]ndo pagan/i
-               Time_to.gardel
+               TimeTo.gardel
              when /cu[aá]nto para el 18/i
-               Time_to.september
+               TimeTo.september
              when /password/i
                Pass.gen(text)
              when /(blockchain|blocchain|blocshain)/i
@@ -67,7 +67,7 @@ module Case
              when /random/i
                Rand.value(text)
              when /pr[oó]ximo feriado$/i
-               Time_to.holiday_count
+               TimeTo.holiday_count
              when /hor[oó]scopo/i
                Pedro.engel(text)
              when /dame n[uú]meros para el kino/i
@@ -79,7 +79,7 @@ module Case
              when /c[oó]mo se dice/i
                Lingo.translate(text)
              when /resultados kino/
-               Lotery.winnerNums
+               Lotery.winner_nums
              when /(valor acci[óo]n (.*?)$)/i
                Stock.fetch(text)
              when /qr/i

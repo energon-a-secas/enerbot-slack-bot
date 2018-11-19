@@ -3,7 +3,7 @@ module Credit
   def self.gen(text)
     require 'credy'
     type = 'visa'
-    if match = text.match(/tc (.*?)$/i)
+    if (match = text.match(/tc (.*?)$/i))
       type = match.captures[0]
     end
     tarjetas = %w[mastercard solo visa bankcard]
