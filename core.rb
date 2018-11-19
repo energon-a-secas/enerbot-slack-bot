@@ -91,7 +91,9 @@ module Case
              when /clima/i
                Ivan.torres(text)
           end
-      Resp.message(data, mess)
+      if mess != nil
+        Resp.message(data, mess)
+      end
     end
   end
 
