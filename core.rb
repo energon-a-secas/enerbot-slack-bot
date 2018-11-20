@@ -90,6 +90,8 @@ module Case
                Flight.info(text)
              when /clima/i
                Ivan.torres(text)
+             when /cve list/i
+               CVE.latest(text)
           end
       if mess != nil
         Resp.message(data, mess)
