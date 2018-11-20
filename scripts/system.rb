@@ -45,7 +45,8 @@ module System
  enerbot <valor accion> <ENTIDAD>
  enerbot <qr> <TEXTO>
  enerbot <vuelo> <NUMERO DE VUELO>
- enerbot <clima> <LOCALIDAD> ```
+ enerbot <clima> <LOCALIDAD> 
+ enerbot <cve list> <CANTIDAD> ```
 
     HEREDOC
   end
