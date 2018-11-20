@@ -7,7 +7,7 @@ module CVE
 
         num = 5
         if (match = data.match(/cve list (.*?)$/i))
-            num = match.captures[0]
+            num = Integer(match.captures[0]) rescue num
         end
 
         result = JSON.parse(Net::HTTP.get(URI('https://cve.circl.lu/api/last')))
@@ -17,7 +17,7 @@ module CVE
             if index == num.to_i then break end
             message += "*#{x['id']}*:\n> _#{x['summary']}_ \n"   
         }
-
+        
         <<-HEREDOC
             #{message}
         HEREDOC
