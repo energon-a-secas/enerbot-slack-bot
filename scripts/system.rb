@@ -46,7 +46,8 @@ module System
  enerbot <qr> <TEXTO>
  enerbot <vuelo> <NUMERO DE VUELO>
  enerbot <clima> <LOCALIDAD> 
- enerbot <cve list> <CANTIDAD> ```
+ enerbot <cve list> <CANTIDAD> 
+ enerbot <dame una excusa>```
 
     HEREDOC
   end

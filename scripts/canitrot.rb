@@ -45,7 +45,15 @@ module RicardoCanitrot
             "Ayer compré un gato y soy alérgic@. ¡Si salgo del dormitorio, moriré! ¡Que alguien llame a la policía!",
             "Había una cucaracha en el baño y no me he podido duchar.",
             "Estoy enterrando a mi perro. Cuelgo, que se está escapando.",
-            "Anoche me puse a empollar un huevo y ahora no puedo dar marcha atrás O MATARÍA A UN POLLITO. Nos vemos dentro de 21 días."
+            "Anoche me puse a empollar un huevo y ahora no puedo dar marcha atrás O MATARÍA A UN POLLITO. Nos vemos dentro de 21 días.",
+            "Se me bloqueó la cuenta en LDAP",
+            "Seguridad me eliminó los accesos... ¿Qué esperabas?, nunca hacen nada bien",
+            "Sistemas me eliminó el beta. Necesito dos semanas para superar la pérdida.",
+            "'Antorcha' me ha intervenido. No puedo hablar, te enviaré señales de humo de mi estado actual.",
+            "Le puse un 2FA al 2FA, y perdí las llaves que los generan. Tengo que ir a buscar los códigos de respaldo en una caja de seguridad en Polonia.",
+            "Tengo un problema y Soporte no me da soporte. No se cuanto soporte esto.",
+            "Viene el auditor de [INSERTE NORMATIVA AQUI] y me suplicaron que no vienera a trabajar hoy.",
+            "Me dieron un cubo de :energon:, necesito tomarme el día para admirarlo."
         ]
         <<-HEREDOC
         Tu excusa para hoy es:
