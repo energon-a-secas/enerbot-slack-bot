@@ -55,10 +55,9 @@ module RicardoCanitrot
             "Viene el auditor de [INSERTE NORMATIVA AQUI] y me suplicaron que no vienera a trabajar hoy.",
             "Me dieron un cubo de :energon:, necesito tomarme el día para admirarlo."
         ]
-        <<-HEREDOC
-        Tu excusa para hoy es:
-        >>>#{excuses.sample}
-        HEREDOC
+        
+        #HEREDOC doens't work :'(
+        "Tu excusa para hoy es:\n>>>#{excuses.sample}"
         
     end
 end
