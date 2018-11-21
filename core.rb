@@ -92,6 +92,8 @@ module Case
                Ivan.torres(text)
              when /cve list/i
                CVE.latest(text)
+             when /dame una excusa$/i
+               RicardoCanitrot.get_excuse
           end
       if mess != nil
         Resp.message(data, mess)

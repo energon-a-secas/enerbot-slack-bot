@@ -18,6 +18,7 @@ require './scripts/qr'
 require './scripts/flight'
 require './scripts/weather'
 require './scripts/cves'
+require './scripts/canitrot'
 require './core'
 
 class BotValue
