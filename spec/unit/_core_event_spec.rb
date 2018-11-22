@@ -9,7 +9,7 @@ require './scripts/2fa'
 require './scripts/random'
 require './scripts/horoscopo'
 require './scripts/lotery'
-require './scripts/securityCheck'
+require './scripts/security_check'
 require './scripts/wikipedia'
 require './scripts/celery'
 require './scripts/lingo'
@@ -45,22 +45,21 @@ describe '#bot' do
   context 'when client is initialized' do
     it 'send messages to #bots' do
       [
-          'enerbot fuq',
-          'enerbot faq',
-          'enerbot info eventos',
-          'enerbot info talks',
-          'enerbot info tips',
-          'enerbot info enerlive',
-          'enerbot info institute',
-          'enerbot info contest general_info',
-          'enerbot info contest SDSOS',
-          'enerbot info contest diseña'
+        'enerbot fuq',
+        'enerbot faq',
+        'enerbot info eventos',
+        'enerbot info talks',
+        'enerbot info tips',
+        'enerbot info enerlive',
+        'enerbot info institute',
+        'enerbot info contest general_info',
+        'enerbot info contest SDSOS',
+        'enerbot info contest diseña'
       ].each do |text|
         MESSAGE = text
         Case.bot(Fake)
       end
     end
-
   end
 
   # context 'when client is not initialized' do
