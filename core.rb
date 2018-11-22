@@ -95,9 +95,7 @@ module Case
              when /dame una excusa$/i
                RicardoCanitrot.getexcuse
           end
-      if mess != nil
-        Resp.message(data, mess)
-      end
+      Resp.message(data, mess) unless mess.nil?
     end
   end
 
