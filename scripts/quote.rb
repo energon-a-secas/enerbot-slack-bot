@@ -43,6 +43,6 @@ module Quote
 
   def self.search
     ['Revisando mi BD :buffer:',
-     ':wait_latam:'].sample
+     ':wait_energon:'].sample
   end
 end
