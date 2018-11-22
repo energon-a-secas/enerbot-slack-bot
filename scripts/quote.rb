@@ -22,7 +22,7 @@ module Quote
      'Mis fuentes me dicen que no',
      'Las perspectivas no son buenas',
      'Muy dudoso'].sample
-    end
+  end
 
   # Based on lgaticaq's beneficios.js
   def self.benefit
