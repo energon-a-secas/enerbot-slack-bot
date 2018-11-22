@@ -1,6 +1,6 @@
 # Module for lame excuses... or not
 module RicardoCanitrot
-  def self.get_excuse
+  def self.getexcuse
     excuses = [
       'Me he muerto. (Luego hay que callarse un rato para que no se dé cuenta de que algo falla. Y al día siguiente hay que explicar que “fui tan buen@ en mi otra vida que me he reencarnado en yo mismo”).',
       'Me fui a cenar a un chino y nos bebimos cuatro botellas de vino entre tres. Luego nos tomamos, no sé, cuatro piscolas, quizás, y alguien pidió cortos de tequila y ya sólo recuerdo pelearme con un perro que me había robado el celular. Asi que hoy me encuentro fatal. Por el chino. Anda a saber qué le echan a la salsa agridulce.',
