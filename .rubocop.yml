@@ -10,5 +10,18 @@ Metrics/ModuleLength:
 Metrics/MethodLength:
  Enabled: false
 
+# TODO
 Metrics/CyclomaticComplexity:
+ Enabled: false
+
+# The case
+Metrics/PerceivedComplexity:
+ Enabled: false
+
+# bot_spec
+Metrics/BlockLength:
+ Enabled: false
+
+# System icons
+Layout/IndentHeredoc:
  Enabled: false

@@ -94,7 +94,7 @@ module Case
                CVE.latest(text)
              when /dame una excusa$/i
                RicardoCanitrot.getexcuse
-          end
+             end
       Resp.message(data, mess) unless mess.nil?
     end
   end
