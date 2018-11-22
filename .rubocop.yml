@@ -25,3 +25,7 @@ Metrics/BlockLength:
 # System icons
 Layout/IndentHeredoc:
  Enabled: false
+
+# Lingo, horoscopo, wikipedia, date and Stock
+Metrics/AbcSize:
+ Enabled: false
