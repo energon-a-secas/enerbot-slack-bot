@@ -1,26 +1,4 @@
-require 'slack-ruby-client'
-require './core'
-
-class BotValue
-  BOT_ICON = ':energon:'.freeze
-  BOT_NAME = 'ENERTEST'.freeze
-  BOT_ADMINS = 'user'.freeze
-end
-
-# Acts like a incoming message from Slack
-module Fake
-  def self.text
-    MESSAGE
-  end
-
-  def self.user
-    'user'
-  end
-
-  def self.channel
-    '#bots'
-  end
-end
+require_relative '../spec_helper'
 
 describe '#bot' do
   before(:each) do
@@ -41,7 +19,7 @@ describe '#bot' do
         'enersay #bots :newalert: testing :energon:'
       ].each do |text|
         MESSAGE = text
-        Case.say(Fake)
+        Case.say(BotValue)
       end
     end
   end
