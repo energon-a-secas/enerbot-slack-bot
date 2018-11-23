@@ -48,6 +48,7 @@ module Quote
 
   def self.japanese
     ['なっ何？！',
+     '«目覚め給え、我が主たちよ！»',
      '«キサマァ。。。» '].sample
   end
 end
