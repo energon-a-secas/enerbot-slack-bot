@@ -45,4 +45,9 @@ module Quote
     ['Revisando mi BD :buffer:',
      ':wait_energon:'].sample
   end
+
+  def self.japanese
+    ['なっ何？！',
+     '«キサマァ。。。» '].sample
+  end
 end
