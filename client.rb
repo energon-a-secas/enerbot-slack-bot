@@ -60,7 +60,11 @@ client.on :message do |data|
                 when 'お前もう死んでいる'
                   Quote.japanese
                 end
-    Resp.message(data, kill_type) && abort('bye') if BotValue::BOT_ADMINS.include? data.user
+    if BotValue::BOT_ADMINS.include? data.user
+      Resp.message(data, kill_type) && abort('bye')
+    else
+      Resp.message(BotValue, "<@#{data.user}> tried to kill me!")
+    end
   end
 end
 client.start!
