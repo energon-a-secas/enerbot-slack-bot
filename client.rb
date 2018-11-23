@@ -48,9 +48,14 @@ client.on :message do |data|
     Case.say(data)
   when /^enerssh/ then
     Resp.message(data, Remote.ssh(data))
-  when /^enershut/ then
-    Resp.message(data, System.kill) && abort('bye') if BotValue::BOT_ADMINS.include? data.user
+  when /(enershut|お前もう死んでいる)/ then
+    kill_type = case data.text
+                when 'enershut'
+                  System.kill
+                when 'お前もう死んでいる'
+                  Quote.japanese
+                end
+    Resp.message(data, kill_type) && abort('bye') if BotValue::BOT_ADMINS.include? data.user
   end
 end
-
 client.start!
