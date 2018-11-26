@@ -1,39 +1,4 @@
-require 'slack-ruby-client'
-require './scripts/date'
-require './scripts/system'
-require './scripts/quote'
-require './scripts/ssh'
-require './scripts/pass'
-require './scripts/tc'
-require './scripts/2fa'
-require './scripts/random'
-require './scripts/horoscopo'
-require './scripts/lotery'
-require './scripts/security_check'
-require './scripts/wikipedia'
-require './scripts/celery'
-require './scripts/lingo'
-require './scripts/stock'
-require './scripts/qr'
-require './scripts/flight'
-require './scripts/weather'
-require './core'
-
-class BotValue
-  BOT_ICON = ':energon:'.freeze
-  BOT_NAME = 'ENERTEST'.freeze
-end
-
-# Acts like a incoming message from Slack
-module Fake
-  def self.text
-    MESSAGE
-  end
-
-  def self.channel
-    '#bots'
-  end
-end
+require_relative '../spec_helper'
 
 describe '#bot' do
   before(:each) do
@@ -57,7 +22,7 @@ describe '#bot' do
         'enerbot info contest diseña'
       ].each do |text|
         MESSAGE = text
-        Case.bot(Fake)
+        Case.bot(BotValue)
       end
     end
   end
