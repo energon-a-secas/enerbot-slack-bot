@@ -2,6 +2,7 @@ require 'json'
 require 'net/http'
 require 'uri'
 require 'cgi'
+require 'guru_guru'
 
 # Module for language
 module Lingo
@@ -37,8 +38,11 @@ module Lingo
     if (match = text.match(/como se dice (.*) en (.*?)$/i))
       to_translate, to_language = match.captures
     end
-
-    if languages.key?(to_language) && !to_translate.to_s.empty?
+    if to_language == 'guru-guru'
+      <<-HEREDOC
+                #{to_translate.to_guru_guru} :bird: :shell:
+      HEREDOC
+    elsif languages.key?(to_language) && !to_translate.to_s.empty?
       url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=es&tl='
       url += languages[to_language] + '&dt=t&q=' + CGI.escape(to_translate)
       result = Net::HTTP.get(URI(url))
