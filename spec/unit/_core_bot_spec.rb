@@ -31,7 +31,7 @@ describe '#bot' do
         'enerbot clima'
       ].each do |text|
         MESSAGE = text
-        AccessEval.chan(BotValue)
+        Case.bot(BotValue)
       end
     end
 
@@ -41,7 +41,7 @@ describe '#bot' do
         'enerbot tc masterca'
       ].each do |text|
         MESSAGE = text
-        AccessEval.chan(BotValue)
+        Case.bot(BotValue)
       end
     end
   end

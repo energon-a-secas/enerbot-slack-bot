@@ -19,7 +19,7 @@ describe '#bot' do
         'enersay #bots :newalert: testing :energon:'
       ].each do |text|
         MESSAGE = text
-        AccessEval.say(BotValue)
+        Case.say(BotValue)
       end
     end
   end
