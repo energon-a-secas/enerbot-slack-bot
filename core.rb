@@ -5,8 +5,8 @@ module Resp
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data.channel,
                                        text: text,
-                                       icon_emoji: BotValue::BOT_ICON,
-                                       username: BotValue::BOT_NAME
+                                       icon_emoji: AccessEval::BOT_ICON,
+                                       username: AccessEval::BOT_NAME
   end
 
   def self.event(data, path, attachments)
@@ -16,8 +16,8 @@ module Resp
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data.channel,
                                        text: Quote.search,
-                                       icon_emoji: BotValue::BOT_ICON,
-                                       username: BotValue::BOT_NAME,
+                                       icon_emoji: AccessEval::BOT_ICON,
+                                       username: AccessEval::BOT_NAME,
                                        attachments: parsed_file[attachments]
   end
 
@@ -25,8 +25,8 @@ module Resp
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data,
                                        text: text,
-                                       icon_emoji: BotValue::BOT_ICON,
-                                       username: BotValue::BOT_NAME
+                                       icon_emoji: AccessEval::BOT_ICON,
+                                       username: AccessEval::BOT_NAME
   end
 end
 
@@ -132,13 +132,12 @@ module Case
     Resp.event(data, mess[:file], mess[info])
   end
 
-  def self.say(data)
-    if BotValue::BOT_ADMINS.include?(data.user)
-      text = data.text.split
-      mess = text[2..-1].join(' ')
-      Resp.write(text[1].to_s, mess)
-    else
-      Resp.write('#bots', mess)
+  def self.kill(data)
+    case data.text
+    when 'enershut'
+      System.kill
+    when 'お前もう死んでいる'
+      Quote.japanese
     end
   end
 end
