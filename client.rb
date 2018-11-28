@@ -28,11 +28,12 @@ class AccessEval
   BOT_ADMINS = ENV['SLACK_USERS']
   BOT_CHANNELS = ENV['SLACK_CHANNELS']
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
+  BOT_LOG = ENV['SLACK_LOG_CHANNEL']
 
   def self.chan(data)
     chan = data.channel
     if !AccessEval::BOT_CHANNELS.include? chan
-      Resp.message(LERN, ":newalert: <@#{data.user}> almost make me work on <##{chan}>!")
+      Resp.write(BOT_LOG, ":newalert: <@#{data.user}> almost make me work on <##{chan}>!")
     else
       Case.bot(data)
     end
@@ -41,20 +42,23 @@ class AccessEval
   def self.kill(data)
     user = data.user
     if !AccessEval::BOT_ADMINS.include? user
-      Resp.message(LERN, ":newalert: <@#{user}> tried to kill me!")
+      Resp.write(BOT_LOG, ":newalert: <@#{user}> tried to kill me!")
     else
       Resp.message(data, Case.kill(data)) && abort('bye')
     end
   end
 
-  # Just for the sake of messaging on start
-  def self.channel
-    '#bots'
+  def self.say(data)
+    if !AccessEval::BOT_ADMINS.include?(data.user)
+      Resp.write(BOT_LOG, ":newalert: <@#{user}> almost use a paid functionality!")
+    else
+      text = data.text.split
+      mess = text[2..-1].join(' ')
+      Resp.write(text[1].to_s, mess)
+    end
   end
-end
 
-# LERN TECH
-class LERN
+  # Just for the sake of messaging on start
   def self.channel
     '#bots'
   end
@@ -77,7 +81,7 @@ client.on :message do |data|
   when /^enerbot/i then
     AccessEval.chan(data)
   when /^enersay/ then
-    Case.say(data)
+    AccessEval.say(data)
   when /^enerssh/ then
     Resp.message(data, Remote.ssh(data))
   when /(enershut|お前もう死んでいる)/ then

@@ -22,7 +22,7 @@ describe '#bot' do
         'enerbot info contest diseña'
       ].each do |text|
         MESSAGE = text
-        Case.bot(BotValue)
+        AccessEval.chan(BotValue)
       end
     end
   end

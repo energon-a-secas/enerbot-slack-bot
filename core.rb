@@ -132,16 +132,6 @@ module Case
     Resp.event(data, mess[:file], mess[info])
   end
 
-  def self.say(data)
-    if AccessEval::BOT_ADMINS.include?(data.user)
-      text = data.text.split
-      mess = text[2..-1].join(' ')
-      Resp.write(text[1].to_s, mess)
-    else
-      Resp.write('#bots', mess)
-    end
-  end
-
   def self.kill(data)
     case data.text
     when 'enershut'
