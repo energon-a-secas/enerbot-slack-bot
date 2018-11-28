@@ -64,10 +64,12 @@ You need to export the following parameters as environment variables:
  * SLACK_API_TOKEN: it lets you connect the bot with de Slack space.
  * BOT_ADMINS: list of users that can access to features like 'enershut' or 'enersay'
  * BOT_CHANNELS: list of authorized channels where your bot can be consulted.
+ * SLACK_LOG_CHANNEL: this will be the channel where all your confidential (or mostly boring) logs ends up.
 ```
 export SLACK_API_TOKEN=YOUR-TOKEN-XX-XX-XXX
 export BOT_ADMINS=XXXXXX,XXXXXX,XXXXXX
 export BOT_CHANNELS=XXXXXX,XXXXXX,XXXXXX
+export SLACK_LOG_CHANNEL=XXXXXX
 ```
 
 This prevents people using your bot to access machines with your credentials, if you have the SSH Feature enabled.
@@ -107,7 +109,7 @@ Run a container with enerbot just to be popular.
 
 ```
 docker build -t enerbot .
-docker run -e SLACK_API="YOUR-TOKEN-XX-XX-XXX" -e SLACK_ADMINS="XXXXXX" -e SLACK_CHANNELS="XXXXXX" --name="enerbot" enerbot
+docker run -e SLACK_API="YOUR-TOKEN-XX-XX-XXX" -e SLACK_ADMINS="XXXXXX" -e SLACK_CHANNELS="XXXXXX" -e SLACK_LOG_CHANNEL="XXXXXX" --name="enerbot" enerbot
 ```
 
 Alternative you can just put your credentials on the makefile and the run `make deploy`
