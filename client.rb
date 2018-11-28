@@ -15,10 +15,10 @@ require './scripts/celery'
 require './scripts/lingo'
 require './scripts/stock'
 require './scripts/qr'
-require './scripts/flight'
 require './scripts/weather'
 require './scripts/cves'
 require './scripts/canitrot'
+require './client_helper'
 require './core'
 
 # Class
@@ -42,13 +42,17 @@ end
 client = Slack::RealTime::Client.new
 
 client.on :hello do
-  Resp.message(BotValue, 'Beginning LERN sequence')
+  Resp.message(LERN, 'Beginning LERN sequence')
 end
 
 client.on :message do |data|
   case data.text
   when /^enerbot/i then
-    Case.bot(data)
+     if !BotValue::BOT_CHANNELS.include? data.channel
+       Resp.message(BotValue, Unauthorized.chan(data))
+     else
+       Case.bot(data)
+     end
   when /^enersay/ then
     Case.say(data)
   when /^enerssh/ then
@@ -63,7 +67,7 @@ client.on :message do |data|
     if BotValue::BOT_ADMINS.include? data.user
       Resp.message(data, kill_type) && abort('bye')
     else
-      Resp.message(BotValue, "<@#{data.user}> tried to kill me!")
+      Resp.message(BotValue, Unauthorized.kill(data))
     end
   end
 end
