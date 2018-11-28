@@ -2,6 +2,7 @@ source 'https://rubygems.org' do
   gem 'async-websocket'
   gem 'credy'
   gem 'faye-websocket'
+  gem 'guru_guru'
   gem 'net-ssh'
   gem 'nokogiri'
   gem 'passgen'
@@ -11,5 +12,4 @@ source 'https://rubygems.org' do
   gem 'slack-ruby-client'
   gem 'stock_quote'
   gem 'week_of_month'
-  gem 'guru_guru'
 end
