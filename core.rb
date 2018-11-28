@@ -143,11 +143,11 @@ module Case
   end
 
   def self.kill(data)
-    kill_type = case data.text
-                when 'enershut'
-                  System.kill
-                when 'お前もう死んでいる'
-                  Quote.japanese
-                end
+    case data.text
+    when 'enershut'
+      System.kill
+    when 'お前もう死んでいる'
+      Quote.japanese
+    end
   end
 end

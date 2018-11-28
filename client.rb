@@ -32,7 +32,7 @@ class AccessEval
   def self.chan(data)
     chan = data.channel
     if !AccessEval::BOT_CHANNELS.include? chan
-      Resp.message(LERN,":newalert: <@#{data.user}> almost make me work on <##{chan}>!")
+      Resp.message(LERN, ":newalert: <@#{data.user}> almost make me work on <##{chan}>!")
     else
       Case.bot(data)
     end
@@ -45,7 +45,6 @@ class AccessEval
     else
       Resp.message(data, Case.kill(data)) && abort('bye')
     end
-
   end
 
   # Just for the sake of messaging on start
