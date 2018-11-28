@@ -46,19 +46,20 @@ client.on :hello do
 end
 
 client.on :message do |data|
-  case data.text
+  text = data.text
+  case text
   when /^enerbot/i then
-     if !BotValue::BOT_CHANNELS.include? data.channel
-       Resp.message(BotValue, Unauthorized.chan(data))
-     else
-       Case.bot(data)
-     end
+    if !BotValue::BOT_CHANNELS.include? data.channel
+      Resp.message(BotValue, Unauthorized.chan(data))
+    else
+      Case.bot(data)
+    end
   when /^enersay/ then
     Case.say(data)
   when /^enerssh/ then
     Resp.message(data, Remote.ssh(data))
   when /(enershut|お前もう死んでいる)/ then
-    kill_type = case data.text
+    kill_type = case text
                 when 'enershut'
                   System.kill
                 when 'お前もう死んでいる'
