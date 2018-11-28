@@ -30,9 +30,9 @@ class AccessEval
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
   BOT_LOG = ENV['SLACK_LOG_CHANNEL']
 
-  def self.chan(data)
+  def self.chan(data, chanName)
     chan = data.channel
-    if !AccessEval::BOT_CHANNELS.include? chan
+    if chanName !~ /^#{BOT_NAME}$/i && (!AccessEval::BOT_CHANNELS.include? chan)
       Resp.write(BOT_LOG, ":newalert: <@#{data.user}> almost make me work on <##{chan}>!")
     else
       Case.bot(data)
@@ -79,7 +79,7 @@ client.on :message do |data|
   text = data.text
   case text
   when /^enerbot/i then
-    AccessEval.chan(data)
+    AccessEval.chan(data, client.channels_info(channel: data.channel).name)
   when /^enersay/ then
     AccessEval.say(data)
   when /^enerssh/ then
