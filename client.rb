@@ -22,7 +22,7 @@ require './scripts/canitrot'
 require './client_helper'
 require './core'
 
-# Class
+# Variables and other herbs
 class BotValue
   BOT_ICON = ':energon:'.freeze
   BOT_NAME = 'ENERBOT'.freeze
@@ -30,6 +30,21 @@ class BotValue
   BOT_CHANNELS = ENV['SLACK_CHANNELS']
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
 
+  def self.chan(data)
+    ":newalert: <@#{data.user}> almost make me work on <##{data.channel}>!"
+  end
+
+  def self.kill(data)
+    "<@#{data.user}> tried to kill me!"
+  end
+
+  def self.channel
+    '#bots'
+  end
+end
+
+# Just for the sake of messaging on start
+class LERN
   def self.channel
     '#bots'
   end
@@ -51,7 +66,7 @@ client.on :message do |data|
   case text
   when /^enerbot/i then
     if !BotValue::BOT_CHANNELS.include? data.channel
-      Resp.message(BotValue, Unauthorized.chan(data))
+      Resp.message(BotValue, BotValue.chan(data))
     else
       Case.bot(data)
     end
@@ -69,7 +84,7 @@ client.on :message do |data|
     if BotValue::BOT_ADMINS.include? data.user
       Resp.message(data, kill_type) && abort('bye')
     else
-      Resp.message(BotValue, Unauthorized.kill(data))
+      Resp.message(BotValue, BotValue.kill(data))
     end
   end
 end
