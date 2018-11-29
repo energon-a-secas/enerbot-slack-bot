@@ -60,7 +60,7 @@ module Case
                Pass.gen(text)
              when /(blockchain|blocchain|blocshain)/i
                'https://youtu.be/MHWBEK8w_YY'
-             when /(tc)/i
+             when / tc /i
                Credit.gen(text)
              when /2fa/i
                Totp.gen(text)
