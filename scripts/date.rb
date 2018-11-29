@@ -30,9 +30,17 @@ module TimeTo
     date = Date.parse(Date.today.to_s)
     last = Date.parse(date.end_of_month.downto(date).find(&:working_day?).to_s)
     d = last.mjd - date.mjd - 2
-    p = date.mjd > 1 ? "Faltan #{d} días" : "Falta #{d} día"
+    message = '¡Hoy pagan!'
+    if d < 0
+      message = "Pagaron hace #{d.abs} día(s). ¿No te llegó el depósito? Uf..."
+    elsif d > 0
+      message = d == 1 ? "Falta #{d} día" : "Faltan #{d} días"
+      message += 'para que paguen.'
+    end
 
-    d.zero? ? '¡Hoy pagan!' : "#{p} para que paguen."
+    <<-HEREDOC
+    #{message}
+    HEREDOC
   end
 
   # Based con @victorsanmartin's proximo-feriado.js
