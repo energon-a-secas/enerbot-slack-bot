@@ -19,6 +19,7 @@ require './scripts/flight'
 require './scripts/weather'
 require './scripts/cves'
 require './scripts/canitrot'
+require './scripts/bronze'
 require './core'
 
 # Variables and other herbs
