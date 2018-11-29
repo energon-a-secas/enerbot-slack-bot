@@ -12,7 +12,7 @@ module Bronze
       'Perdimos porque no ganamos. *-Ronaldo*',
       'Cuando un equipo anda bien, no anda mal y viceversa. *-Mariano Puyol*',
       'Me gustaría jugar en un equipo italiano. Como el Barcelona. *-Mark Draper*',
-      'No pude acostumbrarme a vivir en Italia. Era como estar en un país extranjero. *-Ian Rush)*',
+      'No pude acostumbrarme a vivir en Italia. Era como estar en un país extranjero. *-Ian Rush*',
       'Primero que nada un saludo a todos los señores televisores... *-Juan Carlos Letelier*',
       'Siempre me pongo primero mi bota derecha. Y luego, obviamente, mi calcetín izquierdo. *-Barry Venison*',
       'Mis padres han estado conmigo apoyándome. Incluso desde que tenía 7 años. *-David Beckham*',
