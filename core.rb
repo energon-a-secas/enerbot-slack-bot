@@ -94,6 +94,8 @@ module Case
                CVE.latest(text)
              when /dame una excusa$/i
                RicardoCanitrot.getexcuse
+             when /una frase para el bronce$/i
+               Bronze.quote
              end
       Resp.message(data, mess) unless mess.nil?
     end
