@@ -34,10 +34,9 @@ class AccessEval
   def self.chan(data)
     chan = data.channel
     if !AccessEval::BOT_CHANNELS.include? chan
-      Resp.write(BOT_LOG, ":newalert: <@#{data.user}> almost make me work on <##{chan}>!")
-    else
-      Case.bot(data)
+      Resp.write(BOT_LOG, ":newalert: <@#{data.user}> is making me work on <##{chan}>!")
     end
+    Case.bot(data)
   end
 
   def self.kill(data)
