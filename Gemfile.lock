@@ -11,7 +11,7 @@ GEM
     async (1.11.0)
       nio4r (~> 2.3)
       timers (~> 4.1)
-    async-io (1.16.4)
+    async-io (1.17.1)
       async (~> 1.3)
     async-websocket (0.6.1)
       async-io
@@ -32,6 +32,7 @@ GEM
     gli (2.18.0)
     guru_guru (0.0.4)
     hashie (3.6.0)
+    holidays (6.6.1)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.1.1)
@@ -89,6 +90,7 @@ DEPENDENCIES
   credy!
   faye-websocket!
   guru_guru!
+  holidays!
   net-ssh!
   nokogiri!
   passgen!
@@ -100,4 +102,4 @@ DEPENDENCIES
   week_of_month!
 
 BUNDLED WITH
-   1.16.1
+   1.16.5

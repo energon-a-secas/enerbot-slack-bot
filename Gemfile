@@ -3,6 +3,7 @@ source 'https://rubygems.org' do
   gem 'credy'
   gem 'faye-websocket'
   gem 'guru_guru'
+  gem 'holidays'
   gem 'net-ssh'
   gem 'nokogiri'
   gem 'passgen'
@@ -12,5 +13,4 @@ source 'https://rubygems.org' do
   gem 'slack-ruby-client'
   gem 'stock_quote'
   gem 'week_of_month'
-  gem 'holidays'
 end
