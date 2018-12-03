@@ -1,6 +1,7 @@
 require 'week_of_month'
 require 'json'
 require 'net/http'
+require 'holidays'
 
 # Module for time related scripts
 module TimeTo
@@ -45,25 +46,15 @@ module TimeTo
 
   # Based con @victorsanmartin's proximo-feriado.js
   def self.holiday_count
-    holidays = JSON.parse(Net::HTTP.get(URI('https://www.feriadosapp.com/api/holidays.json')))
+    holiday = Holidays.next_holidays(1, %i[cl observed])
     message = 'No hay feriados :thinking: :scream:'
-
-    holidays['data'].each do |holiday|
-      countdown = (Date.parse(holiday['date']) - Date.today).to_i
-      laws = holiday['law'].join(' - ').downcase
-      if countdown.zero?
-        message = "Hoy es feriado en :chile:, se celebra *#{holiday['title']}* "
-        message += "(feriado #{holiday['extra'].downcase}, "
-        message += "declarado por #{laws})"
-        break
-      elsif countdown > 0
-        plural = countdown > 1 ? 's' : ''
-        message = "Próximo feriado en :chile: es en #{countdown} día#{plural} "
-        message += "(#{holiday['date']}), se celebra *#{holiday['title']}* "
-        message += "(feriado #{holiday['extra'].downcase}, "
-        message += "declarado por #{laws})"
-        break
-      end
+    countdown = (holiday[0][:date] - Date.today).to_i
+    if countdown.zero?
+      message = "Hoy es feriado en :chile:, se celebra *#{holiday[0][:name]}* "
+    elsif countdown > 0
+      plural = countdown > 1 ? 's' : ''
+      message = "Próximo feriado en :chile: es en #{countdown} día#{plural} "
+      message += "(#{holiday[0][:date].strftime('%Y-%m-%d')}), se celebra *#{holiday[0][:name]}* "
     end
     <<-HEREDOC
     #{message}
