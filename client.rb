@@ -20,6 +20,7 @@ require './scripts/weather'
 require './scripts/cves'
 require './scripts/canitrot'
 require './scripts/bronze'
+require './scripts/macaulay'
 require './core'
 
 # Variables and other herbs
@@ -33,9 +34,7 @@ class AccessEval
 
   def self.chan(data)
     chan = data.channel
-    if !AccessEval::BOT_CHANNELS.include? chan
-      Resp.write(BOT_LOG, ":newalert: <@#{data.user}> is making me work on <##{chan}>!")
-    end
+    Resp.write(BOT_LOG, ":newalert: <@#{data.user}> is making me work on <##{chan}>!") unless AccessEval::BOT_CHANNELS.include? chan
     Case.bot(data)
   end
 
@@ -50,7 +49,7 @@ class AccessEval
 
   def self.say(data)
     if !AccessEval::BOT_ADMINS.include?(data.user)
-      Resp.write(BOT_LOG, ":newalert: <@#{user}> almost use a paid functionality!")
+      Resp.write(BOT_LOG, ":newalert: <@#{data.user}> almost use a paid functionality!")
     else
       text = data.text.split
       mess = text[2..-1].join(' ')
