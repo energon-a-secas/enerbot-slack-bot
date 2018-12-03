@@ -47,7 +47,8 @@ module System
  enerbot <vuelo> <NUMERO DE VUELO>
  enerbot <clima> <LOCALIDAD>
  enerbot <cve list> <CANTIDAD>
- enerbot <dame una excusa>```
+ enerbot <dame una excusa>
+ enerbot <un saludo navideño>```
 
     HEREDOC
   end

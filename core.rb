@@ -96,6 +96,8 @@ module Case
                RicardoCanitrot.getexcuse
              when /una frase para el bronce$/i
                Bronze.quote
+             when /un saludo navideño$/i
+               Macaulay.culkin(data.user)
              end
       Resp.message(data, mess) unless mess.nil?
     end
