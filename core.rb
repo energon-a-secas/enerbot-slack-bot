@@ -98,6 +98,8 @@ module Case
                Bronze.quote
              when /un saludo navideño$/i
                Macaulay.culkin(data.user)
+             when /haarp/i
+               Haarp.terre
              end
       Resp.message(data, mess) unless mess.nil?
     end
