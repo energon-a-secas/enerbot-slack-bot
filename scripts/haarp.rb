@@ -3,7 +3,7 @@ module Haarp
     require 'json'
     require 'net/http'
 
-    api = JSON.parse(Net::HTTP.get(URI('https://chilealerta.com/api/query/?user=luciano&select=ultimos_sismos&country=chile')))
+    api = JSON.parse(Net::HTTP.get(URI('https://chilealerta.com/api/query/?user=demo&select=ultimos_sismos&country=chile')))
     terre = api['ultimos_sismos_chile'][0]
     <<-HEREDOC
 :clock1: *Hora:* #{terre['chilean_time']}
