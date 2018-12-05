@@ -7,7 +7,7 @@ module Haarp
     terre = api['ultimos_sismos_chile'][0]
     <<-HEREDOC
 :clock1: *Hora:* #{terre['chilean_time']}
-:earth_americas:*Ubicación:* #{terre['reference']}
+:earth_americas: *Ubicación:* #{terre['reference']}
 :triggered_energon: *Magnitud:* #{terre['magnitude']}
     HEREDOC
   end
