@@ -21,6 +21,7 @@ require './scripts/cves'
 require './scripts/canitrot'
 require './scripts/bronze'
 require './scripts/macaulay'
+require './scripts/haarp'
 require './core'
 
 # Variables and other herbs
