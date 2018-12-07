@@ -1,7 +1,7 @@
 ENERBOT-RUBY
 ========
 - Website: https://www.energon.cloud
-- ![This software is Blessed](https://img.shields.io/badge/blessed-100%25-770493.svg)
+- ![This software is Blessed](emojis/enerbot.png)
 
 It's based on the bototo3000, but using the Slack Ruby Client and Ruby instead of Python. Is design for small talks and remote commands over SSH.
 
