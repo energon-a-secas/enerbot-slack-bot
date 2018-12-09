@@ -76,6 +76,7 @@ client.on :hello do
 end
 
 client.on :message do |data|
+  client.typing channel: data.channel
   text = data.text
   case text
   when /^enerbot/i then
