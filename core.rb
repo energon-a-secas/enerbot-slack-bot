@@ -138,8 +138,8 @@ module Case
     Resp.event(data, mess[:file], mess[info])
   end
 
-  def self.kill(data)
-    case data.text
+  def self.kill(text)
+    case text
     when 'enershut'
       System.kill
     when 'お前もう死んでいる'
