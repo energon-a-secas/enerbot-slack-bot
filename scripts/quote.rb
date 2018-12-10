@@ -46,6 +46,17 @@ module Quote
      ':wait_energon:'].sample
   end
 
+  def self.alert(usr, chn)
+    case chn
+    when /shut/
+      ":newalert: <@#{usr}> tried to kill me!"
+    when /\b/
+      ":newalert: <@#{usr}> is making me work on <#{chn}>!"
+    when /say/
+      ":newalert: <@#{usr}> almost use a paid functionality!"
+    end
+  end
+
   def self.japanese
     ['なっ何？！',
      '«目覚め給え、我が主たちよ！»',

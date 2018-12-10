@@ -34,28 +34,36 @@ class AccessEval
   BOT_LOG = ENV['SLACK_LOG_CHANNEL']
 
   def self.chan(data)
+    user = data.user
     chan = data.channel
-    Resp.write(BOT_LOG, ":newalert: <@#{data.user}> is making me work on <##{chan}>!") unless AccessEval::BOT_CHANNELS.include? chan
+
+    Resp.write(BOT_LOG, Quote.alert(user, chan)) unless BOT_CHANNELS.include? chan
     Case.bot(data)
   end
 
   def self.kill(data)
     user = data.user
-    if !AccessEval::BOT_ADMINS.include? user
-      Resp.write(BOT_LOG, ":newalert: <@#{user}> tried to kill me!")
+    text = data.text
+
+    if !BOT_ADMINS.include? user
+      Resp.write(BOT_LOG, Quote.alert(user, text))
     else
-      Resp.message(data, Case.kill(data)) && abort('bye')
+      Resp.message(data, Case.kill(text)) && abort('bye')
     end
   end
 
   def self.say(data)
-    if !AccessEval::BOT_ADMINS.include?(data.user)
-      Resp.write(BOT_LOG, ":newalert: <@#{data.user}> almost use a paid functionality!")
-    else
-      text = data.text.split
-      mess = text[2..-1].join(' ')
-      Resp.write(text[1].to_s, mess)
-    end
+    user = data.user
+    text = data.text.split
+
+    chan, msg = if !BOT_ADMINS.include?(user)
+                  [BOT_LOG, Quote.alert(user, text)]
+                else
+                  mess = text[2..-1].join(' ')
+                  [text[1].to_s, mess]
+                end
+
+    Resp.write(chan, msg)
   end
 
   # Just for the sake of messaging on start
@@ -76,6 +84,7 @@ client.on :hello do
 end
 
 client.on :message do |data|
+  client.typing channel: data.channel
   text = data.text
   case text
   when /^enerbot/i then
