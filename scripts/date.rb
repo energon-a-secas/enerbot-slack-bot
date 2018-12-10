@@ -36,7 +36,7 @@ module TimeTo
       message = "Pagaron hace #{d.abs} día(s). ¿No te llegó el depósito? Uf..."
     elsif d > 0
       message = d == 1 ? "Falta #{d} día" : "Faltan #{d} días"
-      message += 'para que paguen.'
+      message += ' para que paguen.'
     end
 
     <<-HEREDOC
