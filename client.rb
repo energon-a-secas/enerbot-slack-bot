@@ -22,6 +22,7 @@ require './scripts/canitrot'
 require './scripts/bronze'
 require './scripts/macaulay'
 require './scripts/haarp'
+require './scripts/secret_friend'
 require './core'
 
 # Variables and other herbs
