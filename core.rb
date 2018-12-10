@@ -100,6 +100,8 @@ module Case
                Macaulay.culkin(data.user)
              when /haarp/i
                Haarp.terre
+             when /amigo secreto/i
+               SecretFriend.generate(data.text)
              end
       Resp.message(data, mess) unless mess.nil?
     end

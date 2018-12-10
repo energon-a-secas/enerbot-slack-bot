@@ -49,7 +49,8 @@ module System
  enerbot <cve list> <CANTIDAD>
  enerbot <dame una excusa>
  enerbot <un saludo navideño>
- enerbot <haarp>```
+ enerbot <haarp>
+ enerbot <amigo secreto> <LISTA DE USUARIOS SEPARADAS POR ',' o ESPACIO>```
 
     HEREDOC
   end
