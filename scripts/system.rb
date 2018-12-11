@@ -69,14 +69,14 @@ module System
   def self.kill
     a = <<-HEREDOC
 (҂._.)
-<,╤╦╤─ ҉ - - - - :energon:
+<,╤╦╤─ ҉ - - - - :enerbot:
 /--\\
     HEREDOC
     b = <<-HEREDOC
 \n \
 ━━━━━┓\n \
 ┓┓┓┓┓┃  \n \
-┓┓┓┓┓┃     :energon: ~ chaoooooo
+┓┓┓┓┓┃     :enerbot: ~ chaoooooo
 ┓┓┓┓┓┃
 ┓┓┓┓┓┃
 ┓┓┓┓┓┃
@@ -84,7 +84,7 @@ module System
     HEREDOC
     c = <<-HEREDOC
 :bomb: :bomb: :bomb:
-:bomb: :energon: :bomb: :fire: ~ adiós mundo cruel
+:bomb: :enerbot: :bomb: :fire: ~ adiós mundo cruel
 :bomb: :bomb: :bomb:
     HEREDOC
     [a, b, c].sample
