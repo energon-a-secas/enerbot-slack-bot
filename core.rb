@@ -82,8 +82,6 @@ module Case
                Lotery.winner_nums
              when /(valor acci[óo]n (.*?)$)/i
                Stock.fetch(text)
-             when /qr/i
-               QR.generate(text)
              when /wikipedia/i
                Vieja.sapear(text)
              when /vuelo/i
@@ -102,6 +100,8 @@ module Case
                Haarp.terre
              when /amigo secreto/i
                SecretFriend.generate(data.text)
+             when /dig/i
+               Check.dns(text)
              end
       Resp.message(data, mess) unless mess.nil?
     end
