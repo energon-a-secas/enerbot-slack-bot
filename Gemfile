@@ -4,6 +4,7 @@ source 'https://rubygems.org' do
   gem 'faye-websocket'
   gem 'guru_guru'
   gem 'holidays'
+  gem 'net-dns'
   gem 'net-ssh'
   gem 'nokogiri'
   gem 'passgen'
