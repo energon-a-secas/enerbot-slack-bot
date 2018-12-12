@@ -100,7 +100,7 @@ module Case
                Haarp.terre
              when /amigo secreto/i
                SecretFriend.generate(data.text)
-             when /dig/i
+             when / dig /i
                Check.dns(text)
              end
       Resp.message(data, mess) unless mess.nil?
