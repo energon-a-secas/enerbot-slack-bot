@@ -51,7 +51,8 @@ module System
  enerbot <un saludo navideño>
  enerbot <haarp>
  enerbot <amigo secreto> <LISTA DE USUARIOS SEPARADAS POR ','>
- enerbot <dig> <ns | cname> <DOMINIO>```
+ enerbot <dig> <ns | cname> <DOMINIO>
+ enerbot <dns> <detail> <DOMINIO>```
 
     HEREDOC
   end

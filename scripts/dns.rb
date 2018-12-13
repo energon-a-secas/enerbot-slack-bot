@@ -25,4 +25,35 @@ module Check
           end
     "```#{ans}```"
   end
+
+  def self.regis(text)
+    require 'whois-parser'
+
+    host = 'google.com'
+    if (match = text.match(/dns (detail) ((.*)\|)?(.*?)(\>)?$/i))
+      host = match.captures[3]
+    end
+
+    domain = host
+    record = Whois.whois(domain)
+    parser = record.parser
+    avail = parser.available?
+    regis = parser.registered?
+
+    creat = parser.created_on
+    tech = parser.technical_contacts.first
+
+    p <<-HEREDOC
+:earth_americas: Información sobre el dominio #{domain}
+
+*Registrado:* #{regis}
+*Creado:* #{creat}
+*Disponible:* #{avail}
+
+*Name:* #{tech.name}
+*Organization:* #{tech.organization}
+*Address:* #{tech.address}
+*Email:* #{tech.email}
+    HEREDOC
+  end
 end
