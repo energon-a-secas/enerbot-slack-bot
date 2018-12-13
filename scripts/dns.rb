@@ -31,7 +31,7 @@ module Check
 
     host = 'google.com'
     if (match = text.match(/whois ((.*)\|)?(.*?)(\>)?$/i))
-      host = match.captures[3]
+      host = match.captures[2]
     end
 
     domain = host
