@@ -40,10 +40,11 @@ module Check
     avail = parser.available?
     regis = parser.registered?
 
-    creat = parser.created_on
-    tech = parser.technical_contacts.first
 
-    p <<-HEREDOC
+    if !record.to_s.include? 'No match for'
+      creat = parser.created_on
+      tech = parser.technical_contacts.first
+      <<-HEREDOC
 :earth_americas: Información sobre el dominio #{domain}
 
 *Registrado:* #{regis}
@@ -54,6 +55,9 @@ module Check
 *Organization:* #{tech.organization}
 *Address:* #{tech.address}
 *Email:* #{tech.email}
-    HEREDOC
+      HEREDOC
+    else
+      "Información sobre el dominio #{domain} no ha sido encontrado"
+    end
   end
 end
