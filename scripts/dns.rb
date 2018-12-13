@@ -30,7 +30,7 @@ module Check
     require 'whois-parser'
 
     host = 'google.com'
-    if (match = text.match(/dns (detail) ((.*)\|)?(.*?)(\>)?$/i))
+    if (match = text.match(/whois ((.*)\|)?(.*?)(\>)?$/i))
       host = match.captures[3]
     end
 
