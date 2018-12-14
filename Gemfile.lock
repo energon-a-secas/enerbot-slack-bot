@@ -82,6 +82,10 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
     week_of_month (1.2.5)
+    whois (4.0.7)
+    whois-parser (1.1.0)
+      activesupport (>= 4)
+      whois (>= 4.0.6)
 
 PLATFORMS
   ruby
@@ -102,6 +106,7 @@ DEPENDENCIES
   slack-ruby-client!
   stock_quote!
   week_of_month!
+  whois-parser!
 
 BUNDLED WITH
    1.16.5

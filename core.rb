@@ -102,6 +102,8 @@ module Case
                SecretFriend.generate(data.text)
              when / dig /i
                Check.dns(text)
+             when / whois /i
+               Check.regis(text)
              end
       Resp.message(data, mess) unless mess.nil?
     end

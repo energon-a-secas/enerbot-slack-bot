@@ -25,4 +25,39 @@ module Check
           end
     "```#{ans}```"
   end
+
+  def self.regis(text)
+    require 'whois-parser'
+
+    host = 'google.com'
+    if (match = text.match(/whois ((.*)\|)?(.*?)(\>)?$/i))
+      host = match.captures[2]
+    end
+
+    domain = host
+    record = Whois.whois(domain)
+    parser = record.parser
+    avail = parser.available?
+    regis = parser.registered?
+
+
+    if !record.to_s.include? 'No match for'
+      creat = parser.created_on
+      tech = parser.technical_contacts.first
+      <<-HEREDOC
+:earth_americas: Información sobre el dominio #{domain}
+
+*Registrado:* #{regis}
+*Creado:* #{creat}
+*Disponible:* #{avail}
+
+*Name:* #{tech.name}
+*Organization:* #{tech.organization}
+*Address:* #{tech.address}
+*Email:* #{tech.email}
+      HEREDOC
+    else
+      "Información sobre el dominio #{domain} no ha sido encontrado"
+    end
+  end
 end

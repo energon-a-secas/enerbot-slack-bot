@@ -14,4 +14,5 @@ source 'https://rubygems.org' do
   gem 'slack-ruby-client'
   gem 'stock_quote'
   gem 'week_of_month'
+  gem 'whois-parser'
 end
