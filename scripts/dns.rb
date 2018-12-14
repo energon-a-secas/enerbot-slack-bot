@@ -40,10 +40,9 @@ module Check
     avail = parser.available?
     regis = parser.registered?
 
-
     if !record.to_s.include? 'No match for'
       creat = parser.created_on
-      tech = parser.technical_contacts.first
+      tech = parser.admin_contacts.first
       <<-HEREDOC
 :earth_americas: Información sobre el dominio #{domain}
 
