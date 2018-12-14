@@ -36,11 +36,11 @@ module Check
 
     domain = host
     record = Whois.whois(domain)
-    parser = record.parser
-    avail = parser.available?
-    regis = parser.registered?
 
     if !record.to_s.include? 'No match for'
+      parser = record.parser
+      avail = parser.available?
+      regis = parser.registered?
       creat = parser.created_on
       tech = parser.admin_contacts.first
       <<-HEREDOC
