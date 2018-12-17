@@ -16,7 +16,7 @@ module HIBP
 
       if res.code == '200'
         breaches = JSON.parse(res.body)
-        message = "Email #{email} Brechas: *#{breaches.length}*"
+        message = "Email #{email} Brechas: *#{breaches.length}*\n"
         breaches.each do |breach|
           message += "\t:rotating_light: #{breach['Title']} (#{breach['Domain']}) #{breach['BreachDate']}\n"
         end
