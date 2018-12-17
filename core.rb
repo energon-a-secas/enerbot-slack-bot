@@ -104,6 +104,8 @@ module Case
                Check.dns(text)
              when / whois /i
                Check.regis(text)
+             when / pwned email /i
+               HIBP.check_email(text)
              end
       Resp.message(data, mess) unless mess.nil?
     end

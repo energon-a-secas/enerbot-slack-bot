@@ -23,6 +23,7 @@ require './scripts/macaulay'
 require './scripts/haarp'
 require './scripts/secret_friend'
 require './scripts/dns'
+require './scripts/hibp'
 require './core'
 
 # Variables and other herbs
