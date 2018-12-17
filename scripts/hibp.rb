@@ -3,8 +3,8 @@ module HIBP
   def self.check_email(text)
     require 'net/http'
     require 'json'
-    if (match = text.match(/pwned email (.*?)$/i))
-      email = match.captures[0]
+    if (match = text.match(/pwned email ((.*)\|)?(.*?)(\>)?$/i))
+      email = match.captures[2]
     end
 
     message = "No info for #{email}"
