@@ -52,7 +52,8 @@ module System
  enerbot <haarp>
  enerbot <amigo secreto> <LISTA DE USUARIOS SEPARADAS POR ','>
  enerbot <dig> <ns | cname> <DOMINIO>
- enerbot <whois> <DOMINIO>```
+ enerbot <whois> <DOMINIO>
+ enerbot <pwned email> <EMAIL>```
 
     HEREDOC
   end
