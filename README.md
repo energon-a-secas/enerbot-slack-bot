@@ -1,4 +1,4 @@
-ENERBOT-RUBY <img align="right" width="100" height="100" src="emojis/energon.png">
+ENERBOT (Slack Slave) <img align="right" width="100" height="100" src="emojis/energon.png">
 ========
 - Website: https://www.energon.cloud
 - ![This software is Blessed](https://img.shields.io/badge/blessed-100%25-770493.svg)
