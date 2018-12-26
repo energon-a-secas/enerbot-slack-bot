@@ -4,6 +4,7 @@ module Resp
     puts data
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data.channel,
+                                       thread_ts: data.ts,
                                        text: text,
                                        icon_emoji: AccessEval::BOT_ICON,
                                        username: AccessEval::BOT_NAME
