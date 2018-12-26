@@ -106,6 +106,8 @@ module Case
                Check.regis(text)
              when / pwned email /i
                HIBP.check_email(text)
+             when /commit/i
+               Quote.commit
              end
       Resp.message(data, mess) unless mess.nil?
     end

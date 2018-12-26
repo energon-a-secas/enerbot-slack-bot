@@ -62,4 +62,12 @@ module Quote
      '«目覚め給え、我が主たちよ！»',
      '«キサマァ。。。» '].sample
   end
+
+  def self.commit
+    require 'nokogiri'
+    require 'open-uri'
+    doc = Nokogiri::HTML(open('http://whatthecommit.com'))
+    text = doc.css('div#content p')[0].text
+    ">git commit -m '#{text.chomp}'"
+  end
 end
