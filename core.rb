@@ -2,9 +2,10 @@
 module Resp
   def self.message(data, text)
     puts data
+    thread = data.ts if data.to_s.include?('thread_ts')
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data.channel,
-                                       thread_ts: data.ts,
+                                       thread_ts: thread,
                                        text: text,
                                        icon_emoji: AccessEval::BOT_ICON,
                                        username: AccessEval::BOT_NAME
