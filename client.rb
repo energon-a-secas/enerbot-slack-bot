@@ -28,7 +28,7 @@ require './core'
 
 # Variables and other herbs
 class AccessEval
-  BOT_ICON = ':enerbot-party:'.freeze
+  BOT_ICON = ':enerbot_party:'.freeze
   BOT_NAME = 'ENERBOT'.freeze
   BOT_ADMINS = ENV['SLACK_USERS']
   BOT_CHANNELS = ENV['SLACK_CHANNELS']
