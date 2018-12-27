@@ -2,8 +2,10 @@
 module Resp
   def self.message(data, text)
     puts data
+    thread = data.ts if data.to_s.include?('thread_ts')
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data.channel,
+                                       thread_ts: thread,
                                        text: text,
                                        icon_emoji: AccessEval::BOT_ICON,
                                        username: AccessEval::BOT_NAME
@@ -11,10 +13,12 @@ module Resp
 
   def self.event(data, path, attachments)
     puts data
+    thread = data.ts if data.to_s.include?('thread_ts')
     json_file = File.read("./Info/#{path}")
     parsed_file = JSON.parse(json_file)
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data.channel,
+                                       thread_ts: thread,
                                        text: Quote.search,
                                        icon_emoji: AccessEval::BOT_ICON,
                                        username: AccessEval::BOT_NAME,
