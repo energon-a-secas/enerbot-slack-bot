@@ -7,7 +7,7 @@ module Resp
     client.web_client.chat_postMessage channel: data.channel,
                                        thread_ts: thread,
                                        text: text,
-                                       icon_emoji: AccessEval::BOT_ICON,
+                                       icon_url: AccessEval::BOT_ICON,
                                        username: AccessEval::BOT_NAME
   end
 
