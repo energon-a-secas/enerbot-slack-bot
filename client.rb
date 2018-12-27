@@ -61,7 +61,7 @@ class AccessEval
     if !BOT_ADMINS.include?(user)
       chan = BOT_LOG
       msg = Quote.alert(user, text)
-    elsif (match = data.text.match(/enersay (\<#)?((.*)\|)?(.*?)(\>)? (.*?)$/i))
+    elsif (match = data.text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i))
       chan = match.captures[2] || match.captures[3]
       msg = match.captures[5]
     else
