@@ -40,7 +40,7 @@ module RicardoCanitrot
       'Estoy construyendo una máquina del tiempo. Si funciona, nos vemos hace diez minutos en la oficina.',
       'Estoy trabajando en otra línea temporal. En un universo paralelo, para que nos entendamos.',
       'Mi perro se ha comido mi empleo.',
-      '¡DI DE COMER A MI GREMLIN PASADAS LAS DOCE! ¡NO LO ENCUENTRO! ¡VAMOS A MORIR TODOS!',
+      '¡DI DE COMER A MI MOGWAI PASADAS LAS DOCE! ¡NO LO ENCUENTRO! ¡VAMOS A MORIR TODOS!',
       'Ayer compré un gato y soy alérgic@. ¡Si salgo del dormitorio, moriré! ¡Que alguien llame a la policía!',
       'Había una cucaracha en el baño y no me he podido duchar.',
       'Estoy enterrando a mi perro. Cuelgo, que se está escapando.',
