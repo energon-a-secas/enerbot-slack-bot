@@ -51,10 +51,11 @@ module System
  enerbot <un saludo navideño>
  enerbot <haarp>
  enerbot <amigo secreto> <LISTA DE USUARIOS SEPARADAS POR ','>
- enerbot <dig> <ns | cname> <DOMINIO>
+ enerbot <dig> <NS | CNAME | MX | A | TXT | SOA> <DOMINIO>
  enerbot <whois> <DOMINIO>
  enerbot <pwned email> <EMAIL>
- enerbot <commit>```
+ enerbot <commit>
+ enerbot <trace> <NS | CNAME | MX | A | TXT | SOA> <DOMINIO>```
 
     HEREDOC
   end
