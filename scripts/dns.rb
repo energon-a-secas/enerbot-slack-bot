@@ -59,4 +59,29 @@ module Check
       "Información sobre el dominio #{domain} no ha sido encontrado"
     end
   end
+
+  def self.trace
+    host = 'google.com'
+    if (match = text.match(/trace (ns|cname|a|mx|txt|soa) ((.*)\|)?(.*?)(\>)?$/i))
+      host = match.captures[3]
+      record = match.captures[0]
+    end
+    reco = record
+    type = case reco
+          when /ns/i
+            'NS'
+          when /cname/i
+            'CNAME'
+          when /mx/i
+            'MX'
+          when 'a', 'A'
+            'A'
+          when /txt/i
+            'TXT'
+          when /soa/i
+            'SOA'
+          end
+    request = puts `dig #{host} #{type} +trace`
+    "```#{request}```"
+  end
 end

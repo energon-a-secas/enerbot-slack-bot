@@ -112,6 +112,8 @@ module Case
                HIBP.check_email(text)
              when /commit/i
                Quote.commit
+             when /trace/i
+               Check.trace(text)
              end
       Resp.message(data, mess) unless mess.nil?
     end
