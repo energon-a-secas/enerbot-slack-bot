@@ -60,7 +60,7 @@ module Check
     end
   end
 
-  def self.trace
+  def self.trace(text)
     host = 'google.com'
     if (match = text.match(/trace (ns|cname|a|mx|txt|soa) ((.*)\|)?(.*?)(\>)?$/i))
       host = match.captures[3]
@@ -81,7 +81,7 @@ module Check
           when /soa/i
             'SOA'
           end
-    request = puts `dig #{host} #{type} +trace`
+    request = `dig #{host} #{type} +trace +short`
     "```#{request}```"
   end
 end
