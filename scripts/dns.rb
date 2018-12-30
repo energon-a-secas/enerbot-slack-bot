@@ -82,7 +82,7 @@ module Check
             'SOA'
           end
     #request = `dig #{host} #{type} +trace +short`
-    request = `dig +noadditional +noquestion +nocomments +nocmd +nostats +trace #{host} #{type}`
+    request = `dig +noadditional +noquestion +nocomments +nocmd +nostats +trace +short #{host} #{type}`
     "```#{request}```"
   end
 end
