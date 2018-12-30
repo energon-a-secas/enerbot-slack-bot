@@ -81,7 +81,8 @@ module Check
           when /soa/i
             'SOA'
           end
-    request = `dig #{host} #{type} +trace +short`
+    #request = `dig #{host} #{type} +trace +short`
+    request = `dig #{host} #{type} +trace`
     "```#{request}```"
   end
 end
