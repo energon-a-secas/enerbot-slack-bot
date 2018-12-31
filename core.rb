@@ -114,6 +114,8 @@ module Case
                Quote.commit
              when /trace/i
                Check.trace(text)
+             when /is the internet on fire\?$/i
+               Internet.onfire
              end
       Resp.message(data, mess) unless mess.nil?
     end
