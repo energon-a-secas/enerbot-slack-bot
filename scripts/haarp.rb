@@ -1,3 +1,4 @@
+# Earthquakes
 module Haarp
   def self.terre
     require 'json'

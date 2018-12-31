@@ -68,22 +68,21 @@ module Check
     end
     reco = record
     type = case reco
-          when /ns/i
-            'NS'
-          when /cname/i
-            'CNAME'
-          when /mx/i
-            'MX'
-          when 'a', 'A'
-            'A'
-          when /txt/i
-            'TXT'
-          when /soa/i
-            'SOA'
-          end
-    #request = `dig #{host} #{type} +trace +short`
+           when /ns/i
+             'NS'
+           when /cname/i
+             'CNAME'
+           when /mx/i
+             'MX'
+           when 'a', 'A'
+             'A'
+           when /txt/i
+             'TXT'
+           when /soa/i
+             'SOA'
+           end
+    # request = `dig #{host} #{type} +trace +short`
     request = `dig +noadditional +noquestion +nocomments +nocmd +nostats +trace +short #{host} #{type} @1.1.1.1`
-    p request
     "```#{request}```"
   end
 end
