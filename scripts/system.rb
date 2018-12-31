@@ -55,7 +55,8 @@ module System
  enerbot <whois> <DOMINIO>
  enerbot <pwned email> <EMAIL>
  enerbot <commit>
- enerbot <trace> <NS | CNAME | MX | A | TXT | SOA> <DOMINIO>```
+ enerbot <trace> <NS | CNAME | MX | A | TXT | SOA> <DOMINIO>
+ enerbot <is the internet on fire?>```
 
     HEREDOC
   end
