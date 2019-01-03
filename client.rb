@@ -29,8 +29,8 @@ require './core'
 
 # Variables and other herbs
 class AccessEval
-  BOT_NAME = 'ENERBOT'.freeze
   BOT_ICON = ENV['SLACK_ICON']
+  BOT_NAME = ENV['SLACK_NAME']
   BOT_ADMINS = ENV['SLACK_USERS']
   BOT_CHANNELS = ENV['SLACK_CHANNELS']
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
