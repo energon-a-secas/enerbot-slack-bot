@@ -1,0 +1,76 @@
+{
+  "flight": [
+    {
+      "fallback": "Book your flights at https://energontravel.com",
+      "actions": [
+        {
+          "type": "button",
+          "text": "Book flights 🛫",
+          "url": "https://energontravel.com"
+        }
+      ]
+    }
+  ],
+  "purge": [
+    {
+      "text": "The purge of machines",
+      "color": "#EC0000",
+      "attachment_type": "default",
+      "fallback": "Pick your less favorite",
+      "actions": [
+        {
+          "type": "button",
+          "text": "Legacy",
+          "url": "https://raw.githubusercontent.com/energonrocks/enerbot-slack/master/emojis/enerbot.png"
+        },
+        {
+          "type": "button",
+          "text": "Staging",
+          "url": "https://raw.githubusercontent.com/energonrocks/enerbot-slack/master/emojis/enerbot.png"
+        },
+        {
+          "type": "button",
+          "text": "Beta",
+          "url": "https://raw.githubusercontent.com/energonrocks/enerbot-slack/master/emojis/enerbot.png"
+        }
+      ]
+    }
+  ],
+  "last_resort": [
+    {
+      "text": "Choose carefully",
+      "fallback": "You are unable to choose a game",
+      "callback_id": "wopr_game",
+      "color": "#EC0000",
+      "attachment_type": "default",
+      "actions": [
+        {
+          "name": "game",
+          "text": "Chess",
+          "type": "button",
+          "url": "https://energon.rocks"
+        },
+        {
+          "name": "game",
+          "text": "Falken's Maze",
+          "type": "button",
+          "url": "https://energon.rocks"
+        },
+        {
+          "name": "game",
+          "text": "Thermonuclear War",
+          "style": "danger",
+          "type": "button",
+          "value": "war",
+          "confirm": {
+            //Are you sure that you ### to delete Digital?
+            "title": "Are you sure to delete Latan-Digital?",
+            "text": "Wouldn't you prefer a cup of coffee?",
+            "ok_text": "Yes",
+            "dismiss_text": "No"
+          }
+        }
+      ]
+    }
+  ]
+}

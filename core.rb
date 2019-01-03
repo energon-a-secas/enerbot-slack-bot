@@ -19,7 +19,6 @@ module Resp
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data.channel,
                                        thread_ts: thread,
-                                       text: Quote.search,
                                        icon_url: AccessEval::BOT_ICON,
                                        username: AccessEval::BOT_NAME,
                                        attachments: parsed_file[attachments]
@@ -38,7 +37,7 @@ end
 module Case
   def self.bot(data)
     text = data.text
-    if text =~ /(fuq|faq|info)/
+    if text =~ /(fuq|faq|info|bot[oó]n)/
       Case.events(data)
     else
       mess = case text
@@ -126,7 +125,8 @@ module Case
           { file: 'events.json', op1: 'events', op2: 'events2', op3: 'talks' },
           { file: 'institute.json', op1: 'degrees', op2: 'talks' },
           { file: 'meets.json', op1: 'tips' },
-          { file: 'contest.json', op1: 'general', op2: 'SDSOS', op3: 'design' }]
+          { file: 'contest.json', op1: 'general', op2: 'SDSOS', op3: 'design' },
+          { file: 'buttons.json', op1: 'flight', op2: 'legacy', op3: 'last_resort' }]
 
     file, info = case data.text
                  when /fuq/
@@ -149,6 +149,12 @@ module Case
                    [4, :op2]
                  when /contest diseña$/
                    [4, :op3]
+                 when /flight/
+                   [5, :op1]
+                 when /legacy/
+                   [5, :op2]
+                 when /final/
+                   [5, :op3]
                  end
     mess = dc[file]
     Resp.event(data, mess[:file], mess[info])
