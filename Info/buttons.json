@@ -1,0 +1,128 @@
+{
+  "flight": [
+    {
+      "fallback": "Book your flights at https://energontravel.com",
+      "actions": [
+        {
+          "type": "button",
+          "text": "Book flights 🛫",
+          "url": "https://energontravel.com"
+        }
+      ]
+    }
+  ],
+  "purge": [
+    {
+      "text": "The purge of machines",
+      "color": "#EC0000",
+      "attachment_type": "default",
+      "fallback": "Pick your less favorite",
+      "actions": [
+        {
+          "type": "button",
+          "text": "Legacy",
+          "url": "https://raw.githubusercontent.com/energonrocks/enerbot-slack/master/emojis/enerbot.png"
+        },
+        {
+          "type": "button",
+          "text": "Staging",
+          "url": "https://raw.githubusercontent.com/energonrocks/enerbot-slack/master/emojis/enerbot.png"
+        },
+        {
+          "type": "button",
+          "text": "Beta",
+          "url": "https://raw.githubusercontent.com/energonrocks/enerbot-slack/master/emojis/enerbot.png"
+        }
+      ]
+    }
+  ],
+  "last_resort": [
+    {
+      "text": "Choose carefully",
+      "fallback": "You are unable to choose a game",
+      "callback_id": "wopr_game",
+      "color": "#EC0000",
+      "attachment_type": "default",
+      "actions": [
+        {
+          "name": "game",
+          "text": "Chess",
+          "type": "button",
+          "url": "https://energon.rocks"
+        },
+        {
+          "name": "game",
+          "text": "Falken's Maze",
+          "type": "button",
+          "url": "https://energon.rocks"
+        },
+        {
+          "name": "game",
+          "text": "Thermonuclear War",
+          "style": "danger",
+          "type": "button",
+          "value": "war",
+          "confirm": {
+            //Are you sure that you ### to delete Digital?
+            "title": "Are you sure to delete Latan-Digital?",
+            "text": "Wouldn't you prefer a cup of coffee?",
+            "ok_text": "Yes",
+            "dismiss_text": "No"
+          }
+        }
+      ]
+    }
+  ],
+  "energon": [
+    {
+      "text": "Welcome to the ENER-XPERIENCE",
+      "color": "#EA2BEC",
+      "attachment_type": "default",
+      "fallback": "Pick your less favorite",
+      "actions": [
+        {
+          "type": "button",
+          "text": "ENERGON ENTERPRISE",
+          "style": "primary",
+          "url": "https://energon.cloud"
+        },
+        {
+          "type": "button",
+          "text": "ENERGON COMUNNITY",
+          "style": "primary",
+          "url": "https://energon.rocks"
+        },
+        {
+          "type": "button",
+          "text": "ENERBOT-SLACK",
+          "style": "danger",
+          "url": "https://github.com/energonrocks/enerbot-slack"
+        }
+      ]
+    }
+  ],
+  "docs": [
+    {
+      "fallback": "Daily.",
+      "color": "#36a64f",
+      "pretext": "Reporte semanal",
+      "author_name": "Energon Corp.",
+      "author_link": "https://energon.rocks",
+      "author_icon": "https://github.com/energonrocks/enerbot-slack/blob/master/emojis/corporative_enerbot.png",
+      "title": "Enerbot API Documentation",
+      "title_link": "https://energon.cloud",
+      "text": "Optional text that appears within the attachment",
+      "fields": [
+        {
+          "title": "Priority",
+          "value": "High",
+          "short": false
+        }
+      ],
+      "image_url": "http://yofxtrader.com/wp-content/uploads/2015/06/Blog-006-Portada.png",
+      "thumb_url": "http://yofxtrader.com/wp-content/uploads/2015/06/Blog-006-Portada.png",
+      "footer": "Energon LERN",
+      "footer_icon": "https://raw.githubusercontent.com/energonrocks/enerbot-slack/master/emojis/corporative-energon.png"
+    }
+  ]
+}

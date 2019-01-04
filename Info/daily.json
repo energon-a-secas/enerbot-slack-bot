@@ -1,0 +1,50 @@
+{
+  "docs": [
+    {
+      "fallback": "Daily.",
+      "color": "#36a64f",
+      "pretext": "Reporte semanal",
+      "author_name": "Energon Corp.",
+      "author_link": "https://energon.rocks",
+      "author_icon": "https://github.com/energonrocks/enerbot-slack/blob/master/emojis/corporative_enerbot.png",
+      "title": "Enerbot API Documentation",
+      "title_link": "https://energon.cloud",
+      "text": "Optional text that appears within the attachment",
+      "fields": [
+        {
+          "title": "Priority",
+          "value": "High",
+          "short": false
+        }
+      ],
+      "image_url": "http://yofxtrader.com/wp-content/uploads/2015/06/Blog-006-Portada.png",
+      "thumb_url": "http://yofxtrader.com/wp-content/uploads/2015/06/Blog-006-Portada.png",
+      "footer": "Energon LERN",
+      "footer_icon": "https://raw.githubusercontent.com/energonrocks/enerbot-slack/master/emojis/corporative-energon.png"
+    }
+  ],
+  "report": [
+    {
+      "fallback": "Reporte de performance.",
+      "color": "#36a64f",
+      "pretext": "Reporte semanal",
+      "author_name": "Energon Corp.",
+      "author_link": "https://energon.rocks",
+      "author_icon": "https://github.com/energonrocks/enerbot-slack/blob/master/emojis/corporative_enerbot.png",
+      "title": "Client Feedback",
+      "title_link": "https://youtu.be/oHg5SJYRHA0",
+      "text": "The disruptive technology that makes enerbot a thing",
+      "fields": [
+        {
+          "title": "Priority",
+          "value": "High",
+          "short": false
+        }
+      ],
+      "image_url": "http://yofxtrader.com/wp-content/uploads/2015/06/Blog-006-Portada.png",
+      "thumb_url": "http://yofxtrader.com/wp-content/uploads/2015/06/Blog-006-Portada.png",
+      "footer": "ENERGON",
+      "footer_icon": "https://raw.githubusercontent.com/energonrocks/enerbot-slack/master/emojis/corporative-energon.png"
+    }
+  ]
+}
