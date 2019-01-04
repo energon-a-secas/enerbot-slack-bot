@@ -14,18 +14,37 @@ require './scripts/wikipedia'
 require './scripts/celery'
 require './scripts/lingo'
 require './scripts/stock'
-require './scripts/qr'
 require './scripts/flight'
 require './scripts/weather'
 require './core'
 
-class BotValue
+class AccessEval
   BOT_ICON = ':energon:'.freeze
-  BOT_NAME = 'ENERTEST'.freeze
+  BOT_NAME = 'ENERBETAS'.freeze
   BOT_ADMINS = 'user'.freeze
 
   def self.text
-    MESSAGE
+    [
+        'enerbot hola',
+        'enerbot pregunta',
+        'enerbot como estas',
+        'enerbot beneficio',
+        'enerbot pack',
+        'enerbot rules',
+        'enerbot cuándo pagan',
+        'enerbot cuanto para el 18',
+        'enerbot password',
+        'enerbot password sec',
+        'enerbot 2fa asadasd',
+        'enerbot random 1 2 3',
+        'enerbot horoscopo piscis',
+        'enerbot resultados kino',
+        'enerbot dame numeros para el kino',
+        'enerbot valor accion energon',
+        'enerbot qr hola',
+        'enerbot vuelo LAN122',
+        'enerbot clima'
+    ].sample
   end
 
   def self.user
