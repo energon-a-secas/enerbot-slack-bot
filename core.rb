@@ -37,7 +37,7 @@ end
 module Case
   def self.bot(data)
     text = data.text
-    if text =~ /(fuq|faq|info|bot[oó]n)/
+    if text =~ /(f.q|info|bot[oó]n|activa)/
       Case.events(data)
     else
       mess = case text
@@ -150,13 +150,13 @@ module Case
                    [4, :op2]
                  when /contest diseña$/
                    [4, :op3]
-                 when /flight/
+                 when /(flight|vuelo)/
                    [5, :op1]
-                 when /legacy/
+                 when /(legacy|kill)/
                    [5, :op2]
-                 when /final/
+                 when /(panic|panico)/
                    [5, :op3]
-                 when /energon/
+                 when /(energon|enerbot)/
                    [5, :op4]
                  when /daily/
                    [6, :op1]
