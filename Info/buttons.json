@@ -72,5 +72,33 @@
         }
       ]
     }
+  ],
+  "energon": [
+    {
+      "text": "Welcome to the ENER-XPERIENCE",
+      "color": "#EA2BEC",
+      "attachment_type": "default",
+      "fallback": "Pick your less favorite",
+      "actions": [
+        {
+          "type": "button",
+          "text": "ENERGON ENTERPRISE",
+          "style": "primary",
+          "url": "https://energon.cloud"
+        },
+        {
+          "type": "button",
+          "text": "ENERGON COMUNNITY",
+          "style": "primary",
+          "url": "https://energon.rocks"
+        },
+        {
+          "type": "button",
+          "text": "ENERBOT-SLACK",
+          "style": "danger",
+          "url": "https://github.com/energonrocks/enerbot-slack"
+        }
+      ]
+    }
   ]
 }
