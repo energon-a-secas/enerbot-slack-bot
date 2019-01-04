@@ -126,8 +126,8 @@ module Case
           { file: 'institute.json', op1: 'degrees', op2: 'talks' },
           { file: 'meets.json', op1: 'tips' },
           { file: 'contest.json', op1: 'general', op2: 'SDSOS', op3: 'design' },
-          { file: 'buttons.json', op1: 'flight', op2: 'legacy', op3: 'last_resort', op4: 'energon'},
-          { file: 'daily.json', op1: 'docs', op2: 'report'}]
+          { file: 'buttons.json', op1: 'flight', op2: 'legacy', op3: 'last_resort', op4: 'energon' },
+          { file: 'daily.json', op1: 'docs', op2: 'report' }]
 
     file, info = case data.text
                  when /fuq/

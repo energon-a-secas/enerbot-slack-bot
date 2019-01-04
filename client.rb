@@ -59,16 +59,13 @@ class AccessEval
     user = data.user
     text = data.text.split
 
-    if !BOT_ADMINS.include?(user)
-      chan = BOT_LOG
-      msg = Quote.alert(user, text)
-    elsif (match = data.text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i))
-      chan = match.captures[2] || match.captures[3]
-      msg = match.captures[5]
-    else
-      chan = BOT_LOG
-      msg = "Please <@#{user}> learn to use enersay"
-    end
+    chan, msg = if !BOT_ADMINS.include?(user)
+                  [BOT_LOG, Quote.alert(user, text)]
+                elsif (match = data.text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i))
+                  [match.captures[2] || match.captures[3], match.captures[5]]
+                else
+                  [BOT_LOG, "Please <@#{user}> learn to use enersay"]
+                end
 
     Resp.write(chan, msg)
   end
