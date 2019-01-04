@@ -10,7 +10,7 @@ describe '#bot' do
   context 'when client is initialized' do
     it 'send messages to #bots' do
       Case.bot(AccessEval)
-      end
+    end
   end
   # context 'when client is not initialized' do
   #   it 'fails badly' do
