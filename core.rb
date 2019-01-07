@@ -156,7 +156,7 @@ module Case
                    [5, :op2]
                  when /(panic|panico)/
                    [5, :op3]
-                 when /(energon|enerbot)/
+                 when /(energon|empresa)/
                    [5, :op4]
                  when /daily/
                    [6, :op1]
