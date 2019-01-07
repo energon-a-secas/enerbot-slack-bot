@@ -63,8 +63,7 @@
           "type": "button",
           "value": "war",
           "confirm": {
-            //Are you sure that you ### to delete Digital?
-            "title": "Are you sure to delete Latan-Digital?",
+            "title": "Are you sure to delete the current workspace?",
             "text": "Wouldn't you prefer a cup of coffee?",
             "ok_text": "Yes",
             "dismiss_text": "No"
