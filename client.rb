@@ -25,6 +25,7 @@ require './scripts/secret_friend'
 require './scripts/dns'
 require './scripts/hibp'
 require './scripts/fire'
+require './scripts/acme'
 require './core'
 
 # Variables and other herbs

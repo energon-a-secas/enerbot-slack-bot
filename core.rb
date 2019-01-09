@@ -115,6 +115,8 @@ module Case
                Check.trace(text)
              when /is the internet on fire\?$/i
                Internet.onfire
+             when /acme catalog$/i
+               Acme.catalog
              end
       Resp.message(data, mess) unless mess.nil?
     end
