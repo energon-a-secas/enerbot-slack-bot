@@ -9,17 +9,17 @@ module Chimuelo
     to = to.empty? ? "<@#{user}>" : to
 
     <<-HEREDOC
-        :chimuelo:
-        _«Ave María
-        Señor Jesús
-        Lleva a *#{to}* al ataúd
-        Ave María
-        Don Cristo
-        Lleva a *#{to}*
-        A su lugar
+:chimuelo:
+_«Ave María_
+_Señor Jesús_
+_Lleva a *#{to}* al ataúd_
+_Ave María_
+_Don Cristo_
+_Lleva a *#{to}*
+_A su lugar_
 
-        *#{to}*, descansa, ya estás en paz.»_
-        :doge:
+_*#{to}*, descansa, ya estás en paz.»_
+:doge:
     HEREDOC
   end
 end
