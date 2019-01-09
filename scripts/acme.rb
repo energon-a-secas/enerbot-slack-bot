@@ -1,0 +1,156 @@
+# The company that started all
+module Acme
+  def self.catalog
+    require 'nokogiri'
+    require 'open-uri'
+
+    products = %w[
+      adding
+      airdrop
+      allpurpose
+      animal
+      antinight
+      anvils
+      artificial
+      aspirin
+      atom
+      axle
+      baby
+      balloon
+      basket
+      batman
+      bed
+      billboard
+      birdseed
+      blasting
+      bomb
+      boomerang
+      breakfast
+      bridge
+      buckshot
+      building
+      buildingd
+      bumble
+      car
+      cement
+      cheese
+      christmas
+      cleaners
+      clue
+      construction
+      corks
+      corp
+      corr
+      cube
+      dehydrated
+      destructo
+      detonator
+      dis
+      doit
+      earth
+      egg
+      electric
+      elephant
+      eye
+      female
+      flour
+      flypaper
+      foods
+      future
+      gas
+      giantkite
+      giantrubber
+      glass
+      glue
+      grease
+      hair
+      handle
+      hen
+      hi
+      hitch
+      importers
+      indestructo
+      instantawakener
+      instantfeathers
+      instantgirl
+      instanticicle
+      integrating
+      invisible
+      ironbird
+      ironcarrot
+      ironpellets
+      jetmotor
+      jetprop
+      jetuni
+      jim
+      junior
+      lab
+      little
+      mfg
+      mail
+      matches
+      mouse
+      moving
+      nitro
+      oil
+      out
+      paper
+      paving
+      pest
+      petshop
+      poultry
+      railroadties
+      railroadtrack
+      rare
+      rocketp
+      rocketsled
+      roller
+      safe
+      salvage
+      schoolb
+      schoolm
+      schools
+      shop
+      smoke
+      spikes
+      stove
+      stovel
+      stovelid
+      strait
+      street
+      supero
+      supers
+      suspenders
+      theat
+      theath
+      time
+      toaster
+      tool
+      tooth
+      tours
+      toy
+      travel
+      trickba
+      trickb
+      tripleb
+      triplef
+      trucking
+      ultima
+      warehouse
+      water
+      wig
+      wild
+      whip
+      xray
+    ]
+
+    product = products.sample
+    doc = Nokogiri::HTML(open("http://acme.com/catalog/#{product}.html"))
+    title = doc.search('font').first.content
+    image = doc.search('img').first['src']
+    desc = doc.css('b')[1].text
+    <<-HEREDOC
+        :coyote: Product ##{products.find_index(product)}, *#{title}* : _#{desc}._ http://acme.com/catalog/#{image}
+    HEREDOC
+  end
+end
