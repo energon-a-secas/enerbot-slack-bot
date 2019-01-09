@@ -15,7 +15,7 @@ _Señor Jesús_
 _Lleva a *#{to}* al ataúd_
 _Ave María_
 _Don Cristo_
-_Lleva a *#{to}*
+_Lleva a *#{to}*_
 _A su lugar_
 
 _*#{to}*, descansa, ya estás en paz.»_
