@@ -57,7 +57,8 @@ module System
  enerbot <commit>
  enerbot <trace> <NS | CNAME | MX | A | TXT | SOA> <DOMINIO>
  enerbot <is the internet on fire?>
- enerbot <acme catalog>```
+ enerbot <acme catalog>
+ enerbot <santo sepulcro a> <DESTINATARIO>```
 
     HEREDOC
   end

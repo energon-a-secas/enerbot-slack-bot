@@ -117,6 +117,8 @@ module Case
                Internet.onfire
              when /acme catalog$/i
                Acme.catalog
+             when /santo sepulcro a/i
+               Chimuelo.song(data.text, data.user)
              end
       Resp.message(data, mess) unless mess.nil?
     end
