@@ -8,6 +8,8 @@ module Chimuelo
 
     to = to.empty? ? "<@#{user}>" : to
 
+    to = "<@#{user}>" if to =~ /(energon|enerbot)/i
+
     <<-HEREDOC
 :chimuelo:
 _«Ave María_

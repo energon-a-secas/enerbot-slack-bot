@@ -150,7 +150,7 @@ module Acme
     image = doc.search('img').first['src']
     desc = doc.css('b')[1].text
     <<-HEREDOC
-        :coyote: Product ##{products.find_index(product)}, *#{title}* : _#{desc}._ http://acme.com/catalog/#{image}
+          :coyote: Product ##{products.find_index(product) + 1}, *#{title}* : _#{desc.gsub(/\r\n/, '')}._ http://acme.com/catalog/#{image}
     HEREDOC
   end
 end
