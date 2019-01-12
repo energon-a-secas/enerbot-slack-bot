@@ -63,13 +63,17 @@ class AccessEval
 
     chan, msg = if !BOT_ADMINS.include?(user)
                   [BOT_LOG, Quote.alert(user, text)]
-                elsif (match = data.text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i))
-                  [match.captures[2] || match.captures[3], match.captures[5]]
+                elsif (match = data.text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (\d{10}.\d{6}|null) (.*?)$/i))
+                  thread = if match.captures[5] != 'null'
+                             match.captures[5]
+                           else
+                             ''
+                           end
+                  [match.captures[2] || match.captures[3], match.captures[6]]
                 else
                   [BOT_LOG, "Please <@#{user}> learn to use enersay"]
                 end
-
-    Resp.write(chan, msg)
+    Resp.write(chan, msg, thread)
   end
 
   # Just for the sake of messaging on start

@@ -21,12 +21,13 @@ module Resp
                                        attachments: find
   end
 
-  def self.write(data, text)
+  def self.write(data, text, thread)
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data,
                                        text: text,
                                        icon_url: AccessEval::BOT_ICON,
-                                       username: AccessEval::BOT_NAME
+                                       username: AccessEval::BOT_NAME,
+                                       thread_ts: thread
   end
 end
 
