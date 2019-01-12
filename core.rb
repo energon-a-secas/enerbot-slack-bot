@@ -1,35 +1,33 @@
 # Works somehow
 module Resp
-  def self.message(data, text)
+  def self.message(data, text, attach = '')
     puts data
     thread = data.ts if data.to_s.include?('thread_ts')
+
+    find = if attach != ''
+             json_file = File.read("./Info/#{text}")
+             text = ':energon_enterprise:'
+             JSON.parse(json_file)[attach]
+           else
+             []
+           end
+
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data.channel,
-                                       thread_ts: thread,
                                        text: text,
                                        icon_url: AccessEval::BOT_ICON,
-                                       username: AccessEval::BOT_NAME
-  end
-
-  def self.event(data, path, attachments)
-    puts data
-    thread = data.ts if data.to_s.include?('thread_ts')
-    json_file = File.read("./Info/#{path}")
-    parsed_file = JSON.parse(json_file)
-    client = Slack::RealTime::Client.new
-    client.web_client.chat_postMessage channel: data.channel,
-                                       thread_ts: thread,
-                                       icon_url: AccessEval::BOT_ICON,
                                        username: AccessEval::BOT_NAME,
-                                       attachments: parsed_file[attachments]
+                                       thread_ts: thread,
+                                       attachments: find
   end
 
-  def self.write(data, text)
+  def self.write(data, text, thread)
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data,
                                        text: text,
                                        icon_url: AccessEval::BOT_ICON,
-                                       username: AccessEval::BOT_NAME
+                                       username: AccessEval::BOT_NAME,
+                                       thread_ts: thread
   end
 end
 
@@ -168,7 +166,7 @@ module Case
                    [6, :op2]
                  end
     mess = dc[file]
-    Resp.event(data, mess[:file], mess[info])
+    Resp.message(data, mess[:file], mess[info])
   end
 
   def self.kill(text)
