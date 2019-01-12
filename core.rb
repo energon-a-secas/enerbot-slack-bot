@@ -1,14 +1,16 @@
 # Works somehow
 module Resp
-  def self.message(data, text, attach = nil)
+  def self.message(data, text, attach = '')
     puts data
     thread = data.ts if data.to_s.include?('thread_ts')
 
-    find = unless attach.nil?
+    find = if attach != ''
              json_file = File.read("./Info/#{text}")
-             text = nil
-             JSON.parse(json_file)
-    end
+             text = ':energon_enterprise:'
+             JSON.parse(json_file)[attach]
+           else
+             []
+           end
 
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data.channel,
@@ -16,7 +18,7 @@ module Resp
                                        icon_url: AccessEval::BOT_ICON,
                                        username: AccessEval::BOT_NAME,
                                        thread_ts: thread,
-                                       attachments: find["#{attach}"]
+                                       attachments: find
   end
 
   def self.write(data, text)
