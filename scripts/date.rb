@@ -61,10 +61,12 @@ module TimeTo
     HEREDOC
   end
 
-  def self.waiting(text)
+  def self.progress(text, user)
     case text
     when /daily/
       "#{(Date.parse("7/12/2018")..Date.today).count} días y contando."
+    else
+      "No sé a que te refieres #{user}"
     end
   end
 end
