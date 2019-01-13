@@ -37,6 +37,7 @@ class AccessEval
   BOT_CHANNELS = ENV['SLACK_CHANNELS']
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
   BOT_LOG = ENV['SLACK_LOG_CHANNEL']
+  THREAD_REGISTRY = []
 
   def self.chan(data)
     user = data.user
@@ -63,7 +64,7 @@ class AccessEval
 
     chan, msg = if !BOT_ADMINS.include?(user)
                   [BOT_LOG, Quote.alert(user, text)]
-                elsif (match = data.text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (\d{10}.\d{6}|null) (.*?)$/i))
+                elsif (match = data.text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (\d*.\d*|null) (.*?)$/i))
                   thread = if match.captures[5] != 'null'
                              match.captures[5]
                            else
@@ -77,6 +78,11 @@ class AccessEval
   end
 
   # Just for the sake of messaging on start
+
+  def self.thread(info)
+    Resp.write(AccessEval.channel, info.to_s)
+  end
+
   def self.channel
     '#bots'
   end
@@ -95,6 +101,12 @@ end
 
 client.on :message do |data|
   text = data.text
+  hilo = data.thread_ts
+
+  if hilo != nil
+    AccessEval::THREAD_REGISTRY << "#{hilo}, #{text}"
+  end
+
   case text
   when /^enerbot/i then
     client.typing channel: data.channel
@@ -102,7 +114,7 @@ client.on :message do |data|
   when /^enersay/ then
     AccessEval.say(data)
   when /^enerssh/ then
-    Resp.message(data, Remote.ssh(data))
+    AccessEval.thread(AccessEval::THREAD_REGISTRY)
   when /(enershut|お前もう死んでいる)/ then
     AccessEval.kill(data)
   end
