@@ -58,13 +58,10 @@ class AccessEval
     end
   end
 
-  def self.say(data)
-    user = data.user
-    text = data.text.split
-
+  def self.say(user, text)
     chan, msg = if !BOT_ADMINS.include?(user)
                   [BOT_LOG, Quote.alert(user, text)]
-                elsif (match = data.text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (\d*.\d*|null) (.*?)$/i))
+                elsif (match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (\d*.\d*|null) (.*?)$/i))
                   thread = if match.captures[5] != 'null'
                              match.captures[5]
                            else
@@ -76,8 +73,6 @@ class AccessEval
                 end
     Resp.write(chan, msg, thread)
   end
-
-  # Just for the sake of messaging on start
 
   def self.thread(info)
     Resp.write(AccessEval.channel, info.to_s)
@@ -100,21 +95,21 @@ client.on :hello do
 end
 
 client.on :message do |data|
+  user = data.user
   text = data.text
-  hilo = data.thread_ts
+  thread = data.thread_ts
+  registry = AccessEval::THREAD_REGISTRY
 
-  if hilo != nil
-    AccessEval::THREAD_REGISTRY << "#{hilo}, #{text}"
-  end
+  registry << "#{thread}, #{text}" unless thread.nil?
 
   case text
   when /^enerbot/i then
     client.typing channel: data.channel
     AccessEval.chan(data)
   when /^enersay/ then
-    AccessEval.say(data)
+    AccessEval.say(user, text)
   when /^enerssh/ then
-    AccessEval.thread(AccessEval::THREAD_REGISTRY)
+    AccessEval.thread(registry)
   when /(enershut|お前もう死んでいる)/ then
     AccessEval.kill(data)
   end
