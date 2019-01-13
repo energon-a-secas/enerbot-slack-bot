@@ -120,7 +120,7 @@ module Case
              when /santo sepulcro a/i
                Chimuelo.song(text, user)
              when /d[ií]as atraso feature/i
-               Timeto.progress(text, user)
+               TimeTo.progress(text, user)
              end
       Resp.message(data, mess) unless mess.nil?
     end
