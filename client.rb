@@ -51,7 +51,7 @@ class AccessEval
     if !BOT_ADMINS.include? user
       Resp.write(BOT_LOG, Quote.alert(user, text))
     else
-      Resp.message(BOT_LOG, Case.kill(text)) && abort('bye')
+      Resp.message(AccessEval, Case.kill(text)) && abort('bye')
     end
   end
 
