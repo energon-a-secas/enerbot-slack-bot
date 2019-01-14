@@ -36,6 +36,7 @@ end
 module Case
   def self.bot(data)
     text = data.text
+    user = data.user
     if text =~ /(f.q|info|bot[oó]n|activa)/
       Case.events(data)
     else
@@ -117,7 +118,9 @@ module Case
              when /acme catalog$/i
                Acme.catalog
              when /santo sepulcro a/i
-               Chimuelo.song(data.text, data.user)
+               Chimuelo.song(text, user)
+             when /d[ií]as atraso feature/i
+               TimeTo.progress(text, user)
              end
       Resp.message(data, mess) unless mess.nil?
     end

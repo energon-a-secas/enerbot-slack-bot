@@ -37,7 +37,7 @@ class AccessEval
   BOT_CHANNELS = ENV['SLACK_CHANNELS']
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
   BOT_LOG = ENV['SLACK_LOG_CHANNEL']
-  THREAD_REGISTRY = []
+  THREAD_REGISTRY = '>>>*Thread registry:*'
 
   def self.chan(data)
     user = data.user
@@ -47,14 +47,11 @@ class AccessEval
     Case.bot(data)
   end
 
-  def self.kill(data)
-    user = data.user
-    text = data.text
-
+  def self.kill(user, text)
     if !BOT_ADMINS.include? user
       Resp.write(BOT_LOG, Quote.alert(user, text))
     else
-      Resp.message(data, Case.kill(text)) && abort('bye')
+      Resp.message(BOT_LOG, Case.kill(text)) && abort('bye')
     end
   end
 
@@ -100,7 +97,7 @@ client.on :message do |data|
   thread = data.thread_ts
   registry = AccessEval::THREAD_REGISTRY
 
-  registry << "#{thread}, #{text}" unless thread.nil?
+  registry << "\n#{thread} #{text}" unless thread.nil?
 
   case text
   when /^enerbot/i then
@@ -108,10 +105,10 @@ client.on :message do |data|
     AccessEval.chan(data)
   when /^enersay/ then
     AccessEval.say(user, text)
+  when /^(enershut|お前もう死んでいる)/ then
+    AccessEval.kill(user, text)
   when /^enerssh/ then
     AccessEval.thread(registry)
-  when /(enershut|お前もう死んでいる)/ then
-    AccessEval.kill(data)
   end
 end
 client.start!

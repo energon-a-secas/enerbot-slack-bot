@@ -58,7 +58,8 @@ module System
  enerbot <trace> <NS | CNAME | MX | A | TXT | SOA> <DOMINIO>
  enerbot <is the internet on fire?>
  enerbot <acme catalog>
- enerbot <santo sepulcro a> <DESTINATARIO>```
+ enerbot <santo sepulcro a> <DESTINATARIO>
+ enerbot <días atraso feature> <daily>```
 
     HEREDOC
   end
