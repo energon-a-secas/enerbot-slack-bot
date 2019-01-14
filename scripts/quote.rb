@@ -51,7 +51,7 @@ module Quote
     when /shut/
       ":newalert: <@#{usr}> tried to kill me!"
     when /\b/
-      ":newalert: <@#{usr}> is making me work on <#{chn}>!"
+      ":newalert: <@#{usr}> is making me work on <##{chn}|#{chn}>!"
     when /say/
       ":newalert: <@#{usr}> almost use a paid functionality!"
     end
