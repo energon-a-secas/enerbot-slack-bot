@@ -37,7 +37,7 @@ class AccessEval
   BOT_CHANNELS = ENV['SLACK_CHANNELS']
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
   BOT_LOG = ENV['SLACK_LOG_CHANNEL']
-  THREAD_REGISTRY = []
+  THREAD_REGISTRY = '>>>*Thread registry:*'
 
   def self.chan(data)
     user = data.user
@@ -97,7 +97,7 @@ client.on :message do |data|
   thread = data.thread_ts
   registry = AccessEval::THREAD_REGISTRY
 
-  registry << "#{thread}, #{text}" unless thread.nil?
+  registry << "\n#{thread} #{text}" unless thread.nil?
 
   case text
   when /^enerbot/i then
