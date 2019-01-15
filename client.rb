@@ -98,7 +98,7 @@ client.on :message do |data|
   thread = data.thread_ts
   registry = AccessEval::THREAD_REGISTRY
 
-  registry << "\n*Channel:* #{chan}, *Thread:* #{thread}, *User:* <@#{user}>, *Text:* #{text}" unless thread.nil?
+  registry << "\n*Channel:* #{chan}, *Thread:* #{thread}, *User:* <@#{user}>, *Text:* #{text}" unless thread.include?('enerbot')
 
   case text
   when /^enerbot/i then
