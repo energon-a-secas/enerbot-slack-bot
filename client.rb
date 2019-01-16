@@ -31,27 +31,27 @@ require './core'
 
 # Class that evaluates if your worthy of calling the bot
 class AccessEval
-  @bot_icon = ENV['SLACK_ICON']
-  @bot_name = ENV['SLACK_NAME']
-  @bot_token = ENV['SLACK_API_TOKEN']
-  @bot_users = ENV['SLACK_USERS']
-  @bot_channels = ENV['SLACK_CHANNELS']
-  @bot_log = ENV['SLACK_LOG_CHANNEL']
-  @thread = '>>>*Thread registry:*'
+  $bot_icon = ENV['SLACK_ICON']
+  $bot_name = ENV['SLACK_NAME']
+  $bot_token = ENV['SLACK_API_TOKEN']
+  $bot_users = ENV['SLACK_USERS']
+  $bot_channels = ENV['SLACK_CHANNELS']
+  $bot_log = ENV['SLACK_LOG_CHANNEL']
+  $thread = '>>>*Thread registry:*'
 
   # Send message to channel
   def self.chan(data)
     user = data.user
     chan = data.channel
 
-    Send.write(@bot_log, Quote.alert(user, chan)) unless @bot_channels.include? chan
+    Send.write($bot_log, Quote.alert(user, chan)) unless $bot_channels.include? chan
     Case.bot(data)
   end
 
   # Kill current session
   def self.kill(user, text)
-    if !@bot_users.include? user
-      Send.write(@bot_log, Quote.alert(user, text))
+    if !$bot_users.include? user
+      Send.write($bot_log, Quote.alert(user, text))
     else
       Send.message(AccessEval, Case.kill(text)) && abort('bye')
     end
@@ -59,9 +59,9 @@ class AccessEval
 
   # Make a custom write
   def self.say(user, text)
-    chan, msg = if !@bot_users.include?(user)
-                  [@bot_log, Quote.alert(user, text)]
-                elsif (match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (\d*.\d*|null) (.*?)$/i))
+    chan, msg = if !$bot_users.include?(user)
+                  [$bot_log, Quote.alert(user, text)]
+                elsif (match = text.match(/enersay (\<[#$])?((.*)\|)?(.*?)(\>)? (\d*.\d*|null) (.*?)$/i))
                   thread = if match.captures[5] != 'null'
                              match.captures[5]
                            else
@@ -69,7 +69,7 @@ class AccessEval
                            end
                   [match.captures[2] || match.captures[3], match.captures[6]]
                 else
-                  [@bot_log, "Please <@#{user}> learn to use enersay"]
+                  [$bot_log, "Please <$#{user}> learn to use enersay"]
                 end
     Send.write(chan, msg, thread)
   end
@@ -85,7 +85,7 @@ end
 
 # Slack Token configure
 Slack.configure do |config|
-  config.token = @bot_token
+  config.token = ENV['SLACK_API_TOKEN']
   config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
 end
 
@@ -101,9 +101,9 @@ client.on :message do |data|
   chan = data.channel
   text = data.text
   thread = data.thread_ts
-  registry = @thread
+  registry = $thread
 
-  registry << "\n*Channel:* #{chan}, *Thread:* #{thread}, *User:* <@#{user}>, *Text:* #{text}" unless thread.nil? && !text.to_s.include?('enerbot')
+  registry << "\n*Channel:* #{chan}, *Thread:* #{thread}, *User:* <$#{user}>, *Text:* #{text}" unless thread.nil? && !text.to_s.include?('enerbot')
 
   # Initialization of the big case based on the first word
   case text
