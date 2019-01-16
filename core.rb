@@ -77,23 +77,25 @@ module Case
           #/ whois /i => Check.regis(text),
           / pwned email /i => HIBP.check_email(text),
           /commit/i => Quote.commit,
-          #/trace/i => Check.trace(text),
+          /trace/i => Check.trace(text),
           /is the internet on fire\?$/i => Internet.onfire,
           /acme catalog$/i => Acme.catalog,
           /santo sepulcro a/i => Chimuelo.song(text, user),
           /d[ií]as atraso feature/i => TimeTo.progress(text, user)
-      }.freeze
+      }
 
       # Definition that doesnt hurt my eyes
-      #@variable = []
-      commands.each do |key, value|
+      commands.each_key do |key|
         case data.text
         when key then
-          @variable = value
+          @variable = key
+          result = commands[@variable]
+          Resp.message(data, result) unless result.nil?
         end
-
       end
-      Resp.message(data, @variable.to_s) unless @variable.empty?
+
+      #result = commands[@variable]
+      #Resp.message(data, result) unless result.nil?
     end
   end
 
