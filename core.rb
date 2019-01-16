@@ -40,7 +40,6 @@ module Case
     if text =~ /(f.q|info|bot[oó]n|activa)/
       Case.events(data)
     else
-      # Case definition
       commands = {
           /(hello|hola)$/i => '¡Hola!',
           /(c[oó]mo est[aá]s)/i => Quote.status,
@@ -88,14 +87,11 @@ module Case
       commands.each_key do |key|
         case data.text
         when key then
-          @variable = key
-          result = commands[@variable]
-          Resp.message(data, result) unless result.nil?
+          result = commands[key]
+          Resp.message(data, result) #unless result.nil?
         end
       end
 
-      #result = commands[@variable]
-      #Resp.message(data, result) unless result.nil?
     end
   end
 
