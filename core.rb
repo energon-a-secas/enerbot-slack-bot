@@ -40,89 +40,26 @@ module Case
     if text =~ /(f.q|info|bot[oó]n|activa)/
       Case.events(data)
     else
-      mess = case text
-             when /\s(hello|hola)$/i
-               '¡Hola!'
-             when /(help|ayuda)/i
-               System.help
-             when /(c[oó]mo est[aá]s)/i
-               Quote.status
-             when /(consejo|pregunta)(.*?)/i
-               Quote.advice
-             when /(.*)beneficio/i
-               Quote.benefit
-             when /pack$/i
-               System.pack
-             when /(rules|reglas)$/i
-               System.rules
-             when /cu[aá]ndo pagan/i
-               TimeTo.gardel
-             when /cu[aá]nto para el 18/i
-               TimeTo.september
-             when /password/i
-               Pass.gen(text)
-             when /(blockchain|blocchain|blocshain)/i
-               'https://youtu.be/MHWBEK8w_YY'
-             when / tc /i
-               Credit.gen(text)
-             when /2fa/i
-               Totp.gen(text)
-             when /random/i
-               Rand.value(text)
-             when /pr[oó]ximo feriado$/i
-               TimeTo.holiday_count
-             when /hor[oó]scopo/i
-               Pedro.engel(text)
-             when /dame n[uú]meros para el kino/i
-               Lotery.num
-             when /analiza/i
-               Peyo.check(text)
-             when /(celery|tayne|oyster|wobble|4d3d3d3|flarhgunnstow)/i
-               Celery.load(text)
-             when /c[oó]mo se dice/i
-               Lingo.translate(text)
-             when /resultados kino/
-               Lotery.winner_nums
-             when /(valor acci[óo]n (.*?)$)/i
-               Stock.fetch(text)
-             when /wikipedia/i
-               Vieja.sapear(text)
-             when /vuelo/i
-               Flight.info(text)
-             when /clima/i
-               Ivan.torres(text)
-             when /cve list/i
-               CVE.latest(text)
-             when /dame una excusa$/i
-               RicardoCanitrot.getexcuse
-             when /una frase para el bronce$/i
-               Bronze.quote
-             when /un saludo navideño$/i
-               Macaulay.culkin(data.user)
-             when /haarp/i
-               Haarp.terre
-             when /amigo secreto/i
-               SecretFriend.generate(data.text)
-             when / dig /i
-               Check.dns(text)
-             when / whois /i
-               Check.regis(text)
-             when / pwned email /i
-               HIBP.check_email(text)
-             when /commit/i
-               Quote.commit
-             when /trace/i
-               Check.trace(text)
-             when /is the internet on fire\?$/i
-               Internet.onfire
-             when /acme catalog$/i
-               Acme.catalog
-             when /santo sepulcro a/i
-               Chimuelo.song(text, user)
-             when /d[ií]as atraso feature/i
-               TimeTo.progress(text, user)
-             end
-      Resp.message(data, mess) unless mess.nil?
+      # Case definition
+      commands = {
+          /\s(hello|hola)$/i => '¡Hola!',
+          /(c[oó]mo est[aá]s)/i => Quote.status,
+          /(help|ayuda)/i => System.help,
+          /(consejo|pregunta)(.*?)/i => Quote.advice,
+          /un saludo navideño$/i => Macaulay.culkin(user)
+      }
+
+      # Definition that doesnt hurt my eyes
+      commands.each do |key, value|
+        case data.text
+        when key then
+          @variable = value.to_s
+        else
+          p 'meh'
+        end
+
+      end
+      Resp.message(data, @variable) unless @variable.nil?
     end
   end
 
