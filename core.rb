@@ -15,8 +15,8 @@ module Send
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data.channel,
                                        text: text,
-                                       icon_url: AccessEval::BOT_ICON,
-                                       username: AccessEval::BOT_NAME,
+                                       icon_url: $bot_icon,
+                                       username: $bot_name,
                                        thread_ts: thread,
                                        attachments: find
   end
@@ -26,8 +26,8 @@ module Send
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: data,
                                        text: text,
-                                       icon_url: AccessEval::BOT_ICON,
-                                       username: AccessEval::BOT_NAME,
+                                       icon_url: $bot_icon,
+                                       username: $bot_name,
                                        thread_ts: thread
   end
 end
