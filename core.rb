@@ -1,5 +1,5 @@
 # Works somehow
-module Resp
+module Send
   def self.message(data, text, attach = '')
     puts data
     thread = data.ts if data.to_s.include?('thread_ts')
@@ -88,7 +88,7 @@ module Case
         case data.text
         when key then
           result = commands[key]
-          Resp.message(data, result) # unless result.nil?
+          Send.message(data, result) # unless result.nil?
         end
       end
     end
@@ -138,7 +138,7 @@ module Case
                    [6, :op2]
                  end
     mess = dc[file]
-    Resp.message(data, mess[:file], mess[info])
+    Send.message(data, mess[:file], mess[info])
   end
 
   def self.kill(text)

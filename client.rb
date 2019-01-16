@@ -29,35 +29,38 @@ require './scripts/acme'
 require './scripts/chimuelo'
 require './core'
 
-# Variables and other herbs
+# Class that evaluates if your worthy of calling the bot
 class AccessEval
-  BOT_ICON = ENV['SLACK_ICON']
-  BOT_NAME = ENV['SLACK_NAME']
-  BOT_ADMINS = ENV['SLACK_USERS']
-  BOT_CHANNELS = ENV['SLACK_CHANNELS']
-  BOT_TOKEN = ENV['SLACK_API_TOKEN']
-  BOT_LOG = ENV['SLACK_LOG_CHANNEL']
-  THREAD_REGISTRY = '>>>*Thread registry:*'
+  @bot_icon = ENV['SLACK_ICON']
+  @bot_name = ENV['SLACK_NAME']
+  @bot_token = ENV['SLACK_API_TOKEN']
+  @bot_users = ENV['SLACK_USERS']
+  @bot_channels = ENV['SLACK_CHANNELS']
+  @bot_log = ENV['SLACK_LOG_CHANNEL']
+  @thread = '>>>*Thread registry:*'
 
+  # Send message to channel
   def self.chan(data)
     user = data.user
     chan = data.channel
 
-    Resp.write(BOT_LOG, Quote.alert(user, chan)) unless BOT_CHANNELS.include? chan
+    Send.write(@bot_log, Quote.alert(user, chan)) unless @bot_channels.include? chan
     Case.bot(data)
   end
 
+  # Kill current session
   def self.kill(user, text)
-    if !BOT_ADMINS.include? user
-      Resp.write(BOT_LOG, Quote.alert(user, text))
+    if !@bot_users.include? user
+      Send.write(@bot_log, Quote.alert(user, text))
     else
-      Resp.message(AccessEval, Case.kill(text)) && abort('bye')
+      Send.message(AccessEval, Case.kill(text)) && abort('bye')
     end
   end
 
+  # Make a custom write
   def self.say(user, text)
-    chan, msg = if !BOT_ADMINS.include?(user)
-                  [BOT_LOG, Quote.alert(user, text)]
+    chan, msg = if !@bot_users.include?(user)
+                  [@bot_log, Quote.alert(user, text)]
                 elsif (match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (\d*.\d*|null) (.*?)$/i))
                   thread = if match.captures[5] != 'null'
                              match.captures[5]
@@ -66,13 +69,13 @@ class AccessEval
                            end
                   [match.captures[2] || match.captures[3], match.captures[6]]
                 else
-                  [BOT_LOG, "Please <@#{user}> learn to use enersay"]
+                  [@bot_log, "Please <@#{user}> learn to use enersay"]
                 end
-    Resp.write(chan, msg, thread)
+    Send.write(chan, msg, thread)
   end
 
   def self.thread(info)
-    Resp.write(AccessEval.channel, info.to_s)
+    Send.write(AccessEval.channel, info.to_s)
   end
 
   def self.channel
@@ -80,36 +83,40 @@ class AccessEval
   end
 end
 
+# Slack Token configure
 Slack.configure do |config|
-  config.token = AccessEval::BOT_TOKEN
+  config.token = @bot_token
   config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
 end
 
+# Client initialization and first message
 client = Slack::RealTime::Client.new
-
 client.on :hello do
-  Resp.message(AccessEval, 'Beginning LERN sequence')
+  Send.message(AccessEval, 'Beginning LERN sequence')
 end
 
+# Endless loop of cases
 client.on :message do |data|
   user = data.user
   chan = data.channel
   text = data.text
   thread = data.thread_ts
-  registry = AccessEval::THREAD_REGISTRY
+  registry = @thread
 
   registry << "\n*Channel:* #{chan}, *Thread:* #{thread}, *User:* <@#{user}>, *Text:* #{text}" unless thread.nil? && !text.to_s.include?('enerbot')
 
+  # Initialization of the big case based on the first word
   case text
   when /^enerbot/i then
     client.typing channel: data.channel
     AccessEval.chan(data)
   when /^enersay/ then
     AccessEval.say(user, text)
-  when /^(enershut|お前もう死んでいる)/ then
+  when /^enershut/ then
     AccessEval.kill(user, text)
   when /^enerssh/ then
     AccessEval.thread(registry)
   end
 end
+
 client.start!
