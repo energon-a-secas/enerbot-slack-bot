@@ -42,24 +42,58 @@ module Case
     else
       # Case definition
       commands = {
-          /\s(hello|hola)$/i => '¡Hola!',
+          /(hello|hola)$/i => '¡Hola!',
           /(c[oó]mo est[aá]s)/i => Quote.status,
           /(help|ayuda)/i => System.help,
           /(consejo|pregunta)(.*?)/i => Quote.advice,
-          /un saludo navideño$/i => Macaulay.culkin(user)
-      }
+          /(.*)beneficio/i => Quote.benefit,
+          /pack$/i => System.pack,
+          /(rules|reglas)$/i => System.rules,
+          /cu[aá]ndo pagan/i => TimeTo.gardel,
+          /cu[aá]nto para el 18/i => TimeTo.september,
+          /password/i => Pass.gen(text),
+          /(blockchain|blocchain|blocshain)/i => 'https://youtu.be/MHWBEK8w_YY',
+          #/ tc /i => Credit.gen(text),
+          #/2fa/i => Totp.gen(text),
+          /random/i => Rand.value(text),
+          /pr[oó]ximo feriado$/i => TimeTo.holiday_count,
+          /hor[oó]scopo/i => Pedro.engel(text),
+         # /dame n[uú]meros para el kino/i => Lotery.num,
+          #/analiza/i =>  Peyo.check(text),
+          /(celery|tayne|oyster|wobble|4d3d3d3|flarhgunnstow)/i => Celery.load(text),
+          #/c[oó]mo se dice/i => Lingo.translate(text),
+          /resultados kino/i => Lotery.winner_nums,
+          /(valor acci[óo]n (.*?)$)/i => Stock.fetch(text),
+          #/wikipedia/i => Vieja.sapear(text),
+          #/vuelo/i => Flight.info(text),
+          /clima/i => Ivan.torres(text),
+          /cve list/i => CVE.latest(text),
+          /dame una excusa$/i => RicardoCanitrot.getexcuse,
+          /una frase para el bronce$/i => Bronze.quote,
+          #/un saludo navideño$/i => Macaulay.culkin(user),
+          #/haarp/i => Haarp.terre,
+          #/amigo secreto/i => SecretFriend.generate(text),
+          #/ dig /i => Check.dns(text),
+          #/ whois /i => Check.regis(text),
+          / pwned email /i => HIBP.check_email(text),
+          /commit/i => Quote.commit,
+          #/trace/i => Check.trace(text),
+          /is the internet on fire\?$/i => Internet.onfire,
+          /acme catalog$/i => Acme.catalog,
+          /santo sepulcro a/i => Chimuelo.song(text, user),
+          /d[ií]as atraso feature/i => TimeTo.progress(text, user)
+      }.freeze
 
       # Definition that doesnt hurt my eyes
+      #@variable = []
       commands.each do |key, value|
         case data.text
         when key then
-          @variable = value.to_s
-        else
-          p 'meh'
+          @variable = value
         end
 
       end
-      Resp.message(data, @variable) unless @variable.nil?
+      Resp.message(data, @variable.to_s) unless @variable.empty?
     end
   end
 
