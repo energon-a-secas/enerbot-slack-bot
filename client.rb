@@ -38,17 +38,18 @@ class AccessEval
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
   BOT_LOG = ENV['SLACK_LOG_CHANNEL']
   THREAD_REGISTRY = '>>>*Thread registry:*'
+  BAN_REGISTRY = ''
 
   def self.chan(data)
     user = data.user
     chan = data.channel
 
     Resp.write(BOT_LOG, Quote.alert(user, chan)) unless BOT_CHANNELS.include? chan
-    Case.bot(data)
+    Case.bot(data) unless BAN_REGISTRY.include?(user)
   end
 
   def self.kill(user, text)
-    if !BOT_ADMINS.include? user
+    if !BOT_ADMINS.include? user || BAN_REGISTRY.include?(user)
       Resp.write(BOT_LOG, Quote.alert(user, text))
     else
       Resp.message(AccessEval, Case.kill(text)) && abort('bye')
@@ -56,7 +57,7 @@ class AccessEval
   end
 
   def self.say(user, text)
-    chan, msg = if !BOT_ADMINS.include?(user)
+    chan, msg = if !BOT_ADMINS.include?(user) || BAN_REGISTRY.include?(user)
                   [BOT_LOG, Quote.alert(user, text)]
                 elsif (match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (\d*.\d*|null) (.*?)$/i))
                   thread = if match.captures[5] != 'null'
@@ -97,6 +98,7 @@ client.on :message do |data|
   text = data.text
   thread = data.thread_ts
   registry = AccessEval::THREAD_REGISTRY
+  ban_list = AccessEval::BAN_REGISTRY
 
   registry << "\n*Channel:* #{chan}, *Thread:* #{thread}, *User:* <@#{user}>, *Text:* #{text}" unless thread.nil? && !text.to_s.include?('enerbot')
 
@@ -110,6 +112,8 @@ client.on :message do |data|
     AccessEval.kill(user, text)
   when /^enerssh/ then
     AccessEval.thread(registry)
+  when /enerban/ then
+    ban_list << text unless !BOT_ADMINS.include? user
   end
 end
 client.start!
