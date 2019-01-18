@@ -29,7 +29,7 @@ require './scripts/acme'
 require './scripts/chimuelo'
 require './core'
 
-# Variables and other herbs
+# Class that evaluates if your worthy of calling the bo
 class AccessEval
   BOT_ICON = ENV['SLACK_ICON']
   BOT_NAME = ENV['SLACK_NAME']
@@ -39,6 +39,7 @@ class AccessEval
   BOT_LOG = ENV['SLACK_LOG_CHANNEL']
   THREAD_REGISTRY = '>>>*Thread registry:*'
 
+  # Send message to channel
   def self.chan(data)
     user = data.user
     chan = data.channel
@@ -47,6 +48,7 @@ class AccessEval
     Case.bot(data)
   end
 
+  # Kill current session
   def self.kill(user, text)
     if !BOT_ADMINS.include? user
       Resp.write(BOT_LOG, Quote.alert(user, text))
@@ -55,6 +57,7 @@ class AccessEval
     end
   end
 
+  # Make a custom write
   def self.say(user, text)
     chan, msg = if !BOT_ADMINS.include?(user)
                   [BOT_LOG, Quote.alert(user, text)]
@@ -71,6 +74,7 @@ class AccessEval
     Resp.write(chan, msg, thread)
   end
 
+  # Return threads id number
   def self.thread(info)
     Resp.write(AccessEval.channel, info.to_s)
   end
@@ -80,17 +84,19 @@ class AccessEval
   end
 end
 
+# Slack Token configure
 Slack.configure do |config|
   config.token = AccessEval::BOT_TOKEN
   config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
 end
 
+# Client initialization and first message
 client = Slack::RealTime::Client.new
-
 client.on :hello do
   Resp.message(AccessEval, 'Beginning LERN sequence')
 end
 
+# Endless loop of cases
 client.on :message do |data|
   user = data.user
   chan = data.channel
@@ -98,8 +104,9 @@ client.on :message do |data|
   thread = data.thread_ts
   registry = AccessEval::THREAD_REGISTRY
 
-  registry << "\n*Channel:* #{chan}, *Thread:* #{thread}, *User:* <@#{user}>, *Text:* #{text}" unless thread.nil? && !text.to_s.include?('enerbot')
+  registry << "\n*Channel:* #{chan}, *Thread:* #{thread}, *User:* <@#{user}>, *Text:* #{text}" unless thread.nil? && user != 'enerbot' && !text.to_s.include?('enerbot')
 
+  # Initialization of the big case based on the first word
   case text
   when /^enerbot/i then
     client.typing channel: data.channel
