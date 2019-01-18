@@ -15,4 +15,5 @@ source 'https://rubygems.org' do
   gem 'stock_quote'
   gem 'week_of_month'
   gem 'whois-parser'
+  gem 'easy_dice'
 end

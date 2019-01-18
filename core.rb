@@ -121,6 +121,8 @@ module Case
                Chimuelo.song(text, user)
              when /d[ií]as atraso feature/i
                TimeTo.progress(text, user)
+             when / roll /i
+               Roleo.dados(text)
              end
       Resp.message(data, mess) unless mess.nil?
     end
