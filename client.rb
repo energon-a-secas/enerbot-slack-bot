@@ -28,59 +28,28 @@ require './scripts/fire'
 require './scripts/acme'
 require './scripts/chimuelo'
 require './core'
+require './system'
 
 # Class that evaluates if your worthy of calling the bo
 class AccessEval
   BOT_ICON = ENV['SLACK_ICON']
   BOT_NAME = ENV['SLACK_NAME']
-  BOT_ADMINS = ENV['SLACK_USERS']
-  BOT_CHANNELS = ENV['SLACK_CHANNELS']
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
   BOT_LOG = ENV['SLACK_LOG_CHANNEL']
-  THREAD_REGISTRY = '>>>*Thread registry:*'
-
-  # Send message to channel
-  def self.chan(data)
-    user = data.user
-    chan = data.channel
-
-    Resp.write(BOT_LOG, Quote.alert(user, chan)) unless BOT_CHANNELS.include? chan
-    Case.bot(data)
-  end
+  THREAD_REGISTRY = ENV['SLACK_BOT_DB']
 
   # Kill current session
   def self.kill(user, text)
     if !BOT_ADMINS.include? user
       Resp.write(BOT_LOG, Quote.alert(user, text))
     else
-      Resp.message(AccessEval, Case.kill(text)) && abort('bye')
+      Resp.message(BOT_LOG, Case.kill(text)) && abort('bye')
     end
-  end
-
-  # Make a custom write
-  def self.say(user, text)
-    chan, msg = if !BOT_ADMINS.include?(user)
-                  [BOT_LOG, Quote.alert(user, text)]
-                elsif (match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (\d*.\d*|null) (.*?)$/i))
-                  thread = if match.captures[5] != 'null'
-                             match.captures[5]
-                           else
-                             ''
-                           end
-                  [match.captures[2] || match.captures[3], match.captures[6]]
-                else
-                  [BOT_LOG, "Please <@#{user}> learn to use enersay"]
-                end
-    Resp.write(chan, msg, thread)
   end
 
   # Return threads id number
   def self.thread(info)
-    Resp.write(AccessEval.channel, info.to_s)
-  end
-
-  def self.channel
-    '#bots'
+    Resp.write(BOT_LOG, info.to_s)
   end
 end
 
@@ -93,7 +62,7 @@ end
 # Client initialization and first message
 client = Slack::RealTime::Client.new
 client.on :hello do
-  Resp.message(AccessEval, 'Beginning LERN sequence')
+  Resp.message(AccessEval::BOT_LOG, 'Beginning LERN sequence')
 end
 
 # Endless loop of cases
@@ -109,9 +78,11 @@ client.on :message do |data|
   # Initialization of the big case based on the first word
   case text
   when /^enerbot/i then
-    client.typing channel: data.channel
-    AccessEval.chan(data)
+    client.typing channel: chan
+    Reply.new(data, text)
   when /^enersay/ then
+    Reply.new(data, text)
+  when /^enerthread/ then
     AccessEval.say(user, text)
   when /^(enershut|お前もう死んでいる)/ then
     AccessEval.kill(user, text)
