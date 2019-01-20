@@ -38,15 +38,6 @@ class AccessEval
   BOT_LOG = ENV['SLACK_LOG_CHANNEL']
   THREAD_REGISTRY = ENV['SLACK_BOT_DB']
 
-  # Kill current session
-  def self.kill(user, text)
-    if !BOT_ADMINS.include? user
-      Resp.write(BOT_LOG, Quote.alert(user, text))
-    else
-      Resp.message(BOT_LOG, Case.kill(text)) && abort('bye')
-    end
-  end
-
   # Return threads id number
   def self.thread(info)
     Resp.write(BOT_LOG, info.to_s)
@@ -85,7 +76,7 @@ client.on :message do |data|
   when /^enerthread/ then
     AccessEval.say(user, text)
   when /^(enershut|お前もう死んでいる)/ then
-    AccessEval.kill(user, text)
+    Reply.new(data, text)
   when /^enerssh/ then
     AccessEval.thread(registry)
   end
