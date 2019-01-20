@@ -10,7 +10,11 @@ module Validate
   end
 
   def admin?(user)
-    'YES' if BOT_ADMINS.include?(user)
+    'COMMON' unless BOT_ADMINS.include?(user)
+  end
+
+  def super?(text)
+    'YES' if text =~ /(enersay|enershut)/
   end
 
   # Validates if the specified channel is whitelisted
@@ -22,11 +26,9 @@ module Validate
   def redirect(value, user, channel)
     case value
     when 'NOT'
-      if BAN_LIST.include?(user)
-        Resp.message(channel, 'You are still banned until i forget it')
-      elsif BOT_ADMINS.include?(user)
-        Resp.message('#bots', "User <@#{user}> tried to do something nasty")
-      end
+      Resp.message(channel, 'You are still banned until i forget it')
+    when 'COMMON'
+      Resp.message('#bots', "User <@#{user}> tried to do something nasty")
     when 'LOCKED ORIGIN'
       Resp.message('#bots', "User <@#{user}> making me work on <##{channel}|#{channel}>")
       nil
@@ -45,12 +47,18 @@ class Reply
     channel = data.channel
 
     access = Reply.worthy?(user)
+    admin = Reply.admin?(user)
+    cmd = Reply.super?(text)
     scope = Reply.channel?(channel)
 
-    if Reply.admin?(user) && reply.include?('say')
-      admin = Reply.admin?(user)
-      chan, message = Resp.say(text)
-      Resp.message(chan, message) if Reply.redirect(admin, user, channel).nil?
+    if cmd
+      case reply
+      when /enershut/
+        Resp.message(data, Case.kill(text)) && abort('bye') if Reply.redirect(admin, user, channel).nil?
+      when /enersay/
+        chan, message = Resp.say(text)
+        Resp.message(chan, message) if Reply.redirect(admin, user, channel).nil?
+      end
     else
       Resp.message('#bots', reply) unless Reply.redirect(scope, user, channel).nil?
       Resp.message(data, Case.bot(data)) if Reply.redirect(access, user, channel).nil?
