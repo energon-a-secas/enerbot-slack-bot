@@ -1,4 +1,15 @@
 # Validates origin and permissions over request
+
+module Registry
+  def save(data)
+    user = data.user
+    chan = data.channel
+    text = data.text
+    thread = data.thread_ts
+    registry << "\n*Channel:* #{chan}, *Thread:* #{thread}, *User:* <@#{user}>, *Text:* #{text}" unless thread.nil? && user != 'enerbot' && !text.to_s.include?('enerbot')
+  end
+end
+
 module Validate
   BOT_ADMINS = ENV['SLACK_USERS']
   BOT_CHANNELS = ENV['SLACK_CHANNELS']
@@ -41,7 +52,6 @@ class Reply
   extend Validate
 
   def initialize(data, reply)
-    data.respond_to? :channel
     user = data.user
     text = data.text
     channel = data.channel
