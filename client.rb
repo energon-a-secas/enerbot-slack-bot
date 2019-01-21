@@ -36,7 +36,7 @@ class AccessEval
   BOT_NAME = ENV['SLACK_NAME']
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
   BOT_LOG = ENV['SLACK_LOG_CHANNEL']
-  THREAD_REGISTRY = ENV['SLACK_BOT_DB']
+  THREAD_REGISTRY = ''
 
   # Return threads id number
   def self.thread(info)
@@ -75,7 +75,7 @@ client.on :message do |data|
     Reply.new(data, text)
   when /^enerthread/ then
     AccessEval.say(user, text)
-  when /^(enershut|お前もう死んでいる)/ then
+  when /^enershut/ then
     Reply.new(data, text)
   when /^enerssh/ then
     AccessEval.thread(registry)
