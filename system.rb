@@ -4,8 +4,9 @@ BOT_ADMINS = ENV['SLACK_USERS']
 BOT_CHANNELS = ENV['SLACK_CHANNELS']
 BOT_ICON = ENV['SLACK_ICON']
 BOT_NAME = ENV['SLACK_NAME']
-BAN_LIST = ''
+BAN_LIST = ''.freeze
 
+# Save information of threads for display
 module Registry
   def save(data)
     user = data.user
@@ -21,17 +22,19 @@ module Registry
   end
 end
 
+# Security checks of permissions and others herbs
 module Validate
-
   # Validates if user is banned
   def worthy?(user)
     'NOT' if BAN_LIST.include?(user) # || !ADMIN_LIST.include?(user)
   end
 
+  # Checks admin rights
   def admin?(user)
     'COMMON' unless BOT_ADMINS.include?(user)
   end
 
+  # Check privileged commands
   def super?(text)
     'YES' if text =~ /(enersay|enershut)/
   end
@@ -55,7 +58,7 @@ module Validate
   end
 end
 
-# Works somehow
+# Resp module can handle write, attachments and normal calls on new version, but threads are gone
 module Resp
   def self.message(data, text, attach = '')
     puts data
@@ -84,15 +87,15 @@ module Resp
                                        attachments: find
   end
 
-  def self.write(data, text, thread = '')
-    puts data
-    client = Slack::RealTime::Client.new
-    client.web_client.chat_postMessage channel: data,
-                                       text: text,
-                                       icon_url: BOT_ICON,
-                                       username: BOT_NAME,
-                                       thread_ts: thread
-  end
+  #   def self.write(data, text, thread = '')
+  #     puts data
+  #     client = Slack::RealTime::Client.new
+  #     client.web_client.chat_postMessage channel: data,
+  #                                        text: text,
+  #                                        icon_url: BOT_ICON,
+  #                                        username: BOT_NAME,
+  #                                        thread_ts: thread
+  #   end
 
   def self.say(text)
     if (match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i))
