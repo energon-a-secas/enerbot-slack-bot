@@ -29,95 +29,94 @@ require './scripts/acme'
 require './scripts/chimuelo'
 require './scripts/dice'
 require './core'
+require './system'
 
-# Class that evaluates if your worthy of calling the bo
-class AccessEval
-  BOT_ICON = ENV['SLACK_ICON']
-  BOT_NAME = ENV['SLACK_NAME']
-  BOT_ADMINS = ENV['SLACK_USERS']
-  BOT_CHANNELS = ENV['SLACK_CHANNELS']
-  BOT_TOKEN = ENV['SLACK_API_TOKEN']
-  BOT_LOG = ENV['SLACK_LOG_CHANNEL']
-  THREAD_REGISTRY = '>>>*Thread registry:*'
+# Future wave Gem
+class Enerbot
+  attr_reader :token, :channel
+  extend Admin
+  extend Registry
 
-  # Send message to channel
-  def self.chan(data)
-    user = data.user
-    chan = data.channel
+  @bot_icon = ENV['SLACK_ICON']
+  @bot_name = ENV['SLACK_NAME']
 
-    Resp.write(BOT_LOG, Quote.alert(user, chan)) unless BOT_CHANNELS.include? chan
-    Case.bot(data)
+  def initialize(token: '', channel: '')
+    @bot_token = token
+    @bot_channel = channel
+
+    # Slack Token configure
+    Slack.configure do |config|
+      config.token = @bot_token
+      config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
+    end
+
+    # Client initialization
+    client = Slack::RealTime::Client.new
+
+    client.on :hello do
+      Enerbot.message(@bot_channel, 'Beginning LERN sequence')
+    end
+
+    # Listen to new messages
+    client.on :message do |data|
+      chan = data.channel
+      text = data.text
+
+      Enerbot.save(data)
+      Enerbot.remember(data)
+
+      case text
+      when /^enerbot/i then
+        client.typing channel: chan
+        Reply.new(data, text)
+      when /^enersay/ then
+        Reply.new(data, text)
+      when /^enershut/ then
+        Reply.new(data, text)
+      when /^enerban/ then
+        Enerbot.ban(data)
+        # when /^enerthread/ then
+        #   Enerbot.message(data, Registry.thread)
+        # when /^enerinfo/ then
+        #   Enerbot.message(data, Registry.info)
+      end
+    end
+
+    client.start!
   end
 
-  # Kill current session
-  def self.kill(user, text)
-    if !BOT_ADMINS.include? user
-      Resp.write(BOT_LOG, Quote.alert(user, text))
-    else
-      Resp.message(AccessEval, Case.kill(text)) && abort('bye')
+  def self.message(data, text, attach = '')
+    puts data
+    thread = data.ts if data.to_s.include?('thread_ts')
+
+    find = if attach != ''
+             json_file = File.read("./Info/#{text}")
+             text = ':energon_enterprise:'
+             JSON.parse(json_file)[attach]
+           else
+             []
+           end
+
+    channel = if data.respond_to? :channel
+                data.channel
+              else
+                data
+              end
+
+    client = Slack::RealTime::Client.new
+    client.web_client.chat_postMessage channel: channel,
+                                       text: text,
+                                       icon_url: @bot_icon,
+                                       username: @bot_name,
+                                       thread_ts: thread,
+                                       attachments: find
+  end
+
+  def self.say(text)
+    if (match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i))
+      [match.captures[2] || match.captures[3], match.captures[5]]
     end
   end
-
-  # Make a custom write
-  def self.say(user, text)
-    chan, msg = if !BOT_ADMINS.include?(user)
-                  [BOT_LOG, Quote.alert(user, text)]
-                elsif (match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (\d*.\d*|null) (.*?)$/i))
-                  thread = if match.captures[5] != 'null'
-                             match.captures[5]
-                           else
-                             ''
-                           end
-                  [match.captures[2] || match.captures[3], match.captures[6]]
-                else
-                  [BOT_LOG, "Please <@#{user}> learn to use enersay"]
-                end
-    Resp.write(chan, msg, thread)
-  end
-
-  # Return threads id number
-  def self.thread(info)
-    Resp.write(AccessEval.channel, info.to_s)
-  end
-
-  def self.channel
-    '#bots'
-  end
 end
 
-# Slack Token configure
-Slack.configure do |config|
-  config.token = AccessEval::BOT_TOKEN
-  config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
-end
-
-# Client initialization and first message
-client = Slack::RealTime::Client.new
-client.on :hello do
-  Resp.message(AccessEval, 'Beginning LERN sequence')
-end
-
-# Endless loop of cases
-client.on :message do |data|
-  user = data.user
-  chan = data.channel
-  text = data.text
-  thread = data.thread_ts
-  registry = AccessEval::THREAD_REGISTRY
-
-  registry << "\n*Channel:* #{chan}, *Thread:* #{thread}, *User:* <@#{user}>, *Text:* #{text}" unless thread.nil? && user != 'enerbot' && !text.to_s.include?('enerbot')
-
-  # Initialization of the big case based on the first word
-  case text
-  when /^enerbot/i then
-    client.typing channel: data.channel
-    AccessEval.chan(data)
-  when /^enersay/ then
-    AccessEval.say(user, text)
-  when /^(enershut|お前もう死んでいる)/ then
-    AccessEval.kill(user, text)
-  when /^enerssh/ then
-    AccessEval.thread(registry)
-  end
-end
-client.start!
+Enerbot.new(token: ENV['SLACK_API_TOKEN'], channel: '#bot_monitoring')
