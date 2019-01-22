@@ -1,6 +1,7 @@
 source 'https://rubygems.org' do
   gem 'async-websocket'
   gem 'credy'
+  gem 'easy_dice'
   gem 'faye-websocket'
   gem 'guru_guru'
   gem 'holidays'
@@ -15,5 +16,4 @@ source 'https://rubygems.org' do
   gem 'stock_quote'
   gem 'week_of_month'
   gem 'whois-parser'
-  gem 'easy_dice'
 end
