@@ -34,17 +34,19 @@ require './system'
 
 BOT_ADMINS = ENV['SLACK_USERS']
 BOT_CHANNELS = ENV['SLACK_CHANNELS']
-BOT_ICON = ENV['SLACK_ICON']
-BOT_NAME = ENV['SLACK_NAME']
-ADM_BAN = 'HALL OF SHAME'.freeze
-ADM_LOG = '#bot_monitoring'.freeze
-ADM_REGISTRY = 'HALL OF SHAME'.freeze
+ADM_BAN = 'HALL OF SHAME'
+ADM_LOG = '#bot_monitoring'
+ADM_REGISTRY = "*THREADS:*\n"
+BROTHER_EYE = "*EYES:*\n"
 
 # Future wave Gem
 class Enerbot
   attr_reader :token, :channel
   extend Admin
   extend Registry
+
+  @bot_icon = ENV['SLACK_ICON']
+  @bot_name = ENV['SLACK_NAME']
 
   def initialize(token: '', channel: '')
     @bot_token = token
@@ -69,6 +71,7 @@ class Enerbot
       text = data.text
 
       Enerbot.save(data)
+      Enerbot.remember(data)
 
       case text
       when /^enerbot/i then
@@ -80,8 +83,10 @@ class Enerbot
         Reply.new(data, text)
       when /^enerban/ then
         Enerbot.ban(data)
-      when /^enerest/ then
-        Enerbot.reset
+        # when /^enerthread/ then
+        #   Enerbot.message(data, Registry.thread)
+        # when /^enerinfo/ then
+        #   Enerbot.message(data, Registry.info)
       end
     end
 
@@ -109,8 +114,8 @@ class Enerbot
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: channel,
                                        text: text,
-                                       icon_url: BOT_ICON,
-                                       username: BOT_NAME,
+                                       icon_url: @bot_icon,
+                                       username: @bot_name,
                                        thread_ts: thread,
                                        attachments: find
   end
@@ -118,8 +123,6 @@ class Enerbot
   def self.say(text)
     if (match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i))
       [match.captures[2] || match.captures[3], match.captures[5]]
-    else
-      ['#bots', 'Meh']
     end
   end
 end
