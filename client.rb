@@ -30,18 +30,27 @@ require './scripts/chimuelo'
 require './core'
 require './system'
 
-BOT_TOKEN = ENV['SLACK_API_TOKEN']
-BOT_LOG = ENV['SLACK_LOG_CHANNEL']
+# Validates origin and permissions over request
+
+BOT_ADMINS = ENV['SLACK_USERS']
+BOT_CHANNELS = ENV['SLACK_CHANNELS']
+BOT_ICON = ENV['SLACK_ICON']
+BOT_NAME = ENV['SLACK_NAME']
+BAN_LIST = ''
 
 # Future Gem
 class Enerbot
+  attr_reader :token, :channel
   extend Registry
+  extend Admin
 
-  def initialize
+  def initialize(token: '', channel: '')
+    @bot_token = token
+    @bot_channel = channel
 
     # Slack Token configure
     Slack.configure do |config|
-      config.token = BOT_TOKEN
+      config.token = @bot_token
       config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
     end
 
@@ -49,12 +58,12 @@ class Enerbot
     client = Slack::RealTime::Client.new
 
     client.on :hello do
-      Resp.message(BOT_LOG, 'Beginning LERN sequence')
+      Enerbot.message(@bot_channel, 'Beginning LERN sequence')
     end
 
     # Listen to new messages
     client.on :message do |data|
-      #user = data.user
+      # user = data.user
       chan = data.channel
       text = data.text
 
@@ -69,12 +78,51 @@ class Enerbot
         Reply.new(data, text)
       when /^enershut/ then
         Reply.new(data, text)
+      when /^enerban/ then
+        Enerbot.ban(data)
       end
     end
 
     client.start!
   end
 
+  def self.message(data, text, attach = '')
+    puts data
+    thread = data.ts if data.to_s.include?('thread_ts')
+
+    find = if attach != ''
+             json_file = File.read("./Info/#{text}")
+             text = ':energon_enterprise:'
+             JSON.parse(json_file)[attach]
+           else
+             []
+           end
+
+    channel = if data.respond_to? :channel
+                data.channel
+              else
+                data
+              end
+
+    client = Slack::RealTime::Client.new
+    client.web_client.chat_postMessage channel: channel,
+                                       text: text,
+                                       icon_url: BOT_ICON,
+                                       username: BOT_NAME,
+                                       thread_ts: thread,
+                                       attachments: find
+  end
+
+  def self.say(text)
+    if (match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i))
+      [match.captures[2] || match.captures[3], match.captures[5]]
+    else
+      ['#bots', 'Meh']
+    end
+  end
 end
 
-Enerbot.new
+
+
+
+Enerbot.new(token: '', channel: '')
