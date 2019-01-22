@@ -135,7 +135,7 @@ module Case
                    [6, :op2]
                  end
     mess = dc[file]
-    Resp.message(data, mess[:file], mess[info])
+    Enerbot.message(data, mess[:file], mess[info])
   end
 
   def self.kill(text)

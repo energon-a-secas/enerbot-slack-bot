@@ -1,6 +1,7 @@
 ADM_LOG = ENV['SLACK_LOG_BOT']
 BOT_ADMINS = ENV['SLACK_USERS']
 BOT_CHANNELS = ENV['SLACK_CHANNELS']
+BAN_LIST = ''
 
 # Works as a Database
 module Registry
@@ -37,7 +38,6 @@ end
 
 # Admin stuff
 module Admin
-  BAN_LIST = ''
 
   def ban(data)
     text = data.text
@@ -49,7 +49,7 @@ end
 module Validate
   # Validates if user is banned
   def worthy?(user)
-    'NOT' if ADM_BAN.include?(user)
+    'NOT' if BAN_LIST.include?(user)
   end
 
   # Checks admin rights

@@ -118,4 +118,4 @@ class Enerbot
   end
 end
 
-Enerbot.new(token: '', channel: '')
+Enerbot.new(token: ENV['SLACK_API_TOKEN'], channel: '#bot_monitoring')
