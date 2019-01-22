@@ -1,3 +1,33 @@
+require './scripts/date'
+require './scripts/system'
+require './scripts/quote'
+require './scripts/ssh'
+require './scripts/pass'
+require './scripts/tc'
+require './scripts/2fa'
+require './scripts/random'
+require './scripts/horoscopo'
+require './scripts/lotery'
+require './scripts/security_check'
+require './scripts/wikipedia'
+require './scripts/celery'
+require './scripts/lingo'
+require './scripts/stock'
+require './scripts/flight'
+require './scripts/weather'
+require './scripts/cves'
+require './scripts/canitrot'
+require './scripts/bronze'
+require './scripts/macaulay'
+require './scripts/haarp'
+require './scripts/secret_friend'
+require './scripts/dns'
+require './scripts/hibp'
+require './scripts/fire'
+require './scripts/acme'
+require './scripts/chimuelo'
+require './scripts/dice'
+
 # If you find yourself in a hole, stop digging
 module Case
   def self.bot(data)
@@ -87,6 +117,8 @@ module Case
         Chimuelo.song(text, user)
       when /d[ií]as atraso feature/i
         TimeTo.progress(text, user)
+      when / roll /i
+        Roleo.dados(text)
       end
     end
   end
