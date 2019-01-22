@@ -59,7 +59,8 @@ module System
  enerbot <is the internet on fire?>
  enerbot <acme catalog>
  enerbot <santo sepulcro a> <DESTINATARIO>
- enerbot <días atraso feature> <daily>```
+ enerbot <días atraso feature> <daily>
+ enerbot <roll> <cantidad> <d> <numero de caras> ```
 
     HEREDOC
   end

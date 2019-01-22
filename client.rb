@@ -27,6 +27,7 @@ require './scripts/hibp'
 require './scripts/fire'
 require './scripts/acme'
 require './scripts/chimuelo'
+require './scripts/dice'
 require './core'
 require './system'
 
