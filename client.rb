@@ -38,7 +38,7 @@ class AccessEval
   BOT_CHANNELS = ENV['SLACK_CHANNELS']
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
   BOT_LOG = ENV['SLACK_LOG_CHANNEL']
-  THREAD_REGISTRY = '>>>*Thread registry:*'.freeze
+  THREAD_REGISTRY = '>>>*Thread registry:*'
 
   # Send message to channel
   def self.chan(data)
