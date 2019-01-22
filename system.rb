@@ -1,4 +1,4 @@
-# Save information of threads for display
+# Works as a Database
 module Registry
   def save(data)
     user = data.user
@@ -6,12 +6,25 @@ module Registry
     text = data.text
     thread = data.thread_ts
 
-    info = "*Channel:* #{chan}, *Thread:* #{thread}, *User:* <@#{user}>, *Text:* #{text}"
-    ADM_REGISTRY << info unless thread.nil? && user != 'enerbot' && !text.to_s.include?('enerbot')
+    info = "*Channel:* #{chan}, *Thread:* #{thread}, *User:* <@#{user}>, *Text:* #{text}\n"
+    ADM_REGISTRY << info unless thread.nil? && user != 'enerbot' && !text.to_s.match(/(enerbot|enerinfo)/)
   end
 
-  def thread
-    p @thread
+  def remember(data)
+    user = data.user
+    chan = data.channel
+    text = data.text
+
+    info = "*Channel:* #{chan}, *User:* <@#{user}>, *Text:* #{text}\n"
+    BROTHER_EYE << info unless user != 'enerbot' && !text.to_s.match(/(enerbot|enerthread)/)
+  end
+
+  def self.thread
+    ADM_REGISTRY
+  end
+
+  def self.info
+    BROTHER_EYE
   end
 end
 
@@ -19,11 +32,11 @@ end
 module Admin
   def ban(data)
     text = data.text
-    BAN_LIST << text
+    ADM_BAN << text
   end
 
   def reset
-    BAN_LIST < ''
+    ADM_BAN.clear
   end
 end
 
@@ -31,7 +44,7 @@ end
 module Validate
   # Validates if user is banned
   def worthy?(user)
-    'NOT' if BAN_LIST.include?(user) # || !ADMIN_LIST.include?(user)
+    'NOT' if ADM_BAN.include?(user)
   end
 
   # Checks admin rights
@@ -53,11 +66,11 @@ module Validate
   def redirect(value, user, channel)
     case value
     when 'NOT'
-      Enerbot.message(channel, 'You are still banned until i forget it')
+      Enerbot.message(channel, "*User:* <@#{user}> is banned until i forget it :x:")
     when 'COMMON'
-      Enerbot.message(BOT_LOG, "User <@#{user}> tried to do something nasty")
+      Enerbot.message(ADM_LOG, "User <@#{user}> tried to do something nasty")
     when 'LOCKED ORIGIN'
-      Enerbot.message(BOT_LOG, "User <@#{user}> making me work on <##{channel}|#{channel}>")
+      Enerbot.message(ADM_LOG, "User <@#{user}> making me work on <##{channel}|#{channel}>")
       nil
     end
   end
