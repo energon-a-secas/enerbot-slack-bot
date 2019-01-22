@@ -30,15 +30,6 @@ require './scripts/chimuelo'
 require './core'
 require './system'
 
-# Validates origin and permissions over request
-
-BOT_ADMINS = ENV['SLACK_USERS']
-BOT_CHANNELS = ENV['SLACK_CHANNELS']
-ADM_BAN = 'HALL OF SHAME'
-ADM_LOG = '#bot_monitoring'
-ADM_REGISTRY = "*THREADS:*\n"
-BROTHER_EYE = "*EYES:*\n"
-
 # Future wave Gem
 class Enerbot
   attr_reader :token, :channel
