@@ -36,13 +36,15 @@ BOT_ADMINS = ENV['SLACK_USERS']
 BOT_CHANNELS = ENV['SLACK_CHANNELS']
 BOT_ICON = ENV['SLACK_ICON']
 BOT_NAME = ENV['SLACK_NAME']
-BAN_LIST = ''
+ADM_BAN = 'HALL OF SHAME'.freeze
+ADM_LOG = '#bot_monitoring'.freeze
+ADM_REGISTRY = 'HALL OF SHAME'.freeze
 
-# Future Gem
+# Future wave Gem
 class Enerbot
   attr_reader :token, :channel
-  extend Registry
   extend Admin
+  extend Registry
 
   def initialize(token: '', channel: '')
     @bot_token = token
@@ -63,13 +65,11 @@ class Enerbot
 
     # Listen to new messages
     client.on :message do |data|
-      # user = data.user
       chan = data.channel
       text = data.text
 
       Enerbot.save(data)
 
-      # First layer of case
       case text
       when /^enerbot/i then
         client.typing channel: chan
@@ -80,6 +80,8 @@ class Enerbot
         Reply.new(data, text)
       when /^enerban/ then
         Enerbot.ban(data)
+      when /^enerest/ then
+        Enerbot.reset
       end
     end
 
@@ -121,8 +123,5 @@ class Enerbot
     end
   end
 end
-
-
-
 
 Enerbot.new(token: '', channel: '')

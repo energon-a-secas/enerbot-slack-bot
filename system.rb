@@ -5,8 +5,9 @@ module Registry
     chan = data.channel
     text = data.text
     thread = data.thread_ts
-    @thread = ''
-    @thread << "\n*Channel:* #{chan}, *Thread:* #{thread}, *User:* <@#{user}>, *Text:* #{text}" unless thread.nil? && user != 'enerbot' && !text.to_s.include?('enerbot')
+
+    info = "*Channel:* #{chan}, *Thread:* #{thread}, *User:* <@#{user}>, *Text:* #{text}"
+    ADM_REGISTRY << info unless thread.nil? && user != 'enerbot' && !text.to_s.include?('enerbot')
   end
 
   def thread
@@ -14,10 +15,15 @@ module Registry
   end
 end
 
+# Admin stuff
 module Admin
   def ban(data)
     text = data.text
     BAN_LIST << text
+  end
+
+  def reset
+    BAN_LIST < ''
   end
 end
 
