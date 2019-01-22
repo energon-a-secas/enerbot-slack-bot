@@ -27,6 +27,7 @@ require './scripts/hibp'
 require './scripts/fire'
 require './scripts/acme'
 require './scripts/chimuelo'
+require './scripts/dice'
 require './core'
 
 # Class that evaluates if your worthy of calling the bo
@@ -37,7 +38,7 @@ class AccessEval
   BOT_CHANNELS = ENV['SLACK_CHANNELS']
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
   BOT_LOG = ENV['SLACK_LOG_CHANNEL']
-  THREAD_REGISTRY = '>>>*Thread registry:*'
+  THREAD_REGISTRY = '>>>*Thread registry:*'.freeze
 
   # Send message to channel
   def self.chan(data)
