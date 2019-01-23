@@ -1,7 +1,7 @@
 ADM_LOG = ENV['SLACK_LOG_BOT']
 BOT_ADMINS = ENV['SLACK_USERS']
 BOT_CHANNELS = ENV['SLACK_CHANNELS']
-BAN_LIST = ''
+BAN_LIST = ''.freeze
 
 # Works as a Database
 module Registry
@@ -38,7 +38,6 @@ end
 
 # Admin stuff
 module Admin
-
   def ban(data)
     text = data.text
     BAN_LIST << text
@@ -104,8 +103,12 @@ class Reply
         Enerbot.message(chan, message) if Reply.redirect(admin, user, channel).nil?
       end
     else
-      Enerbot.message(ADM_LOG, reply) unless Reply.redirect(scope, user, channel).nil?
-      Enerbot.message(data, Case.bot(data)) if Reply.redirect(access, user, channel).nil?
+      value = Case.bot(data)
+      unless value.nil?
+        Enerbot.message(ADM_LOG, reply) unless Reply.redirect(scope, user, channel).nil?
+        Enerbot.message(data, value) if Reply.redirect(access, user, channel).nil?
+      end
+
     end
   end
 end
