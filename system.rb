@@ -1,7 +1,7 @@
 ADM_LOG = ENV['SLACK_LOG_BOT']
 BOT_ADMINS = ENV['SLACK_USERS']
 BOT_CHANNELS = ENV['SLACK_CHANNELS']
-BAN_LIST = ''.freeze
+BAN_LIST = ''
 
 # Works as a Database
 module Registry
@@ -39,8 +39,7 @@ end
 # Admin stuff
 module Admin
   def ban(data)
-    text = data.text
-    BAN_LIST << text
+    BAN_LIST << data
   end
 end
 
@@ -58,7 +57,7 @@ module Validate
 
   # Check privileged commands
   def super?(text)
-    'YES' if text =~ /(enersay|ban|enershut)/
+    'YES' if text =~ /(enersay|enerban|enershut)/
   end
 
   # Validates if the specified channel is whitelisted
@@ -94,13 +93,15 @@ class Reply
     cmd = Reply.super?(text)
     scope = Reply.channel?(channel)
 
-    if cmd
+    if cmd && Reply.redirect(admin, user, channel).nil?
       case reply
+      when /enerban/
+        Enerbot.ban(reply)
       when /enershut/
-        Enerbot.message(data, Case.kill(text)) && abort('bye') if Reply.redirect(admin, user, channel).nil?
+        Enerbot.message(data, Case.kill(text)) && abort('bye')
       when /enersay/
         chan, message = Enerbot.say(text)
-        Enerbot.message(chan, message) if Reply.redirect(admin, user, channel).nil?
+        Enerbot.message(chan, message)
       end
     else
       value = Case.bot(data)

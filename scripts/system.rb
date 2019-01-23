@@ -60,7 +60,7 @@ module System
  enerbot <acme catalog>
  enerbot <santo sepulcro a> <DESTINATARIO>
  enerbot <días atraso feature> <daily>
- enerbot <roll> <cantidad> <d> <numero de caras> ```
+ enerbot <roll> <cantidad de dados> <numero de caras> ```
 
     HEREDOC
   end
