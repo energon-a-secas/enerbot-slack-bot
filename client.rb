@@ -11,7 +11,7 @@ class Enerbot
   @bot_icon = ENV['SLACK_ICON']
   @bot_name = ENV['SLACK_NAME']
 
-  def initialize(token: '', channel: ENV['SLACK_LOG_BOT'])
+  def initialize(token: '', channel: ENV['SLACK_LOG_CHANNEL'])
     @bot_token = token
     @bot_channel = channel
 
@@ -45,7 +45,7 @@ class Enerbot
       when /^enershut/ then
         Reply.new(data, text)
       when /^enerban/ then
-        Enerbot.ban(data)
+        Reply.new(data, text)
         # when /^enerthread/ then
         #   Enerbot.message(data, Registry.thread)
         # when /^enerinfo/ then
