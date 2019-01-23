@@ -39,7 +39,7 @@ end
 # Admin stuff
 module Admin
   def ban(data)
-    BAN_LIST << data
+    BAN_LIST << data unless data =~ /#{ENV['SUPER_USER']}/
   end
 end
 
@@ -93,7 +93,7 @@ class Reply
     cmd = Reply.super?(text)
     scope = Reply.channel?(channel)
 
-    if cmd && Reply.redirect(admin, user, channel).nil?
+    if cmd && Reply.redirect(admin, user, channel).nil? && access != 'NOT'
       case reply
       when /enerban/
         Enerbot.ban(reply)
