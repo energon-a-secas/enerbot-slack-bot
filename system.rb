@@ -1,7 +1,7 @@
 ADM_LOG = ENV['SLACK_LOG_BOT']
 BOT_ADMINS = ENV['SLACK_USERS']
 BOT_CHANNELS = ENV['SLACK_CHANNELS']
-BAN_LIST = ''.freeze
+BAN_LIST = ''
 
 # Works as a Database
 module Registry
