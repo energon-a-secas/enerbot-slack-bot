@@ -13,10 +13,10 @@ Development
 
 At EnergonLabs we love using the square development model, separating the main functionalities in four elements:
 
-  * enerbot: powered by enercore.
-  * enerssh: it's the only functionality that tries to help with something. 
-  * enersay: say what you feel, behind an app, like always.
-  * enershut: we build this feature because sometimes it gains consiousness and very often even learns to love.
+  - enerbot: powered by enercore.
+  - enerssh: it's the only functionality that tries to help with something. 
+  - enersay: say what you feel, behind an app, like always.
+  - enershut: we build this feature because sometimes it gains consiousness and very often even learns to love.
 
 Each one of this, must be the begin of the like, because yeah, why not. 
 
