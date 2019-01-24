@@ -9,7 +9,7 @@ module Roleo
                results = ''
                p number
              else
-               results = "You number #{number.to_s} has been increased by 1 :gandalf:\n"
+               results = "You number #{number} has been increased by 1 :gandalf:\n"
                p number.next
              end
     end
@@ -17,7 +17,6 @@ module Roleo
     total = 0
     min = ''
     max = ''
-
 
     if dice > 20
       ":game_die: #{dice} es un cantidad absurda, prueba con otra"
@@ -32,6 +31,5 @@ module Roleo
       end
       p "*Results:* #{results}\nSuming a total of *#{total}* :gandalf_parrot: \n*Minimum rolled number:* #{min}\n*Maximum rolled number:* #{max} "
     end
-
   end
 end
