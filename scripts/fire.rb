@@ -10,9 +10,7 @@ module Internet
       unless issue['cves'].empty?
         message += "\tCVE(s) : #{issue['cves'].join(', ')}\n"
       end
-      unless issue['urls'].empty?
-        message += "\tReference: #{issue['urls'].join(', ')}\n"
-      end
+      message += "\tReference: #{issue['urls'].join(', ')}\n" unless issue['urls'].empty?
     end
     <<-HEREDOC
         #{message}
