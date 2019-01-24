@@ -7,9 +7,7 @@ module Internet
     message = ":fire: *#{result['status']}*\n"
     result['issues'].each do |issue|
       message += "\t:point_right: #{issue['txt']}\n"
-      unless issue['cves'].empty?
-        message += "\tCVE(s) : #{issue['cves'].join(', ')}\n"
-      end
+      message += "\tCVE(s) : #{issue['cves'].join(', ')}\n" unless issue['cves'].empty?
       message += "\tReference: #{issue['urls'].join(', ')}\n" unless issue['urls'].empty?
     end
     <<-HEREDOC
