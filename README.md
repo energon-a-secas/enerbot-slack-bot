@@ -12,10 +12,10 @@ He also likes cubes.
 
 At EnergonLabs we love using the square development model, separating the main functionalities in four elements:
 
-* enerbot: powered by enercore.
-* enerssh: it's the only functionality that tries to help with something. 
-* enersay: say what you feel, behind an app, like always.
-* enershut: we build this feature because sometimes it gains consiousness and very often even learns to love.
+  * enerbot: powered by enercore.
+  * enerssh: it's the only functionality that tries to help with something. 
+  * enersay: say what you feel, behind an app, like always.
+  * enershut: we build this feature because sometimes it gains consiousness and very often even learns to love.
 
 Each one of this, must be the begin of the like, because yeah, why not. 
 
@@ -27,10 +27,9 @@ This method let us isolate the core functions in the `core.rb` file, where we pu
 
 A computer.
 
-* Install [Ruby](https://www.ruby-lang.org/es/documentation/installation/). If you want to, off course.
-* Install [Ruby Version Management](https://rvm.io/rvm/install). RVM lets you easily work with multiple versions of Ruby. 
-* Install [Bundler](https://bundler.io) to get all dependencies or you could stay in the dependency abyss by installing each dependency manually. It's your choice.
-
+  - Install [Ruby](https://www.ruby-lang.org/es/documentation/installation/). If you want to, off course.
+  - Install [Ruby Version Management](https://rvm.io/rvm/install). RVM lets you easily work with multiple versions of Ruby. 
+  - Install [Bundler](https://bundler.io) to get all dependencies or you could stay in the dependency abyss by installing each dependency manually. It's your choice.
 
 We highly recommend you to use the Ruby 2.5.1 version because it works on our machines. You can check your current version with:
 
@@ -62,10 +61,10 @@ Optionally, you can take all the magic of ENERGON to your current Slack space by
 ### Configuring
 
 You need to export the following parameters as environment variables:
- * SLACK_API_TOKEN: it lets you connect the bot with de Slack space.
- * BOT_ADMINS: list of users that can access to features like 'enershut' or 'enersay'
- * BOT_CHANNELS: list of authorized channels where your bot can be consulted.
- * SLACK_LOG_CHANNEL: this will be the channel where all your confidential (or mostly boring) logs ends up.
+  - SLACK_API_TOKEN: it lets you connect the bot with de Slack space.
+  - BOT_ADMINS: list of users that can access to features like 'enershut' or 'enersay'
+  - BOT_CHANNELS: list of authorized channels where your bot can be consulted.
+  - SLACK_LOG_CHANNEL: this will be the channel where all your confidential (or mostly boring) logs ends up.
 ```
 export SLACK_API_TOKEN=YOUR-TOKEN-XX-XX-XXX
 export BOT_ADMINS=XXXXXX,XXXXXX,XXXXXX
