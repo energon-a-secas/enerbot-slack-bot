@@ -1,7 +1,8 @@
 ENERBOT (Slack Slave) <img align="right" width="100" height="100" src="emojis/energon.png">
 ========
 - Website: https://www.energon.cloud
-- ![This software is Blessed](https://img.shields.io/badge/blessed-100%25-770493.svg)
+
+![This software is Blessed](https://img.shields.io/badge/blessed-100%25-770493.svg) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/91233140cec64adfb067adc959db3826)](https://www.codacy.com/app/LucianoAdonis/enerbot-slack?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=energonrocks/enerbot-slack&amp;utm_campaign=Badge_Grade)
 
 It's based on the bototo3000, but using the Slack Ruby Client and Ruby instead of Python. Is design for small talks and remote commands over SSH.
 
@@ -53,7 +54,7 @@ git clone https://github.com/energonrocks/enerbot.git
 Inside of the enerbot repository use bundler.
 ```
 cd enerbot
-bundler install
+bundle install
 ```
 
 Optionally, you can take all the magic of ENERGON to your current Slack space by importing our beloved crafted custom [emojis](emojis/), and be the coolest kid in the hood. Please, refer to [Add custom emoji](https://get.slack.help/hc/en-us/articles/206870177-Add-custom-emoji).
