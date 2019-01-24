@@ -11,7 +11,7 @@ class Enerbot
   @bot_icon = ENV['SLACK_ICON']
   @bot_name = ENV['SLACK_NAME']
 
-  def initialize(token: '', channel: ENV['SLACK_LOG_CHANNEL'])
+  def initialize(token: ENV['SLACK_API_TOKEN'], channel: ENV['SLACK_LOG_CHANNEL'])
     @bot_token = token
     @bot_channel = channel
 
@@ -39,9 +39,9 @@ class Enerbot
       case text
       when /^enerbot/i then
         client.typing channel: chan
-        Reply.new(data, text)
+        Reply.new(data)
       when /^(enersay|enershut|enerban)/ then
-        Reply.new(data, text)
+        Reply.new(data)
         # when /^enerthread/ then
         #   Enerbot.message(data, Registry.thread)
         # when /^enerinfo/ then
@@ -85,4 +85,4 @@ class Enerbot
   end
 end
 
-Enerbot.new(token: ENV['SLACK_API_TOKEN'])
+Enerbot.new

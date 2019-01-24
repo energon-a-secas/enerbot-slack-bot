@@ -45,58 +45,72 @@ end
 
 # Security checks of permissions and others herbs
 module Validate
-  # Validates if user is banned
+
   def worthy?(user)
     'NOT' if BAN_LIST.include?(user)
   end
 
-  # Checks admin rights
   def admin?(user)
     'COMMON' unless BOT_ADMINS.include?(user)
   end
 
-  # Check privileged commands
   def super?(text)
     'YES' if text =~ /(enersay|enerban|enershut)/
   end
 
-  # Validates if the specified channel is whitelisted
   def channel?(chan)
     'LOCKED ORIGIN' unless BOT_CHANNELS.include?(chan)
   end
+end
 
-  # Differentiates the permissions for the calling user based on the channel
-  def redirect(value, user, channel)
-    case value
-    when 'NOT'
-      Enerbot.message(channel, "*User:* <@#{user}> is banned until i forget it :x:")
-    when 'COMMON'
-      Enerbot.message(ADM_LOG, "User <@#{user}> tried to do something nasty")
-    when 'LOCKED ORIGIN'
-      Enerbot.message(ADM_LOG, "User <@#{user}> making me work on <##{channel}|#{channel}>")
+
+class Redirect
+  extend Validate
+
+  def initialize(data)
+    user = data.user
+    channel = data.channel
+    text = data.text
+
+    @user = user
+    @channel = channel
+
+    @admin = Redirect.admin?(user)
+    @channel = Redirect.channel?(channel)
+    @cmd = Redirect.super?(text)
+    @rights = Redirect.worthy?(user)
+  end
+
+  def shift
+    if @admin == 'COMMON'
+      Enerbot.message(ADM_LOG, "User <@#{@user}> tried to do something nasty")
+    elsif @channel == 'LOCKED ORIGIN'
+      Enerbot.message(ADM_LOG, "User <@#{@user}> making me work on <##{@channel}|#{@channel}>")
       nil
+    elsif @rights == 'NOT'
+      Enerbot.message(@channel, "*User:* <@#{@user}> is banned until i forget it :x:")
     end
+  end
+
+  def super
+    @cmd
   end
 end
 
-# Differentiates the request type and triggers the happy response
+# Differentiates the request type and triggers the happiness
 class Reply
-  extend Validate
 
-  def initialize(data, reply)
-    user = data.user
+  def initialize(data)
     text = data.text
-    channel = data.channel
 
-    access = Reply.worthy?(user)
-    admin = Reply.admin?(user)
-    cmd = Reply.super?(text)
-    scope = Reply.channel?(channel)
+    validations = Redirect.new(data)
+    check = validations.shift
+    cmd = validations.super
 
-    if cmd && Reply.redirect(admin, user, channel).nil? && access != 'NOT'
-      case reply
+    if cmd == 'YES' && check.nil?
+      case text
       when /enerban/
-        Enerbot.ban(reply)
+        Enerbot.ban(text)
       when /enershut/
         Enerbot.message(data, Case.kill(text)) && abort('bye')
       when /enersay/
@@ -106,10 +120,10 @@ class Reply
     else
       value = Case.bot(data)
       unless value.nil?
-        Enerbot.message(ADM_LOG, reply) unless Reply.redirect(scope, user, channel).nil?
-        Enerbot.message(data, value) if Reply.redirect(access, user, channel).nil?
+        Enerbot.message(ADM_LOG, text) unless check.nil?
+        Enerbot.message(data, value) if check.nil?
       end
-
     end
   end
 end
+
