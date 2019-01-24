@@ -8,7 +8,8 @@ It's based on the bototo3000, but using the Slack Ruby Client and Ruby instead o
 
 He also likes cubes. 
 
-## Development 
+Development
+---
 
 At EnergonLabs we love using the square development model, separating the main functionalities in four elements:
 
@@ -21,9 +22,11 @@ Each one of this, must be the begin of the like, because yeah, why not.
 
 This method let us isolate the core functions in the `core.rb` file, where we put the ugly stuff that does the magic for our needs.
 
-## Getting started
+Getting started
+---
 
-### Prerequisites
+Prerequisites
+---------
 
 A computer.
 
@@ -44,7 +47,9 @@ rvm install 2.5.1
 rvm use 2.5.1
 ```
 
-### Installing
+Installing
+---------
+
 Download the repository.
 ```
 git clone https://github.com/energonrocks/enerbot.git
@@ -58,7 +63,8 @@ bundle install
 
 Optionally, you can take all the magic of ENERGON to your current Slack space by importing our beloved crafted custom [emojis](emojis/), and be the coolest kid in the hood. Please, refer to [Add custom emoji](https://get.slack.help/hc/en-us/articles/206870177-Add-custom-emoji).
 
-### Configuring
+Configuring
+---------
 
 You need to export the following parameters as environment variables:
   - SLACK_API_TOKEN: it lets you connect the bot with de Slack space.
@@ -79,18 +85,22 @@ And just run it with:
 ruby client.rb
 ```
 
-## Easter Eggs
+Easter Eggs
+---
 
 
-### Responses
+Responses
+---------
 
 He can response most of the time.
 
-### Modules
+Modules
+---------
 
 A module is like a square and modules form cubes. In order to add new squares, just put your own Ruby gem or script as a method, then add it to the core... of the cube.
 
-### Logs
+Logs
+---------
 
 Because he is 'reading' everything, just the output of responses are shown through console. It's something like this:
 ```
@@ -99,11 +109,13 @@ channel=XXXXXX, client_msg_id=XXXXXXX-XXXX, event_ts=XXXXXX.XXXX, team=XXXXXX, t
 
 This is helpful when you are wondering where "everything collapsed".
 
-### Testing 
+Testing
+---------
 
 We want to, we are trying. Currently we can force the testing of cases in a specified channel, it's hilarious.
 
-### Docker
+Docker
+---------
 
 Run a container with enerbot just to be popular.
 
@@ -114,25 +126,12 @@ docker run -e SLACK_API="YOUR-TOKEN-XX-XX-XXX" -e SLACK_ADMINS="XXXXXX" -e SLACK
 
 Alternative you can just put your credentials on the makefile and the run `make deploy`
 
-
-### SSH
-
-Is intended to execute define commands in a remote host or a bastion, still in beta.
-```
-export HOST_SSH=XXXXXX
-export USER_SSH=XXXXXX
-export PASS_SSH=XXXXXX
-```
-
-How to execute a remote command:
-```
-enerssh bot YOUR_COMMAND
-```
-
-## Contributing :heart: 
+Contributing :heart:
+---------
 
 If you have any doubts or you want to see a new feature, please feel free to contact us by open an issue.
 
-## License
+License
+---------
 
 See the [LICENSE](LICENSE) file for license rights and limitations (MIT).
