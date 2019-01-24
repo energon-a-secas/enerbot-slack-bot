@@ -80,9 +80,8 @@ class Enerbot
   end
 
   def self.say(text)
-    if (match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i))
-      [match.captures[2] || match.captures[3], match.captures[5]]
-    end
+    match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i)
+    [match.captures[2] || match.captures[3], match.captures[5]] unless match.nil?
   end
 end
 
