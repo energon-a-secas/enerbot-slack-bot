@@ -6,12 +6,11 @@ require './system'
 class Enerbot
   attr_reader :token, :channel
   extend Admin
-  extend Registry
 
   @bot_icon = ENV['SLACK_ICON']
   @bot_name = ENV['SLACK_NAME']
 
-  def initialize(token: '', channel: ENV['SLACK_LOG_CHANNEL'])
+  def initialize(token: ENV['SLACK_API_TOKEN'], channel: ENV['SLACK_LOG_BOT'])
     @bot_token = token
     @bot_channel = channel
 
@@ -33,19 +32,20 @@ class Enerbot
       chan = data.channel
       text = data.text
 
-      Enerbot.save(data)
-      Enerbot.remember(data)
+      # mem = Memories.new(data)
+      # mem.thread
+      # mem.chat
 
       case text
       when /^enerbot/i then
         client.typing channel: chan
-        Reply.new(data, text)
+        Reply.new(data)
       when /^(enersay|enershut|enerban)/ then
-        Reply.new(data, text)
+        Reply.new(data)
         # when /^enerthread/ then
-        #   Enerbot.message(data, Registry.thread)
+        #   Enerbot.message(data, mem.thread_val.to_s)
         # when /^enerinfo/ then
-        #   Enerbot.message(data, Registry.info)
+        #   Enerbot.message(data, mem.chat_val.to_s)
       end
     end
 
@@ -85,4 +85,4 @@ class Enerbot
   end
 end
 
-Enerbot.new(token: ENV['SLACK_API_TOKEN'])
+Enerbot.new
