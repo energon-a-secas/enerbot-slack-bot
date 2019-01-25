@@ -10,7 +10,7 @@ class Enerbot
   @bot_icon = ENV['SLACK_ICON']
   @bot_name = ENV['SLACK_NAME']
 
-  def initialize(token: ENV['SLACK_API_TOKEN'], channel: ENV['SLACK_LOG_CHANNEL'])
+  def initialize(token: ENV['SLACK_API_TOKEN'], channel: ENV['SLACK_LOG_BOT'])
     @bot_token = token
     @bot_channel = channel
 
