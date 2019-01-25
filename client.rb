@@ -86,3 +86,4 @@ class Enerbot
 end
 
 Enerbot.new(token: ENV['SLACK_API_TOKEN'])
+
