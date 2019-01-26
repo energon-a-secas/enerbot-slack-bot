@@ -84,13 +84,13 @@ class Redirect
   end
 
   def shift
-    see = Redirect
-    if see.boolean?(@admin) && see.boolean?(@super)
+    is = Redirect
+    if is.boolean?(@admin) && is.boolean?(@super)
       Enerbot.message(ADM_LOG, "User <@#{@user}> is trying to do something nasty on <##{@channel2}|#{@channel2}>")
-    elsif see.boolean?@channel
+    elsif is.boolean?@channel
       Enerbot.message(ADM_LOG, "User <@#{@user}> is making me work on <##{@channel2}|#{@channel2}>")
       nil
-    elsif see.boolean?@banned
+    elsif is.boolean?@banned
       Enerbot.message(@channel2, "*User:* <@#{@user}> is banned until i forget it :x:")
     end
   end
@@ -129,7 +129,6 @@ class Reply
       value = Case.bot(data)
       unless value.nil?
         Enerbot.message(data, value) if check.nil?
-        Enerbot.message(data, value) unless check.nil?
       end
     end
   end
