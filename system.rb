@@ -12,20 +12,24 @@ end
 
 # Security checks of permissions and others herbs
 module Validate
-  def worthy?(user)
-    'NOT' if BAN_LIST.include?(user)
-  end
-
   def admin?(user)
-    'COMMON' unless BOT_ADMINS.include?(user)
+    false unless BOT_ADMINS.include?(user)
   end
 
-  def super?(text)
-    'YES' if text =~ /(enersay|enerban|enershut)/
+  def banned?(user)
+    true if BAN_LIST.include?(user)
   end
 
   def channel?(chan)
-    'LOCKED ORIGIN' unless BOT_CHANNELS.include?(chan)
+    false unless BOT_CHANNELS.include?(chan)
+  end
+
+  def super?(text)
+    true if text =~ /(enersay|enerban|enershut)/
+  end
+
+  def boolean?(value)
+    [true, false].include? value
   end
 end
 
@@ -71,27 +75,34 @@ class Redirect
     text = data.text
 
     @user = user
-    @channel = channel
+    @channel2 = channel
 
     @admin = Redirect.admin?(user)
     @channel = Redirect.channel?(channel)
-    @cmd = Redirect.super?(text)
-    @rights = Redirect.worthy?(user)
+    @super = Redirect.super?(text)
+    @banned = Redirect.banned?(user)
   end
 
   def shift
-    if @admin == 'COMMON'
-      Enerbot.message(ADM_LOG, "User <@#{@user}> tried to do something nasty")
-    elsif @channel == 'LOCKED ORIGIN'
-      Enerbot.message(ADM_LOG, "User <@#{@user}> making me work on <##{@channel}|#{@channel}>")
+    see = Redirect
+    if see.boolean?(@admin) && see.boolean?(@super)
+      Enerbot.message(ADM_LOG, "User <@#{@user}> is trying to do something nasty on <##{@channel2}|#{@channel2}>")
+    elsif see.boolean?@channel
+      Enerbot.message(ADM_LOG, "User <@#{@user}> is making me work on <##{@channel2}|#{@channel2}>")
       nil
-    elsif @rights == 'NOT'
-      Enerbot.message(@channel, "*User:* <@#{@user}> is banned until i forget it :x:")
+    elsif see.boolean?@banned
+      Enerbot.message(@channel2, "*User:* <@#{@user}> is banned until i forget it :x:")
     end
   end
 
-  def super
-    @cmd
+  attr_reader :super
+
+  def val
+    p "User: #{@user}"
+    p "Admin: #{@admin}"
+    p "Channel: #{@channel}"
+    p "Super: #{@super}"
+    p "Banned: #{@banned}"
   end
 end
 
@@ -104,7 +115,7 @@ class Reply
     check = validations.shift
     cmd = validations.super
 
-    if cmd == 'YES' && check.nil?
+    if cmd == true && check.nil?
       case text
       when /enerban/
         Enerbot.ban(text)
@@ -117,8 +128,8 @@ class Reply
     else
       value = Case.bot(data)
       unless value.nil?
-        Enerbot.message(ADM_LOG, text) unless check.nil?
         Enerbot.message(data, value) if check.nil?
+        Enerbot.message(data, value) unless check.nil?
       end
     end
   end
