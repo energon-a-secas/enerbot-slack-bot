@@ -46,7 +46,7 @@ class Reply
     validations = Redirect.new(data)
     check = validations.shift
 
-    if SUPER_COMMAND.match?(text) && check.nil?
+    if text =~ /#{ENV['SUPER_COMMAND']}/ && check.nil?
       case text
       when /enerban/
         Enerbot.ban(text)
