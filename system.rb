@@ -1,35 +1,67 @@
 ADM_LOG = ENV['SLACK_LOG_BOT']
 BOT_ADMINS = ENV['SLACK_USERS']
 BOT_CHANNELS = ENV['SLACK_CHANNELS']
-BAN_LIST = ''
+BOT_BAN_LIST = ''
+SUPER_COMMAND = /enersay|enerban|enershut/
+SUPER_USER = ENV['SUPER_USER']
+
 
 # Admin stuff
 module Admin
   def ban(data)
-    BAN_LIST << data unless data =~ /#{ENV['SUPER_USER']}/
+    BOT_BAN_LIST << data unless data =~ /#{ENV['SUPER_USER']}/
   end
 end
 
-# Security checks of permissions and others herbs
-module Validate
-  def admin?(user)
-    false unless BOT_ADMINS.include?(user)
+# Handles all the magical logic for permissions
+class Redirect
+  def initialize(data)
+    @user = data.user
+    @channel = data.channel
+    @command = data.text
+
+    @check_admin = BOT_ADMINS.include?(@user)
+    @check_ban = BOT_BAN_LIST.match?(@user)
+    @check_channel = BOT_CHANNELS.include?(@channel)
+    @check_super = SUPER_COMMAND.match?(@command)
   end
 
-  def banned?(user)
-    true if BAN_LIST.include?(user)
+  def shift
+    if @check_admin == false && @check_super == true
+      Enerbot.message(ADM_LOG, "User <@#{@user}> is trying to do something nasty on <##{@channel}|#{@channel}>")
+    elsif @check_channel == false
+      Enerbot.message(ADM_LOG, "User <@#{@user}> is making me work on <##{@channel}|#{@channel}>")
+      nil
+    elsif @check_ban == true
+      Enerbot.message(@channel, "*User:* <@#{@user}> is banned until i forget it :x:")
+    end
   end
+end
 
-  def channel?(chan)
-    false unless BOT_CHANNELS.include?(chan)
-  end
+# Send message with response if it's valid
+class Reply
+  def initialize(data)
+    text = data.text
 
-  def super?(text)
-    true if text =~ /(enersay|enerban|enershut)/
-  end
+    validations = Redirect.new(data)
+    check = validations.shift
 
-  def boolean?(value)
-    [true, false].include? value
+    if SUPER_COMMAND.match?(text) && check.nil?
+      case text
+      when /enerban/
+        Enerbot.ban(text)
+      when /enershut/
+        Enerbot.message(data, Case.kill(text)) && abort('bye')
+      when /enersay/
+        chan, message = Enerbot.say(text)
+        Enerbot.message(chan, message)
+      end
+    else
+      value = Case.bot(data)
+      unless value.nil?
+        Enerbot.message(data, value) if check.nil?
+      end
+    end
   end
 end
 
@@ -64,72 +96,3 @@ end
 #     @chat_info
 #   end
 # end
-
-# Handles all the magical logic for permissions
-class Redirect
-  extend Validate
-
-  def initialize(data)
-    user = data.user
-    channel = data.channel
-    text = data.text
-
-    @user = user
-    @channel2 = channel
-
-    @admin = Redirect.admin?(user)
-    @channel = Redirect.channel?(channel)
-    @super = Redirect.super?(text)
-    @banned = Redirect.banned?(user)
-  end
-
-  def shift
-    is = Redirect
-    if is.boolean?(@admin) && is.boolean?(@super)
-      Enerbot.message(ADM_LOG, "User <@#{@user}> is trying to do something nasty on <##{@channel2}|#{@channel2}>")
-    elsif is.boolean?@channel
-      Enerbot.message(ADM_LOG, "User <@#{@user}> is making me work on <##{@channel2}|#{@channel2}>")
-      nil
-    elsif is.boolean?@banned
-      Enerbot.message(@channel2, "*User:* <@#{@user}> is banned until i forget it :x:")
-    end
-  end
-
-  attr_reader :super
-
-  def val
-    p "User: #{@user}"
-    p "Admin: #{@admin}"
-    p "Channel: #{@channel}"
-    p "Super: #{@super}"
-    p "Banned: #{@banned}"
-  end
-end
-
-# Send message with response if it's valid
-class Reply
-  def initialize(data)
-    text = data.text
-
-    validations = Redirect.new(data)
-    check = validations.shift
-    cmd = validations.super
-
-    if cmd == true && check.nil?
-      case text
-      when /enerban/
-        Enerbot.ban(text)
-      when /enershut/
-        Enerbot.message(data, Case.kill(text)) && abort('bye')
-      when /enersay/
-        chan, message = Enerbot.say(text)
-        Enerbot.message(chan, message)
-      end
-    else
-      value = Case.bot(data)
-      unless value.nil?
-        Enerbot.message(data, value) if check.nil?
-      end
-    end
-  end
-end
