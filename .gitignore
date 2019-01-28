@@ -3,3 +3,4 @@
 local_env.yml
 .DS_Store
 tmp/
+Gemfile.lock
