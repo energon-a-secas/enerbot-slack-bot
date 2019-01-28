@@ -66,7 +66,7 @@ module Case
       when /random/i
         Rand.value(text)
       when /pr[oó]ximo feriado$/i
-        TimeTo.holiday_count
+        TimeTo.holiday_count(text)
       when /hor[oó]scopo/i
         Pedro.engel(text)
       when /dame n[uú]meros para el kino/i
