@@ -1,7 +1,6 @@
 source 'https://rubygems.org' do
   gem 'async-websocket'
   gem 'credy'
-  gem 'easy_dice'
   gem 'faye-websocket'
   gem 'guru_guru'
   gem 'holidays'
