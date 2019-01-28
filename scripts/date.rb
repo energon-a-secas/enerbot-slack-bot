@@ -44,21 +44,39 @@ module TimeTo
     HEREDOC
   end
 
-  # Based con @victorsanmartin's proximo-feriado.js
-  def self.holiday_count
-    holiday = Holidays.next_holidays(1, %i[cl observed])
-    message = 'No hay feriados :thinking: :scream:'
-    countdown = (holiday[0][:date] - Date.today).to_i
-    if countdown.zero?
-      message = "Hoy es feriado en :chile:, se celebra *#{holiday[0][:name]}* "
-    elsif countdown > 0
-      plural = countdown > 1 ? 's' : ''
-      message = "Próximo feriado en :chile: es en #{countdown} día#{plural} "
-      message += "(#{holiday[0][:date].strftime('%Y-%m-%d')}), se celebra *#{holiday[0][:name]}* "
-    end
-    <<-HEREDOC
+  # Get holidays by country code
+  module TimeTo
+    def self.holiday_count(text)
+      country = ''
+      if (match = text.match(/pr[oó]ximo feriado (.*?)$/i))
+        country = match.captures[0].downcase
+      end
+
+      holiday = begin
+          Holidays.next_holidays(1, [country, :observed])
+                rescue StandardError
+                  nil
+        end
+
+      if holiday.nil?
+        message = "No puedo obtener feriados para *#{country}*"
+      else
+        countdown = (holiday[0][:date] - Date.today).to_i
+        if countdown.zero?
+          message = "Hoy es feriado en :flag-#{country}:, se celebra *\"#{holiday[0][:name]}\"* "
+        elsif countdown > 0
+          plural = countdown > 1 ? 's' : ''
+          message = "Próximo feriado en :flag-#{country}: es en #{countdown} día#{plural} "
+          message += "(#{holiday[0][:date].strftime('%Y-%m-%d')}), se celebra *\"#{holiday[0][:name]}\"* "
+        else
+          message = "No hay feriados para :flag-#{country}: :thinking: :scream:"
+        end
+      end
+
+      <<-HEREDOC
     #{message}
-    HEREDOC
+      HEREDOC
+    end
   end
 
   def self.progress(text, user)
