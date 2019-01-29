@@ -59,7 +59,7 @@ class Reply
     if text =~ /#{ENV['SUPER_COMMAND']}/ && check.nil?
       case text
       when /enerban/
-        Enerbot.ban(text)
+        Reply.session(text)
       when /enershut/
         Enerbot.message(data, Case.kill(text)) && abort('bye')
       when /enersay/
