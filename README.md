@@ -50,7 +50,7 @@ Download the repository.
 git clone https://github.com/energon-a-secas/enerbot-slack.git
 ```
 
-To get all dependencies of the enerbot execute use `bundler install` inside of the repository.
+To get all dependencies of the enerbot execute use `bundle install` inside of the repository.
 
 
 Optional step
