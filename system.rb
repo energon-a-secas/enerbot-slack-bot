@@ -9,6 +9,8 @@ module Admin
 
   def session(user)
     open('black_list.log', 'a') do |f|
+      regex = /(?<=\@).*(?=>)/
+      user = regex.match(user)[0] if user =~ regex
       f.puts "#{user}\n" unless user =~ /#{ENV['SUPER_USER']}/
     end
   end
