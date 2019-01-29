@@ -2,6 +2,7 @@ require 'week_of_month'
 require 'json'
 require 'net/http'
 require 'holidays'
+require 'countries'
 
 # Module for time related scripts
 module TimeTo
