@@ -14,7 +14,7 @@ class Enerbot
     @bot_token = token
     @bot_channel = channel
 
-    File.new('black_list.log', "w")
+    #File.new('black_list.log', "w")
 
     # Slack Token configure
     Slack.configure do |config|
