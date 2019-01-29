@@ -31,7 +31,7 @@ module System
  enerbot <faq>
  enerbot <fuq>
  enerbot <random> <VALUE> <VALUE> <VALUE>
- enerbot <proximo feriado>
+ enerbot <proximo feriado> <ISO COUNTRY CODE>
  enerbot <horoscopo> <SIGNO>
  enerbot <dame numeros para el kino>
  enerbot <resultados kino>

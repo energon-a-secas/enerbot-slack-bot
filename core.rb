@@ -65,7 +65,7 @@ module Case
         Totp.gen(text)
       when /random/i
         Rand.value(text)
-      when /pr[oó]ximo feriado$/i
+      when /pr[oó]ximo feriado /i
         TimeTo.holiday_count(text)
       when /hor[oó]scopo/i
         Pedro.engel(text)
