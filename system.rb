@@ -8,13 +8,13 @@ SUPER_USER = ENV['SUPER_USER']
 module Admin
 
   def session(user)
-    open('demo.log', 'a') do |f|
+    open('black_list.log', 'a') do |f|
       f.puts "#{user}\n" unless user =~ /#{ENV['SUPER_USER']}/
     end
   end
 
   def self.times(data)
-    open('demo.log').grep(/^(#{data})/)
+    open('black_list.log').grep(/^(#{data})/)
   end
 end
 
