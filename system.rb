@@ -1,36 +1,25 @@
 ADM_LOG = ENV['SLACK_LOG_BOT']
 BOT_ADMINS = ENV['SLACK_USERS']
 BOT_CHANNELS = ENV['SLACK_CHANNELS']
-BOT_BAN_LIST = ''.freeze
 SUPER_COMMAND = ENV['SUPER_COMMAND']
 SUPER_USER = ENV['SUPER_USER']
 
 # Admin stuff
 module Admin
-  def ban(data)
-    open('demo.log', 'a') do |f|
-      f.puts "#{data}\n" if data =~ /#{ENV['SUPER_USER']}/
-    end
-  end
 
-  def session(data)
+  def session(user)
     open('demo.log', 'a') do |f|
-      f.puts "-#{data.user}\n"
+      f.puts "#{user}\n" unless user =~ /#{ENV['SUPER_USER']}/
     end
-  end
-
-  def find(data)
-    open('demo.log').grep(/#{data}/)
   end
 
   def self.times(data)
-    open('demo.log').grep(/#{data}/)
+    open('demo.log').grep(/^(#{data})/)
   end
 end
 
 # Handles all the magical logic for permissions
 class Redirect
-  extend Admin
 
   def initialize(data)
     @user = data.user
@@ -38,7 +27,7 @@ class Redirect
     @command = data.text
 
     @check_admin = BOT_ADMINS.include?(@user)
-    @check_ban = Redirect.find("-#{@user}")
+    @check_ban = Admin.times(@user).empty?
     @check_channel = BOT_CHANNELS.include?(@channel)
     @check_super = SUPER_COMMAND.match?(@command)
   end
@@ -60,6 +49,7 @@ class Reply
   extend Admin
   def initialize(data)
     text = data.text
+    user = data.user
 
     validations = Redirect.new(data)
     check = validations.shift
@@ -76,11 +66,11 @@ class Reply
       end
     else
       value = Case.bot(data)
-      Reply.session(data)
+      Reply.session("-#{user}")
+      attempts = Admin.times("-#{user}").size
+      Reply.session(user) if attempts > 4
       unless value.nil?
-        veces = Admin.times("-#{data.user}")
-        p veces
-        Reply.ban(data.user) if veces > 4
+
         Enerbot.message(data, value) if check.nil?
       end
     end
