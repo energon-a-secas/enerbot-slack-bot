@@ -2,6 +2,7 @@ require 'week_of_month'
 require 'json'
 require 'net/http'
 require 'holidays'
+require 'countries'
 
 # Module for time related scripts
 module TimeTo
@@ -47,12 +48,15 @@ module TimeTo
   # Get holidays by country code
   def self.holiday_count(text)
     country = ''
-    if (match = text.match(/pr[oó]ximo feriado (.*?)$/i))
-      country = match.captures[0].downcase
+
+    if (match = text.match(/pr[óo]ximo feriado (.*?)$/i))
+      country = match.captures[0]
     end
 
+    c = ISO3166::Country.find_country_by_name(country)
+
     holiday = begin
-        Holidays.next_holidays(1, [country, :observed])
+        Holidays.next_holidays(1, [c.alpha2.downcase, :observed])
               rescue StandardError
                 nil
       end
@@ -62,18 +66,18 @@ module TimeTo
     else
       countdown = (holiday[0][:date] - Date.today).to_i
       if countdown.zero?
-        message = "Hoy es feriado en :flag-#{country}:, se celebra *\"#{holiday[0][:name]}\"* "
+        message = "Hoy es feriado en :flag-#{c.alpha2.downcase}:, se celebra *\"#{holiday[0][:name]}\"* "
       elsif countdown > 0
         plural = countdown > 1 ? 's' : ''
-        message = "Próximo feriado en :flag-#{country}: es en #{countdown} día#{plural} "
+        message = "Próximo feriado en :flag-#{c.alpha2.downcase}: es en #{countdown} día#{plural} "
         message += "(#{holiday[0][:date].strftime('%Y-%m-%d')}), se celebra *\"#{holiday[0][:name]}\"* "
       else
-        message = "No hay feriados para :flag-#{country}: :thinking: :scream:"
+        message = "No hay feriados para :flag-#{c.alpha2.downcase}: :thinking: :scream:"
       end
     end
 
     <<-HEREDOC
-    #{message}
+#{message}
     HEREDOC
   end
 
