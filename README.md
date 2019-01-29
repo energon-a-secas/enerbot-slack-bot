@@ -1,4 +1,4 @@
-ENERBOT (Slack Slave) <img align="right" width="100" height="100" src="emojis/energon.png">
+ENERBOT (Slack Slave) <img align="right" width="100" height="100" src="emojis/enerbot.png">
 ========
 - Website: https://www.energon.cloud
 
