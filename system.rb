@@ -1,27 +1,33 @@
 ADM_LOG = ENV['SLACK_LOG_BOT']
 BOT_ADMINS = ENV['SLACK_USERS']
 BOT_CHANNELS = ENV['SLACK_CHANNELS']
-BOT_BAN_LIST = ''
 SUPER_COMMAND = ENV['SUPER_COMMAND']
 SUPER_USER = ENV['SUPER_USER']
 
-
 # Admin stuff
 module Admin
-  def ban(data)
-    BOT_BAN_LIST << data unless data =~ /#{ENV['SUPER_USER']}/
+
+  def session(user)
+    open('black_list.log', 'a') do |f|
+      f.puts "#{user}\n" unless user =~ /#{ENV['SUPER_USER']}/
+    end
+  end
+
+  def self.times(data)
+    open('black_list.log').grep(/^(#{data})/)
   end
 end
 
 # Handles all the magical logic for permissions
 class Redirect
+
   def initialize(data)
     @user = data.user
     @channel = data.channel
     @command = data.text
 
     @check_admin = BOT_ADMINS.include?(@user)
-    @check_ban = BOT_BAN_LIST.match?(@user)
+    @check_ban = Admin.times(@user).empty?
     @check_channel = BOT_CHANNELS.include?(@channel)
     @check_super = SUPER_COMMAND.match?(@command)
   end
@@ -29,19 +35,21 @@ class Redirect
   def shift
     if @check_admin == false && @check_super == true
       Enerbot.message(ADM_LOG, "User <@#{@user}> is trying to do something nasty on <##{@channel}|#{@channel}>")
+    elsif @check_ban == false
+      Enerbot.message(@channel, "*User:* <@#{@user}> is banned until i forget it :x:")
     elsif @check_channel == false
       Enerbot.message(ADM_LOG, "User <@#{@user}> is making me work on <##{@channel}|#{@channel}>")
       nil
-    elsif @check_ban == true
-      Enerbot.message(@channel, "*User:* <@#{@user}> is banned until i forget it :x:")
     end
   end
 end
 
 # Send message with response if it's valid
 class Reply
+  extend Admin
   def initialize(data)
     text = data.text
+    user = data.user
 
     validations = Redirect.new(data)
     check = validations.shift
@@ -58,12 +66,18 @@ class Reply
       end
     else
       value = Case.bot(data)
+      Reply.session("-#{user}")
+      attempts = Admin.times("-#{user}").size
+      Reply.session(user) if attempts > 4
       unless value.nil?
+
         Enerbot.message(data, value) if check.nil?
       end
     end
   end
 end
+
+
 
 # # Persona music live
 # class Memories
