@@ -32,12 +32,12 @@ class Redirect
     @check_admin = BOT_ADMINS.include?(@user)
     @check_ban = Admin.times(@user).empty?
     @check_channel = BOT_CHANNELS.include?(@channel)
-    @check_super = SUPER_COMMAND.match?(@command)
+    @check_super = /enersay|enerban|enershut/.match?(@command)
   end
 
   def shift
     if @check_admin == false && @check_super == true
-      Redirect.session(@user) if @command.include?('enerban')
+      Redirect.session(@user) if @command =~ /enerban/
       Enerbot.message(ADM_LOG, "User <@#{@user}> is trying to do something nasty on <##{@channel}|#{@channel}>")
     elsif @check_ban == false
       Enerbot.message(@channel, "*User:* <@#{@user}> is banned until i forget it :x:")
