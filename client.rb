@@ -42,7 +42,7 @@ class Enerbot
       when /^enerbot/i then
         client.typing channel: chan
         Reply.new(data)
-      when /^(enersay|enershut|enerban)/ then
+      when /^(enersay|enershut|enerrest|enerban)/ then
         Reply.new(data)
         # when /^enerthread/ then
         #   Enerbot.message(data, mem.thread_val.to_s)

@@ -18,6 +18,20 @@ module Admin
   def self.times(data)
     open('black_list.log').grep(/^(#{data})/)
   end
+
+  def reset(user)
+    regex = /(?<=\@).*(?=>)/
+    user = regex.match(user)[0] if user =~ regex
+    p user
+    open('black_list.log') do |file|
+      var = ''
+      file.each_line do |line|
+        var += line.gsub(user, 'CENSORED')
+        p var
+      end
+      open('black_list.log', 'w') { |file| file.puts var }
+    end
+  end
 end
 
 # Handles all the magical logic for permissions
@@ -32,7 +46,7 @@ class Redirect
     @check_admin = BOT_ADMINS.include?(@user)
     @check_ban = Admin.times(@user).empty?
     @check_channel = BOT_CHANNELS.include?(@channel)
-    @check_super = /enersay|enerban|enershut/.match?(@command)
+    @check_super = /enersay|enerban|enerrest|enershut/.match?(@command)
   end
 
   def shift
@@ -62,6 +76,8 @@ class Reply
       case text
       when /enerban/
         Reply.session(text)
+      when /enerrest/
+        Reply.reset(text)
       when /enershut/
         Enerbot.message(data, Case.kill(text)) && abort('bye')
       when /enersay/
