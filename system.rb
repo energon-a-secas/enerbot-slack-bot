@@ -22,6 +22,7 @@ end
 
 # Handles all the magical logic for permissions
 class Redirect
+  extend Admin
 
   def initialize(data)
     @user = data.user
@@ -36,6 +37,7 @@ class Redirect
 
   def shift
     if @check_admin == false && @check_super == true
+      Redirect.session(@user) if @command.include?('enerban')
       Enerbot.message(ADM_LOG, "User <@#{@user}> is trying to do something nasty on <##{@channel}|#{@channel}>")
     elsif @check_ban == false
       Enerbot.message(@channel, "*User:* <@#{@user}> is banned until i forget it :x:")
