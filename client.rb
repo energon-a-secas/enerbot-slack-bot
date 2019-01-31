@@ -14,7 +14,7 @@ class Enerbot
     @bot_token = token
     @bot_channel = channel
 
-    File.new('black_list.log', "w")
+    File.new('black_list.log', 'w')
 
     # Slack Token configure
     Slack.configure do |config|
@@ -56,7 +56,6 @@ class Enerbot
 
   def self.message(data, text, attach = '')
     puts data
-    thread = data.ts if data.to_s.include?('thread_ts')
 
     find = if attach != ''
              json_file = File.read("./Info/#{text}")
@@ -66,11 +65,22 @@ class Enerbot
              []
            end
 
-    channel = if data.respond_to? :channel
-                data.channel
-              else
-                data
-              end
+    channel, ts = if data.respond_to? :channel
+                    [data.channel, '']
+                  else
+                    check = data.match(/(.*):(\d*.\d*)/)
+                    if check
+                      [check[1], check[2]]
+                    else
+                      [data, '']
+                    end
+                  end
+
+    thread = if data.to_s.include?('thread_ts')
+               data.ts
+             elsif !ts.empty?
+               ts
+             end
 
     client = Slack::RealTime::Client.new
     client.web_client.chat_postMessage channel: channel,
