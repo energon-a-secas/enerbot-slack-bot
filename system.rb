@@ -6,7 +6,6 @@ SUPER_USER = ENV['SUPER_USER']
 
 # Admin stuff
 module Admin
-
   def session(user)
     open('black_list.log', 'a') do |f|
       regex = /(?<=\@).*(?=>)/
@@ -81,7 +80,11 @@ class Reply
       when /enershut/
         Enerbot.message(data, Case.kill(text)) && abort('bye')
       when /enersay/
-        chan, message = Enerbot.say(text)
+        match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i)
+        unless match.nil?
+          chan = match.captures[2] || match.captures[3]
+          message = match.captures[5]
+        end
         Enerbot.message(chan, message)
       end
     else

@@ -80,11 +80,6 @@ class Enerbot
                                        thread_ts: thread,
                                        attachments: find
   end
-
-  def self.say(text)
-    match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i)
-    [match.captures[2] || match.captures[3], match.captures[5]] unless match.nil?
-  end
 end
 
 Enerbot.new
