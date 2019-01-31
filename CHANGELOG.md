@@ -7,7 +7,7 @@ FEATURES:
 
 ENHANCEMENTS:
 
-  * New structure for enerbot, `core.rb` sustain all scripts, `system.rb` regulates validations and responses, as for the client.rb`, ìt runs the Slack client and handles how to send the messages.  (#*)
+  * New structure for enerbot, `core.rb` sustain all scripts, `system.rb` regulates validations and responses, as for the `client.rb`, ìt runs the Slack client and handles how to send the messages.  (#*)
 
 BUG FIXES:
 
@@ -33,8 +33,8 @@ FEATURES:
 ENHANCEMENTS:
 
   * Restructured enerbot's core  (#Ener-00)
-`
+
 BUG FIXES:
 
   * Method enersay not working as expected (#Ener-00)
-  * Case that shut downs the bot  (#Ener-00)`
+  * Case that shut downs the bot  (#Ener-00)
