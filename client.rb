@@ -34,20 +34,10 @@ class Enerbot
       chan = data.channel
       text = data.text
 
-      # mem = Memories.new(data)
-      # mem.thread
-      # mem.chat
-
       case text
-      when /^enerbot/i then
+      when /^(ener[brs])/i then
         client.typing channel: chan
         Reply.new(data)
-      when /^(enersay|enershut|enerrest|enerban)/ then
-        Reply.new(data)
-        # when /^enerthread/ then
-        #   Enerbot.message(data, mem.thread_val.to_s)
-        # when /^enerinfo/ then
-        #   Enerbot.message(data, mem.chat_val.to_s)
       end
     end
 
@@ -89,11 +79,6 @@ class Enerbot
                                        username: @bot_name,
                                        thread_ts: thread,
                                        attachments: find
-  end
-
-  def self.say(text)
-    match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i)
-    [match.captures[2] || match.captures[3], match.captures[5]] unless match.nil?
   end
 end
 

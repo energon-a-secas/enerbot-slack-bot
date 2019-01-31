@@ -6,8 +6,7 @@ SUPER_USER = ENV['SUPER_USER']
 
 # Admin stuff
 module Admin
-
-  def session(user)
+  def remember(user)
     open('black_list.log', 'a') do |f|
       regex = /(?<=\@).*(?=>)/
       user = regex.match(user)[0] if user =~ regex
@@ -19,7 +18,7 @@ module Admin
     open('black_list.log').grep(/^(#{data})/)
   end
 
-  def reset(user)
+  def forget(user)
     regex = /(?<=\@).*(?=>)/
     user = regex.match(user)[0] if user =~ regex
     p user
@@ -51,7 +50,7 @@ class Redirect
 
   def shift
     if @check_admin == false && @check_super == true
-      Redirect.session(@user) if @command =~ /enerban/
+      Redirect.remember(@user) if @command =~ /enerban/
       Enerbot.message(ADM_LOG, "User <@#{@user}> is trying to do something nasty on <##{@channel}|#{@channel}>")
     elsif @check_ban == false
       Enerbot.message(@channel, "*User:* <@#{@user}> is banned until i forget it :x:")
@@ -65,6 +64,7 @@ end
 # Send message with response if it's valid
 class Reply
   extend Admin
+
   def initialize(data)
     text = data.text
     user = data.user
@@ -75,20 +75,24 @@ class Reply
     if text =~ /#{ENV['SUPER_COMMAND']}/ && check.nil?
       case text
       when /enerban/
-        Reply.session(text)
+        Reply.remember(text)
       when /enerrest/
-        Reply.reset(text)
+        Reply.forget(text)
       when /enershut/
         Enerbot.message(data, Case.kill(text)) && abort('bye')
       when /enersay/
-        chan, message = Enerbot.say(text)
+        match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i)
+        unless match.nil?
+          chan = match.captures[2] || match.captures[3]
+          message = match.captures[5]
+        end
         Enerbot.message(chan, message)
       end
     else
       value = Case.bot(data)
-      Reply.session("-#{user}")
+      Reply.remember("-#{user}")
       attempts = Admin.times("-#{user}").size
-      Reply.session(user) if attempts > 4
+      Reply.remember(user) if attempts > 4
       unless value.nil?
 
         Enerbot.message(data, value) if check.nil?
@@ -96,37 +100,3 @@ class Reply
     end
   end
 end
-
-
-
-# # Persona music live
-# class Memories
-#   @chat_info = "*CHAT:*\n"
-#   @thread_info = "*THREADS:*\n"
-#
-#   hola = []
-#   def initialize(data)
-#     @user = data.user
-#     @chan = data.channel
-#     @text = data.text
-#     @thread = data.thread_ts
-#   end
-#
-#   def thread
-#     info = "*Channel:* #{@chan}, *Thread:* #{@thread}, *User:* <@#{@user}>, *Text:* #{@text}\n"
-#     @thread_info += info unless @thread.nil? && @user != 'enerbot' && !@text.to_s.match(/(enerbot|enerinfo)/)
-#   end
-#
-#   def chat
-#     info = "*Channel:* #{@chan}, *User:* <@#{@user}>, *Text:* #{@text}\n"
-#     @chat_info += info unless @user != 'enerbot' && !@text.to_s.match(/(enerbot|enerthread)/)
-#   end
-#
-#   def thread_val
-#     @thread_info
-#   end
-#
-#   def chat_val
-#     @chat_info
-#   end
-# end
