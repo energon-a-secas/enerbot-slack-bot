@@ -34,10 +34,6 @@ class Enerbot
       chan = data.channel
       text = data.text
 
-      # mem = Memories.new(data)
-      # mem.thread
-      # mem.chat
-
       case text
       when /^(ener[brs])/i then
         client.typing channel: chan
