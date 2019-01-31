@@ -39,15 +39,9 @@ class Enerbot
       # mem.chat
 
       case text
-      when /^enerbot/i then
+      when /^(ener[brs])/i then
         client.typing channel: chan
         Reply.new(data)
-      when /^(enersay|enershut|enerrest|enerban)/ then
-        Reply.new(data)
-        # when /^enerthread/ then
-        #   Enerbot.message(data, mem.thread_val.to_s)
-        # when /^enerinfo/ then
-        #   Enerbot.message(data, mem.chat_val.to_s)
       end
     end
 

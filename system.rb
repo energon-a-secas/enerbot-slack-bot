@@ -96,37 +96,3 @@ class Reply
     end
   end
 end
-
-
-
-# # Persona music live
-# class Memories
-#   @chat_info = "*CHAT:*\n"
-#   @thread_info = "*THREADS:*\n"
-#
-#   hola = []
-#   def initialize(data)
-#     @user = data.user
-#     @chan = data.channel
-#     @text = data.text
-#     @thread = data.thread_ts
-#   end
-#
-#   def thread
-#     info = "*Channel:* #{@chan}, *Thread:* #{@thread}, *User:* <@#{@user}>, *Text:* #{@text}\n"
-#     @thread_info += info unless @thread.nil? && @user != 'enerbot' && !@text.to_s.match(/(enerbot|enerinfo)/)
-#   end
-#
-#   def chat
-#     info = "*Channel:* #{@chan}, *User:* <@#{@user}>, *Text:* #{@text}\n"
-#     @chat_info += info unless @user != 'enerbot' && !@text.to_s.match(/(enerbot|enerthread)/)
-#   end
-#
-#   def thread_val
-#     @thread_info
-#   end
-#
-#   def chat_val
-#     @chat_info
-#   end
-# end
