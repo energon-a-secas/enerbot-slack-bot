@@ -6,7 +6,7 @@ SUPER_USER = ENV['SUPER_USER']
 
 # Admin stuff
 module Admin
-  def session(user)
+  def remember(user)
     open('black_list.log', 'a') do |f|
       regex = /(?<=\@).*(?=>)/
       user = regex.match(user)[0] if user =~ regex
@@ -18,7 +18,7 @@ module Admin
     open('black_list.log').grep(/^(#{data})/)
   end
 
-  def reset(user)
+  def forget(user)
     regex = /(?<=\@).*(?=>)/
     user = regex.match(user)[0] if user =~ regex
     p user
@@ -50,7 +50,7 @@ class Redirect
 
   def shift
     if @check_admin == false && @check_super == true
-      Redirect.session(@user) if @command =~ /enerban/
+      Redirect.remember(@user) if @command =~ /enerban/
       Enerbot.message(ADM_LOG, "User <@#{@user}> is trying to do something nasty on <##{@channel}|#{@channel}>")
     elsif @check_ban == false
       Enerbot.message(@channel, "*User:* <@#{@user}> is banned until i forget it :x:")
@@ -64,6 +64,7 @@ end
 # Send message with response if it's valid
 class Reply
   extend Admin
+
   def initialize(data)
     text = data.text
     user = data.user
@@ -74,9 +75,9 @@ class Reply
     if text =~ /#{ENV['SUPER_COMMAND']}/ && check.nil?
       case text
       when /enerban/
-        Reply.session(text)
+        Reply.remember(text)
       when /enerrest/
-        Reply.reset(text)
+        Reply.forget(text)
       when /enershut/
         Enerbot.message(data, Case.kill(text)) && abort('bye')
       when /enersay/
@@ -89,9 +90,9 @@ class Reply
       end
     else
       value = Case.bot(data)
-      Reply.session("-#{user}")
+      Reply.remember("-#{user}")
       attempts = Admin.times("-#{user}").size
-      Reply.session(user) if attempts > 4
+      Reply.remember(user) if attempts > 4
       unless value.nil?
 
         Enerbot.message(data, value) if check.nil?
