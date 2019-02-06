@@ -120,7 +120,7 @@ module Case
         TimeTo.progress(text, user)
       when / roll /i
         Roleo.dados(text)
-      when / fortune cookie /i
+      when /fortune cookie$/i
         Fortune.cookie(user)
       end
     end
