@@ -27,6 +27,7 @@ require './scripts/fire'
 require './scripts/acme'
 require './scripts/chimuelo'
 require './scripts/dice'
+require './scripts/fortune'
 
 # If you find yourself in a hole, stop digging
 module Case
@@ -119,6 +120,8 @@ module Case
         TimeTo.progress(text, user)
       when / roll /i
         Roleo.dados(text)
+      when / roll /i
+        Fortune.cookie
       end
     end
   end
