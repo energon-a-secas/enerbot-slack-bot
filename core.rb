@@ -121,7 +121,7 @@ module Case
       when / roll /i
         Roleo.dados(text)
       when / fortune cookie /i
-        Fortune.cookie
+        Fortune.cookie(user)
       end
     end
   end
