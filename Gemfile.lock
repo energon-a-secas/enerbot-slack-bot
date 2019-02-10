@@ -8,14 +8,16 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
+    ast (2.4.0)
     async (1.15.1)
       nio4r (~> 2.3)
       timers (~> 4.1)
     async-io (1.18.2)
       async (~> 1.14)
-    async-websocket (0.6.1)
+    async-websocket (0.7.0)
       async-io
       websocket-driver (~> 0.7.0)
+    coderay (1.1.2)
     concurrent-ruby (1.1.4)
     countries (3.0.0)
       i18n_data (~> 0.8.0)
@@ -28,7 +30,7 @@ GEM
     eventmachine (1.2.7)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.13.0)
+    faraday_middleware (0.13.1)
       faraday (>= 0.7.4, < 1.0)
     faye-websocket (0.10.7)
       eventmachine (>= 0.12.0)
@@ -36,13 +38,15 @@ GEM
     gli (2.18.0)
     guru_guru (0.0.4)
     hashie (3.6.0)
-    holidays (7.0.0)
+    holidays (7.1.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.5.3)
       concurrent-ruby (~> 1.0)
     i18n_data (0.8.0)
+    jaro_winkler (1.5.2)
     json (2.1.0)
+    method_source (0.9.2)
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
@@ -50,19 +54,35 @@ GEM
     minitest (5.11.3)
     multipart-post (2.0.0)
     net-dns (0.9.0)
-    net-ssh (5.1.0)
     netrc (0.11.0)
     nio4r (2.3.1)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
+    parallel (1.13.0)
+    parser (2.6.0.0)
+      ast (~> 2.4.0)
     passgen (1.0.2)
+    powerpack (0.1.2)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     public_suffix (3.0.3)
+    rainbow (3.0.0)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rotp (4.0.2)
       addressable (~> 2.5)
+    rubocop (0.64.0)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.5, != 2.5.1.1)
+      powerpack (~> 0.1)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (~> 1.4.0)
+    ruby-progressbar (1.10.0)
     rubysl-open-uri (2.0.0)
     shorturl (1.0.0)
     sixarm_ruby_unaccent (1.2.0)
@@ -84,6 +104,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
+    unicode-display_width (1.4.1)
     unicode_utils (1.4.0)
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
@@ -105,10 +126,11 @@ DEPENDENCIES
   guru_guru!
   holidays!
   net-dns!
-  net-ssh!
   nokogiri!
   passgen!
+  pry!
   rotp!
+  rubocop!
   rubysl-open-uri!
   shorturl!
   slack-ruby-client!
@@ -117,4 +139,4 @@ DEPENDENCIES
   whois-parser!
 
 BUNDLED WITH
-   1.17.1
+   1.16.5
