@@ -4,7 +4,7 @@ WORKDIR /enerbot
 COPY . /enerbot
 RUN apk --update add --virtual build-dependencies ruby-dev build-base && \
     gem install bundler --no-ri --no-rdoc && \
-    cd /enerbot ; bundle install --without development test && \
+    bundle install --without development test && \
     apk del build-dependencies
 
 CMD [ "ruby", "client.rb" ]
