@@ -92,7 +92,7 @@ Alternative you can just put your credentials on the makefile and the run `make 
 Docker Compose  
 ---------
 
-In this scenario `docker-compose` can provide the variables to the container using the `.env` file. Your file should look something like this:
+In this scenario `docker-compose` will provide the variables to the container using the `.env` file. It should look something like this:
 
 ```
 SLACK_API_TOKEN=xoxb-123123-asedereje-persona
