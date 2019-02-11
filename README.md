@@ -89,6 +89,34 @@ docker run -e SLACK_API="YOUR-TOKEN-XX-XX-XXX" -e SLACK_ADMINS="XXXXXX" -e SLACK
 
 Alternative you can just put your credentials on the makefile and the run `make deploy`
 
+Docker Compose  
+---------
+
+Instead of passing all variables using `make deploy` you can create an `.env` file with the following content:
+
+```
+SLACK_API_TOKEN=xoxb-123123-asedereje-persona
+SLACK_NAME=COMPOSE-ENERBOT
+SLACK_ICON=
+SLACK_USERS=
+SLACK_CHANNELS=
+SLACK_LOG_BOT=
+```
+
+In this scenario `docker-compose`  will provide the variables to the container. To build the image, you need to run:
+
+```
+docker-compose build enerbot
+```
+
+At Energon, we highly recommend to run without the detach mode for debug purposes.
+ 
+```
+docker-compose up enerbot
+```
+
+But if you instead run the container with the detach mode, you can use `docker-compose logs -f -t enerbot` to get the logs from the container.
+
 Contributing :heart:
 ---------
 
