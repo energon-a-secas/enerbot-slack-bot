@@ -115,7 +115,6 @@ At Energon, we highly recommend to run without the detach mode for debug purpose
 docker-compose up enerbot
 ```
 
-
 But if you instead run the container with the detach mode, you can use `docker-compose logs -f -t enerbot` to get the logs from the container.
 
 Contributing :heart:
