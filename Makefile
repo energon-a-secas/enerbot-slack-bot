@@ -18,6 +18,15 @@ clean:
 	@docker rmi -f $(NAME):$(VERSION)
 	@docker rmi -f $(NAME):latest
 
+compose:
+	@docker-compose build enerbot
+
+compose-run:
+	@docker-compose up -d enerbot
+
+compose-logs:
+	@docker-compose logs -f -t enerbot
+
 init:
 	@bundle check
 
