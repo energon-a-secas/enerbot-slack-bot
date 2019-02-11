@@ -92,7 +92,7 @@ Alternative you can just put your credentials on the makefile and the run `make 
 Docker Compose  
 ---------
 
-Instead of passing all variables using `make deploy` you can create an `.env` file with the following content:
+In this scenario `docker-compose` can provide the variables to the container using the `.env` file. Your file should look something like this:
 
 ```
 SLACK_API_TOKEN=xoxb-123123-asedereje-persona
@@ -103,7 +103,7 @@ SLACK_CHANNELS=
 SLACK_LOG_BOT=
 ```
 
-In this scenario `docker-compose`  will provide the variables to the container. To build the image, you need to run:
+To build the image, you need to run:
 
 ```
 docker-compose build enerbot
