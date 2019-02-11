@@ -2,7 +2,7 @@ ENERBOT (Slack Slave) <img align="right" width="100" height="100" src="emojis/en
 ========
 - Website: https://www.energon.cloud
 
-![This software is Blessed](https://img.shields.io/badge/blessed-100%25-770493.svg) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/91233140cec64adfb067adc959db3826)](https://www.codacy.com/app/LucianoAdonis/enerbot-slack?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=energonrocks/enerbot-slack&amp;utm_campaign=Badge_Grade)
+![This software is Blessed](https://img.shields.io/badge/blessed-100%25-770493.svg) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2487fbd65bf14d5b84973fb2a22c7035)](https://www.codacy.com/app/LucianoAdonis/enerbot-slack_2?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=energon-a-secas/enerbot-slack&amp;utm_campaign=Badge_Grade)
 
 Based on the bototo3000, a strong independent bot that is written on Ruby and only uses the Slack Ruby Client to look cooler. Is design for small talks and AGILE teams.
 
