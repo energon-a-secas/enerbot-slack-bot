@@ -73,12 +73,23 @@ class Enerbot
              end
 
     client = Slack::RealTime::Client.new
-    client.web_client.chat_postMessage channel: channel,
-                                       text: text,
-                                       icon_url: @bot_icon,
-                                       username: @bot_name,
-                                       thread_ts: thread,
-                                       attachments: find
+    web_client = Slack::Web::Client.new
+
+    if text =~ /(mcafee|partyenergon|homero)/
+      web_client.reactions_add channel: channel,
+                               name: text,
+                               icon_url: @bot_icon,
+                               username: @bot_name,
+                               timestamp: thread
+
+    else
+      client.web_client.chat_postMessage channel: channel,
+                                         text: text,
+                                         icon_url: @bot_icon,
+                                         username: @bot_name,
+                                         attachments: find
+
+    end
   end
 end
 
