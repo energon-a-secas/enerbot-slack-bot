@@ -15,7 +15,7 @@ module System
     <<-HEREDOC
 >>>Whatever you do *never feed it after midnight*
  Avalaible Commands:
-``` enerbot <hola>
+``` enerbot <hola | holi>
  enerbot <va | estas>
  enerbot <consejo | pregunta> <TEXTO>
  enerbot <beneficio>
@@ -61,7 +61,8 @@ module System
  enerbot <santo sepulcro a> <DESTINATARIO>
  enerbot <días atraso feature> <daily>
  enerbot <roll> <cantidad de dados> <numero de caras>
- enerbot <fortune cookie>```
+ enerbot <fortune cookie>
+ enerbot <dame amor>```
 
     HEREDOC
   end
