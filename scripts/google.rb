@@ -37,7 +37,7 @@ module Google
     result = JSON.parse(response.body)
 
     message = "URL #{host} seems clean"
-    if result
+    unless result.empty?
       message = "Oh-oh... #{host} has some threats:\n"
       result['matches'].each do |match|
         message += "\tThreat type: #{match['threatType']} - Platform: #{match['platformType']}\n"
