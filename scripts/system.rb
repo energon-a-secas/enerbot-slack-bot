@@ -62,7 +62,8 @@ module System
  enerbot <días atraso feature> <daily>
  enerbot <roll> <cantidad de dados> <numero de caras>
  enerbot <fortune cookie>
- enerbot <dame amor>```
+ enerbot <dame amor>
+ enerbot <safe browsing> <URL>```
 
     HEREDOC
   end
