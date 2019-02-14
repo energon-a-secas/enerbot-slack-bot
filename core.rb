@@ -40,6 +40,8 @@ module Case
       case text
       when /\s(hello|hola)$/i
         '¡Hola!'
+      when /\s(holi)$/i
+        '¡Holi! :middle_enerbot:'
       when /(help|ayuda)/i
         System.help
       when /(c[oó]mo est[aá]s)/i
@@ -122,6 +124,8 @@ module Case
         Roleo.dados(text)
       when /fortune cookie$/i
         Fortune.cookie(user)
+      when /dame amor$/i
+        ':tinder:'
       end
     end
   end
