@@ -1,7 +1,10 @@
 # Module that generates love for the people
 module Love
   def self.me
-    if Date.today != '14-02'
+    require 'date'
+    current_time = DateTime.now
+    today = current_time.strftime "%d/%m" # => "14/02"
+    if today != "14/02"
       [
         'Hoy no es el día que te toca :badjoke:',
         'Para ti hoy no, intenta de nuevo el 31 de Octubre :ghost:',
