@@ -28,6 +28,7 @@ require './scripts/acme'
 require './scripts/chimuelo'
 require './scripts/dice'
 require './scripts/fortune'
+require './scripts/google'
 
 # If you find yourself in a hole, stop digging
 module Case
@@ -126,6 +127,8 @@ module Case
         Fortune.cookie(user)
       when /dame amor$/i
         ':tinder:'
+      when / safe browsing /i
+        Google.safebrowsing(text)
       end
     end
   end
