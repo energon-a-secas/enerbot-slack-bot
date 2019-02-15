@@ -29,6 +29,7 @@ require './scripts/chimuelo'
 require './scripts/dice'
 require './scripts/fortune'
 require './scripts/google'
+require './scripts/love'
 
 # If you find yourself in a hole, stop digging
 module Case
@@ -126,7 +127,7 @@ module Case
       when /fortune cookie$/i
         Fortune.cookie(user)
       when /dame amor$/i
-        ':tinder:'
+        Love.me
       when / safe browsing /i
         Google.safebrowsing(text)
       end
