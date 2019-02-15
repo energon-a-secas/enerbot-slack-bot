@@ -120,8 +120,8 @@ module Case
         Acme.catalog
       when /santo sepulcro a/i
         Chimuelo.song(text, user)
-      when /d[ií]as atraso feature/i
-        TimeTo.progress(text, user)
+      when /daily/i
+        Quote.daily
       when / roll /i
         Roleo.dados(text)
       when /fortune cookie$/i
