@@ -66,7 +66,7 @@ class Enerbot
                     end
                   end
 
-    thread = if data.to_s.include?('thread_ts')
+    thread = if data.respond_to? :thread_ts
                data.ts
              elsif !ts.empty?
                ts
@@ -87,6 +87,7 @@ class Enerbot
                                          text: text,
                                          icon_url: @bot_icon,
                                          username: @bot_name,
+                                         thread_ts: thread,
                                          attachments: find
 
     end
