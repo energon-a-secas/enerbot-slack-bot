@@ -2,6 +2,22 @@ require 'slack-ruby-client'
 require './core'
 require './system'
 
+# Slack Configuration
+class EnerSet
+  def initialize
+    @bot_token = ENV['SLACK_API_TOKEN']
+    @bot_channel = ENV['SLACK_LOG_BOT']
+
+    File.new('black_list.log', 'w')
+
+    # Slack Token configure
+    Slack.configure do |config|
+      config.token = @bot_token
+      config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
+    end
+  end
+end
+
 # Spell check
 class EnerCheck
   def self.attach_check(text, attach)
@@ -37,7 +53,6 @@ end
 
 # The Magician
 class Enerbot < EnerCheck
-  attr_reader :token, :channel
   extend Admin
 
   @bot_icon = ENV['SLACK_ICON']
@@ -45,21 +60,9 @@ class Enerbot < EnerCheck
   @real_client = Slack::RealTime::Client
   @web_client = Slack::Web::Client
 
-  def initialize(token: ENV['SLACK_API_TOKEN'], channel: ENV['SLACK_LOG_BOT'])
-    @bot_token = token
-    @bot_channel = channel
-
-    File.new('black_list.log', 'w')
-
-    # Slack Token configure
-    Slack.configure do |config|
-      config.token = @bot_token
-      config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
-    end
-  end
+  EnerSet.new
 
   def self.think
-    Enerbot.new
     client = @real_client.new
 
     # Listen to new messages
