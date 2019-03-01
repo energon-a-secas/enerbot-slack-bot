@@ -2,8 +2,39 @@ require 'slack-ruby-client'
 require './core'
 require './system'
 
+# Checker
+class EnerReader
+  def self.attach_check(text, attach)
+    if attach != ''
+      json_file = File.read("./Info/#{text}")
+      JSON.parse(json_file)[attach]
+    end
+  end
+
+  def self.target_check(data)
+    if data.respond_to? :channel
+      [data.channel, '']
+    else
+      check = data.match(/(.*):(\d*.\d*)/)
+      if check
+        [check[1], check[2]]
+      else
+        [data, '']
+      end
+    end
+  end
+
+  def self.thread_check(data, ts)
+    if data.respond_to? :thread_ts
+      data.ts
+    elsif !ts.empty?
+      ts
+    end
+  end
+end
+
 # Future wave Gem
-class Enerbot
+class Enerbot < EnerReader
   attr_reader :token, :channel
   extend Admin
 
@@ -47,40 +78,21 @@ class Enerbot
   def self.message(data, text, attach = '')
     puts data
 
-    find = if attach != ''
-             json_file = File.read("./Info/#{text}")
-             text = ':energon_enterprise:'
-             JSON.parse(json_file)[attach]
-           else
-             []
-           end
+    find = Enerbot.attach_check(text, attach)
 
-    channel, ts = if data.respond_to? :channel
-                    [data.channel, '']
-                  else
-                    check = data.match(/(.*):(\d*.\d*)/)
-                    if check
-                      [check[1], check[2]]
-                    else
-                      [data, '']
-                    end
-                  end
+    channel, ts = Enerbot.target_check(data)
 
-    thread = if data.respond_to? :thread_ts
-               data.ts
-             elsif !ts.empty?
-               ts
-             end
+    thread = Enerbot.thread_check(data, ts)
 
     client = Slack::RealTime::Client.new
     web_client = Slack::Web::Client.new
 
     if text =~ /(mcafee|partyenergon|homero)/
-      web_client.reactions_add channel: channel,
-                               name: text,
-                               icon_url: @bot_icon,
-                               username: @bot_name,
-                               timestamp: thread
+      web_client.reactions_add var channel: channel,
+                                   name: text,
+                                   icon_url: @bot_icon,
+                                   username: @bot_name,
+                                   timestamp: thread
 
     else
       client.web_client.chat_postMessage channel: channel,
