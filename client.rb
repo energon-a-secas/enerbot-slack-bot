@@ -20,6 +20,7 @@ end
 
 # Spell check
 class EnerCheck
+
   def self.attach_check(text, attach)
     if attach != ''
       json_file = File.read("./Info/#{text}")
@@ -55,17 +56,15 @@ end
 class Enerbot < EnerCheck
   extend Admin
 
+  EnerSet.new
   @bot_icon = ENV['SLACK_ICON']
   @bot_name = ENV['SLACK_NAME']
-  @real_client = Slack::RealTime::Client
-  @web_client = Slack::Web::Client
-
-  EnerSet.new
+  @real_client = Slack::RealTime::Client.new
+  @web_client = Slack::Web::Client.new
 
   def self.think
-    client = @real_client.new
+    client = @real_client
 
-    # Listen to new messages
     client.on :message do |data|
       chan = data.channel
       text = data.text
@@ -81,29 +80,26 @@ class Enerbot < EnerCheck
   end
 
   def self.message(data, text, attach = '')
-    puts data
+    p data
 
     channel, ts = Enerbot.target_check(data)
     thread = Enerbot.thread_check(data, ts)
     find = Enerbot.attach_check(text, attach)
 
-    client = @real_client.new
-    web_client = @web_client.new
-
     if text =~ /(mcafee|partyenergon|homero)/
-      web_client.reactions_add channel: channel,
-                               name: text,
-                               icon_url: @bot_icon,
-                               username: @bot_name,
-                               timestamp: thread
+      @web_client.reactions_add channel: channel,
+                                name: text,
+                                icon_url: @bot_icon,
+                                username: @bot_name,
+                                timestamp: thread
 
     else
-      client.web_client.chat_postMessage channel: channel,
-                                         text: text,
-                                         icon_url: @bot_icon,
-                                         username: @bot_name,
-                                         thread_ts: thread,
-                                         attachments: find
+      @real_client.web_client.chat_postMessage channel: channel,
+                                               text: text,
+                                               icon_url: @bot_icon,
+                                               username: @bot_name,
+                                               thread_ts: thread,
+                                               attachments: find
 
     end
   end
