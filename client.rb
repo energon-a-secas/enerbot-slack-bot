@@ -41,9 +41,14 @@ class Enerbot < EnerReader
   @bot_icon = ENV['SLACK_ICON']
   @bot_name = ENV['SLACK_NAME']
 
+  @client = Slack::RealTime::Client
+  @web_client = Slack::Web::Client
+
   def initialize(token: ENV['SLACK_API_TOKEN'], channel: ENV['SLACK_LOG_BOT'])
     @bot_token = token
     @bot_channel = channel
+
+
 
     File.new('black_list.log', 'w')
 
@@ -53,8 +58,12 @@ class Enerbot < EnerReader
       config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
     end
 
-    # Client initialization
-    client = Slack::RealTime::Client.new
+  end
+
+  def self.think
+
+    client = @client.new
+
 
     client.on :hello do
       Enerbot.message(@bot_channel, 'Beginning LERN sequence')
@@ -78,14 +87,12 @@ class Enerbot < EnerReader
   def self.message(data, text, attach = '')
     puts data
 
+    channel, ts = Enerbot.target_check(data)
+    thread = Enerbot.thread_check(data, ts)
     find = Enerbot.attach_check(text, attach)
 
-    channel, ts = Enerbot.target_check(data)
-
-    thread = Enerbot.thread_check(data, ts)
-
-    client = Slack::RealTime::Client.new
-    web_client = Slack::Web::Client.new
+    client = @client.new
+    web_client = @web_client.new
 
     if text =~ /(mcafee|partyenergon|homero)/
       web_client.reactions_add var channel: channel,
@@ -107,3 +114,4 @@ class Enerbot < EnerReader
 end
 
 Enerbot.new
+Enerbot.think
