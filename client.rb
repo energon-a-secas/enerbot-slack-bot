@@ -2,12 +2,14 @@ require 'slack-ruby-client'
 require './core'
 require './system'
 
-# Checker
-class EnerReader
+# Spell check
+class EnerCheck
   def self.attach_check(text, attach)
     if attach != ''
       json_file = File.read("./Info/#{text}")
       JSON.parse(json_file)[attach]
+    else
+      []
     end
   end
 
@@ -33,22 +35,19 @@ class EnerReader
   end
 end
 
-# Future wave Gem
-class Enerbot < EnerReader
+# The Magician
+class Enerbot < EnerCheck
   attr_reader :token, :channel
   extend Admin
 
   @bot_icon = ENV['SLACK_ICON']
   @bot_name = ENV['SLACK_NAME']
-
-  @client = Slack::RealTime::Client
+  @real_client = Slack::RealTime::Client
   @web_client = Slack::Web::Client
 
   def initialize(token: ENV['SLACK_API_TOKEN'], channel: ENV['SLACK_LOG_BOT'])
     @bot_token = token
     @bot_channel = channel
-
-
 
     File.new('black_list.log', 'w')
 
@@ -57,17 +56,11 @@ class Enerbot < EnerReader
       config.token = @bot_token
       config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
     end
-
   end
 
   def self.think
-
-    client = @client.new
-
-
-    client.on :hello do
-      Enerbot.message(@bot_channel, 'Beginning LERN sequence')
-    end
+    Enerbot.new
+    client = @real_client.new
 
     # Listen to new messages
     client.on :message do |data|
@@ -91,15 +84,15 @@ class Enerbot < EnerReader
     thread = Enerbot.thread_check(data, ts)
     find = Enerbot.attach_check(text, attach)
 
-    client = @client.new
+    client = @real_client.new
     web_client = @web_client.new
 
     if text =~ /(mcafee|partyenergon|homero)/
-      web_client.reactions_add var channel: channel,
-                                   name: text,
-                                   icon_url: @bot_icon,
-                                   username: @bot_name,
-                                   timestamp: thread
+      web_client.reactions_add channel: channel,
+                               name: text,
+                               icon_url: @bot_icon,
+                               username: @bot_name,
+                               timestamp: thread
 
     else
       client.web_client.chat_postMessage channel: channel,
@@ -113,5 +106,4 @@ class Enerbot < EnerReader
   end
 end
 
-Enerbot.new
 Enerbot.think
