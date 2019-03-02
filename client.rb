@@ -20,7 +20,6 @@ end
 
 # Spell check
 class EnerCheck
-
   def self.attach_check(text, attach)
     if attach != ''
       json_file = File.read("./Info/#{text}")
@@ -59,21 +58,16 @@ class Enerbot < EnerCheck
   EnerSet.new
   @bot_icon = ENV['SLACK_ICON']
   @bot_name = ENV['SLACK_NAME']
-  @real_client = Slack::RealTime::Client.new
+  @client = Slack::RealTime::Client.new
   @web_client = Slack::Web::Client.new
 
-  def self.think
-    client = @real_client
+  def self.listen
+    client = @client
 
     client.on :message do |data|
-      chan = data.channel
       text = data.text
 
-      case text
-      when /^(ener[brs])/i then
-        client.typing channel: chan
-        Reply.new(data)
-      end
+      Reply.new(data) if text =~ /^(ener[brs])/i
     end
 
     client.start!
@@ -82,9 +76,9 @@ class Enerbot < EnerCheck
   def self.message(data, text, attach = '')
     p data
 
-    channel, ts = Enerbot.target_check(data)
-    thread = Enerbot.thread_check(data, ts)
-    find = Enerbot.attach_check(text, attach)
+    channel, ts = target_check(data)
+    thread = thread_check(data, ts)
+    find = attach_check(text, attach)
 
     if text =~ /(mcafee|partyenergon|homero)/
       @web_client.reactions_add channel: channel,
@@ -94,15 +88,15 @@ class Enerbot < EnerCheck
                                 timestamp: thread
 
     else
-      @real_client.web_client.chat_postMessage channel: channel,
-                                               text: text,
-                                               icon_url: @bot_icon,
-                                               username: @bot_name,
-                                               thread_ts: thread,
-                                               attachments: find
+      @client.web_client.chat_postMessage channel: channel,
+                                          text: text,
+                                          icon_url: @bot_icon,
+                                          username: @bot_name,
+                                          thread_ts: thread,
+                                          attachments: find
 
     end
   end
 end
 
-Enerbot.think
+Enerbot.listen
