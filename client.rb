@@ -30,24 +30,21 @@ class EnerCheck
   end
 
   def self.target_check(data)
-    if data.respond_to? :channel
-      [data.channel, '']
-    else
-      check = data.match(/(.*):(\d*.\d*)/)
-      if check
-        [check[1], check[2]]
-      else
-        [data, '']
-      end
-    end
-  end
-
-  def self.thread_check(data, ts)
-    if data.respond_to? :thread_ts
-      data.ts
-    elsif !ts.empty?
-      ts
-    end
+    @channel, @ts = if data.respond_to? :channel
+                      [data.channel, '']
+                    else
+                      check = data.match(/(.*):(\d*.\d*)/)
+                      if check
+                        [check[1], check[2]]
+                      else
+                        [data, '']
+                        end
+                     end
+    @thread = if data.respond_to? :thread_ts
+                data.ts
+              elsif !@ts.empty?
+                @ts
+              end
   end
 end
 
@@ -76,25 +73,23 @@ class Enerbot < EnerCheck
   def self.message(data, text, attach = '')
     p data
 
-    channel, ts = target_check(data)
-    thread = thread_check(data, ts)
+    target_check(data)
     find = attach_check(text, attach)
 
     if text =~ /(mcafee|partyenergon|homero)/
-      @web_client.reactions_add channel: channel,
+      @web_client.reactions_add channel: @channel,
                                 name: text,
                                 icon_url: @bot_icon,
                                 username: @bot_name,
-                                timestamp: thread
+                                timestamp: @thread
 
     else
-      @client.web_client.chat_postMessage channel: channel,
+      @client.web_client.chat_postMessage channel: @channel,
                                           text: text,
                                           icon_url: @bot_icon,
                                           username: @bot_name,
-                                          thread_ts: thread,
+                                          thread_ts: @thread,
                                           attachments: find
-
     end
   end
 end
