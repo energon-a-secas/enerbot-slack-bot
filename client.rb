@@ -38,8 +38,8 @@ class EnerCheck
                         [check[1], check[2]]
                       else
                         [data, '']
-                        end
-                     end
+                      end
+                    end
     @thread = if data.respond_to? :thread_ts
                 data.ts
               elsif !@ts.empty?
@@ -77,20 +77,27 @@ class Enerbot < EnerCheck
     find = attach_check(text, attach)
 
     if text =~ /(mcafee|partyenergon|homero)/
-      @web_client.reactions_add channel: @channel,
-                                name: text,
-                                icon_url: @bot_icon,
-                                username: @bot_name,
-                                timestamp: @thread
-
+      reaction(text)
     else
-      @client.web_client.chat_postMessage channel: @channel,
-                                          text: text,
-                                          icon_url: @bot_icon,
-                                          username: @bot_name,
-                                          thread_ts: @thread,
-                                          attachments: find
+      write(text, find)
     end
+  end
+
+  def reaction(text)
+    @web_client.reactions_add channel: @channel,
+                              name: text,
+                              icon_url: @bot_icon,
+                              username: @bot_name,
+                              timestamp: @thread
+  end
+
+  def write(text, find = '')
+    @client.web_client.chat_postMessage channel: @channel,
+                                        text: text,
+                                        icon_url: @bot_icon,
+                                        username: @bot_name,
+                                        thread_ts: @thread,
+                                        attachments: find
   end
 end
 
