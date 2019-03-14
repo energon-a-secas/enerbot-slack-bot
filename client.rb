@@ -17,7 +17,7 @@ class EnerSet
   end
 end
 
-# Checks the text to differentiate the correct method
+# Checks the text for selecting the correct method
 class EnerCheck
   def self.attach_check(text, attach)
     if attach != ''
