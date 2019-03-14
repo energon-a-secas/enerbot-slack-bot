@@ -83,7 +83,7 @@ class Enerbot < EnerCheck
     end
   end
 
-  def reaction(text)
+  def self.reaction(text)
     @web_client.reactions_add channel: @channel,
                               name: text,
                               icon_url: @bot_icon,
@@ -91,7 +91,7 @@ class Enerbot < EnerCheck
                               timestamp: @thread
   end
 
-  def write(text, find = '')
+  def self.write(text, find = '')
     @client.web_client.chat_postMessage channel: @channel,
                                         text: text,
                                         icon_url: @bot_icon,
