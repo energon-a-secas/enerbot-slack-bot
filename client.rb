@@ -2,7 +2,7 @@ require 'slack-ruby-client'
 require './core'
 require './system'
 
-# Slack Configuration
+# Sets the Slack Token for authentication
 class EnerSet
   def initialize
     @bot_token = ENV['SLACK_API_TOKEN']
@@ -10,7 +10,6 @@ class EnerSet
 
     File.new('black_list.log', 'w')
 
-    # Slack Token configure
     Slack.configure do |config|
       config.token = @bot_token
       config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
@@ -18,7 +17,7 @@ class EnerSet
   end
 end
 
-# Spell check
+# Checks the text to differentiate the correct method
 class EnerCheck
   def self.attach_check(text, attach)
     if attach != ''
@@ -48,7 +47,7 @@ class EnerCheck
   end
 end
 
-# The Magician
+# Takes care about the client interactions
 class Enerbot < EnerCheck
   extend Admin
 
