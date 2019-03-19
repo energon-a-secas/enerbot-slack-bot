@@ -75,7 +75,7 @@ module Quote
   # TODO: Get pull request for yesterday in github public API
   def self.daily
     times = (1..100).to_a.shuffle!
-    master_commits (1...10).to_a.shuffle!
+    master_commits = (1...10).to_a.shuffle!
 
     <<-HEREDOC
       Mi status de hoy:
