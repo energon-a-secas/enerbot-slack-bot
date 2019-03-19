@@ -59,11 +59,11 @@ module System
  enerbot <is the internet on fire?>
  enerbot <acme catalog>
  enerbot <santo sepulcro a> <DESTINATARIO>
- enerbot <días atraso feature> <daily>
  enerbot <roll> <cantidad de dados> <numero de caras>
  enerbot <fortune cookie>
  enerbot <dame amor>
- enerbot <safe browsing> <URL>```
+ enerbot <safe browsing> <URL>
+ enerbot <daily>```
 
     HEREDOC
   end

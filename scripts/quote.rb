@@ -70,4 +70,18 @@ module Quote
     text = doc.css('div#content p')[0].text
     ">git commit -m '#{text.chomp}'"
   end
+
+  # Function that generates a random daily speech
+  # TODO: Get pull request for yesterday in github public API
+  def self.daily
+    times = (1..100).to_a.shuffle!
+    master_commits = (1...10).to_a.shuffle!
+
+    <<-HEREDOC
+      Mi status de hoy:
+      :stub_parrot: Ayer fui intentado _haquiar_ #{times} veces pero aún no lo lograron, recibí un total de 0 pull request y #{master_commits} commits a master.
+      :sunny: Hoy estaré en el ampliado de bots y reiniciándome cada vez que Alex Smith :antorcha: intente volver a _haquiarme_ :bored_enerbot: !
+      :warning: No hay bloqueos en mis threads, pero siempre es una posibilidad en mi precario hogar :jenkins_triggered:
+    HEREDOC
+  end
 end
