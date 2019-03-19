@@ -2,23 +2,31 @@ require 'slack-ruby-client'
 require './core'
 require './system'
 
-# Slack Configuration
+# Every variable that you would dream of
+module Definitions
+  BOT_TOKEN = ENV['SLACK_API_TOKEN']
+  BOT_CHANNEL = ENV['SLACK_LOG_BOT']
+  BOT_ICON = ENV['SLACK_ICON']
+  BOT_NAME = ENV['SLACK_NAME']
+  BOT_CASE = /^(ener[brs])/i
+  BOT_CASE_EMOJI = /(mcafee|partyenergon|homero)/
+end
+
+# Sets the Slack Token for authentication
 class EnerSet
+  include Definitions
   def initialize
-    @bot_token = ENV['SLACK_API_TOKEN']
-    @bot_channel = ENV['SLACK_LOG_BOT']
 
     File.new('black_list.log', 'w')
 
-    # Slack Token configure
     Slack.configure do |config|
-      config.token = @bot_token
-      config.raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
+      config.token = BOT_TOKEN
+      config.raise 'Missing Bot token' unless config.token
     end
   end
 end
 
-# Spell check
+# Checks the text for selecting the correct method
 class EnerCheck
   def self.attach_check(text, attach)
     if attach != ''
@@ -38,8 +46,8 @@ class EnerCheck
                         [check[1], check[2]]
                       else
                         [data, '']
-                        end
-                     end
+                      end
+                    end
     @thread = if data.respond_to? :thread_ts
                 data.ts
               elsif !@ts.empty?
@@ -48,13 +56,12 @@ class EnerCheck
   end
 end
 
-# The Magician
+# Takes care about the client interactions
 class Enerbot < EnerCheck
-  extend Admin
+  include Definitions
 
   EnerSet.new
-  @bot_icon = ENV['SLACK_ICON']
-  @bot_name = ENV['SLACK_NAME']
+
   @client = Slack::RealTime::Client.new
   @web_client = Slack::Web::Client.new
 
@@ -64,7 +71,7 @@ class Enerbot < EnerCheck
     client.on :message do |data|
       text = data.text
 
-      Reply.new(data) if text =~ /^(ener[brs])/i
+      Reply.new(data) if text =~ BOT_CASE
     end
 
     client.start!
@@ -76,21 +83,29 @@ class Enerbot < EnerCheck
     target_check(data)
     find = attach_check(text, attach)
 
-    if text =~ /(mcafee|partyenergon|homero)/
-      @web_client.reactions_add channel: @channel,
-                                name: text,
-                                icon_url: @bot_icon,
-                                username: @bot_name,
-                                timestamp: @thread
-
+    if text =~ BOT_CASE_EMOJI
+      reaction(text)
     else
-      @client.web_client.chat_postMessage channel: @channel,
-                                          text: text,
-                                          icon_url: @bot_icon,
-                                          username: @bot_name,
-                                          thread_ts: @thread,
-                                          attachments: find
+      write(text, find)
     end
+  end
+
+  def self.reaction(text)
+    @web_client.reactions_add channel: @channel,
+                              name: text,
+                              icon_url: BOT_ICON,
+                              username: BOT_NAME,
+                              timestamp: @thread
+  end
+
+  def self.write(text, find = '')
+    text = '' if text =~ /.json/
+    @client.web_client.chat_postMessage channel: @channel,
+                                        text: text,
+                                        icon_url: BOT_ICON,
+                                        username: BOT_NAME,
+                                        thread_ts: @thread,
+                                        attachments: find
   end
 end
 
