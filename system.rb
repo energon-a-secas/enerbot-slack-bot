@@ -80,7 +80,7 @@ class Reply
         Reply.forget(text)
       when /eneradd/
         image = 'energon.png'
-        if (match = text.match(/enerban (.*png)$/))
+        if (match = text.match(/eneradd (.*png)$/))
           image = match.captures[0]
         end
         Enerbot.message(data, image)
