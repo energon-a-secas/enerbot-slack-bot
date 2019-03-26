@@ -78,6 +78,12 @@ class Reply
         Reply.remember(text)
       when /enerrest/
         Reply.forget(text)
+      when /eneradd/
+        image = 'energon.png'
+        if (match = text.match(/enerban (.*png)$/))
+          image = match.captures[0]
+        end
+        Enerbot.message(data, image)
       when /enershut/
         Enerbot.message(data, Case.kill(text)) && abort('bye')
       when /enersay/
