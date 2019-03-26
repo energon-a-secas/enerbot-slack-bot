@@ -8,7 +8,7 @@ module Definitions
   BOT_CHANNEL = ENV['SLACK_LOG_BOT']
   BOT_ICON = ENV['SLACK_ICON']
   BOT_NAME = ENV['SLACK_NAME']
-  BOT_CASE = /^(ener[brs])/i
+  BOT_CASE = /^(ener[abrs])/i
   BOT_CASE_EMOJI = /(mcafee|partyenergon|homero)/
 end
 
