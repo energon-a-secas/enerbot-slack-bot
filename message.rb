@@ -8,9 +8,10 @@ end
 class Message
   include Definitions
 
-  def initialize(text, find, channel, thread)
+  def initialize(text, find, channel, thread, ts)
     @channel = channel
     @thread = thread
+    @ts = ts
     @client = Slack::RealTime::Client.new
     @web_client = Slack::Web::Client.new
 

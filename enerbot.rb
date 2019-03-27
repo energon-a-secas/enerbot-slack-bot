@@ -70,6 +70,6 @@ class Enerbot < EnerCheck
     target_check(data)
     find = attach_check(text, attach)
 
-    Message.new(text, find, @channel, @thread)
+    Message.new(text, find, @channel, @thread, @ts)
   end
 end
