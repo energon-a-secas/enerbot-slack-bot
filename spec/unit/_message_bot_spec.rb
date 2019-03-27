@@ -7,7 +7,7 @@ describe '#core' do
     end
   end
 
-  context 'when client is initialized' do
+  context 'when bot receive data' do
     it 'send message' do
       Enerbot.message(UserData, 'hola')
     end

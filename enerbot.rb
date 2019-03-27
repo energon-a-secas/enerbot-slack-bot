@@ -1,4 +1,5 @@
 require 'slack-ruby-client'
+require './message'
 require './core'
 require './system'
 
@@ -6,10 +7,7 @@ require './system'
 module Definitions
   BOT_TOKEN = ENV['SLACK_API_TOKEN']
   BOT_CHANNEL = ENV['SLACK_LOG_BOT']
-  BOT_ICON = ENV['SLACK_ICON']
-  BOT_NAME = ENV['SLACK_NAME']
   BOT_CASE = /^(ener[abrs])/i
-  BOT_CASE_EMOJI = /(mcafee|partyenergon|homero)/
 end
 
 # Checks the text for selecting the correct method
@@ -72,42 +70,6 @@ class Enerbot < EnerCheck
     target_check(data)
     find = attach_check(text, attach)
 
-    if text =~ BOT_CASE_EMOJI
-      reaction(text)
-    elsif text =~ /.png/
-      attach(text)
-    else
-      write(text, find)
-    end
-  end
-
-  def self.reaction(text)
-    @web_client.reactions_add channel: @channel,
-                              name: text,
-                              timestamp: @thread,
-                              icon_url: BOT_ICON,
-                              username: BOT_NAME
-  end
-
-  def self.write(text, find = '')
-    text = '' if text =~ /.json/
-    @client.web_client.chat_postMessage channel: @channel,
-                                        text: text,
-                                        thread_ts: @thread,
-                                        icon_url: BOT_ICON,
-                                        username: BOT_NAME,
-                                        attachments: find
-  end
-
-  def self.attach(file)
-    path_to_file = "./emojis/#{file}"
-    @client.web_client.files_upload channels: @channel,
-                                    initial_comment: 'Dumped from my database',
-                                    thread_ts: @thread,
-                                    icon_url: BOT_ICON,
-                                    username: BOT_NAME,
-                                    file: Faraday::UploadIO.new(path_to_file, 'text'),
-                                    title: File.basename(path_to_file),
-                                    filename: File.basename(path_to_file)
+    Message.new(text, find, @channel, @thread)
   end
 end
