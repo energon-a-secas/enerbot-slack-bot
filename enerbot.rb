@@ -9,7 +9,6 @@ BOT_CASE = /^(ener[abrs])/i
 
 # Checks the text for selecting the correct method
 module PeyosRegex
-
   def attach_check(text, attach)
     if attach != ''
       json_file = File.read("./Info/#{text}")
@@ -51,15 +50,13 @@ class Enerbot
   @web_client = Slack::Web::Client.new
 
   def self.listen
-    client = @client
-
-    client.on :message do |data|
+    @client.on :message do |data|
       text = data.text
 
       Reply.new(data) if text =~ BOT_CASE
     end
 
-    client.start!
+    @client.start!
   end
 
   def self.message(data, text, attach = '')
