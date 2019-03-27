@@ -3,16 +3,14 @@ require './message'
 require './core'
 require './system'
 
-# Every variable that you would dream of
-module Definitions
-  BOT_TOKEN = ENV['SLACK_API_TOKEN']
-  BOT_CHANNEL = ENV['SLACK_LOG_BOT']
-  BOT_CASE = /^(ener[abrs])/i
-end
+BOT_TOKEN = ENV['SLACK_API_TOKEN']
+BOT_CHANNEL = ENV['SLACK_LOG_BOT']
+BOT_CASE = /^(ener[abrs])/i
 
 # Checks the text for selecting the correct method
-class EnerCheck
-  def self.attach_check(text, attach)
+module PeyosRegex
+
+  def attach_check(text, attach)
     if attach != ''
       json_file = File.read("./Info/#{text}")
       JSON.parse(json_file)[attach]
@@ -21,7 +19,7 @@ class EnerCheck
     end
   end
 
-  def self.target_check(data)
+  def target_check(data)
     @channel, @ts = if data.respond_to? :channel
                       [data.channel, '']
                     else
@@ -41,8 +39,8 @@ class EnerCheck
 end
 
 # Takes care about the client interactions
-class Enerbot < EnerCheck
-  include Definitions
+class Enerbot
+  extend PeyosRegex
 
   Slack.configure do |config|
     config.token = BOT_TOKEN
@@ -66,7 +64,6 @@ class Enerbot < EnerCheck
 
   def self.message(data, text, attach = '')
     p data
-
     target_check(data)
     find = attach_check(text, attach)
 
