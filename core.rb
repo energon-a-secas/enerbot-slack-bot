@@ -157,7 +157,7 @@ module Case
                  when /enerlive$/
                    [1, :op2]
                  when /institute$/
-                   [2, :op2]
+                   [2, :op1]
                  when /contest general_info$/
                    [4, :op1]
                  when /contest SDSOS$/
