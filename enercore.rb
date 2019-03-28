@@ -3,8 +3,8 @@ require './message'
 require './core'
 require './system'
 
-# Checks the text for selecting the correct method
-module PeyosRegex
+# Obtains channel, thread, ts and file from incoming data
+module DataSelector
   def attach_check(text, attach)
     if attach != ''
       json_file = File.read("./Info/#{text}")
@@ -33,18 +33,17 @@ module PeyosRegex
   end
 end
 
-# Takes care about the client interactions
+# Configures and runs the Slack client
 class EnerCore
-  extend PeyosRegex
+  extend DataSelector
   attr_accessor(:log_channel, :token, :bot_case)
 
-  def initialize(log_channel = ENV['SLACK_LOG_BOT'], token = ENV['SLACK_API_TOKEN'], bot_case = /^(ener[abrs])/i)
+  def initialize(log_channel = ENV['SLACK_LOG_BOT'], token = ENV['SLACK_API_TOKEN'])
     Slack.configure do |config|
       config.token = token
       config.raise 'Missing Bot token' unless config.token
     end
 
-    @case = bot_case
     @client = Slack::RealTime::Client.new
     @web_client = Slack::Web::Client.new
 
@@ -57,7 +56,7 @@ class EnerCore
     @client.on :message do |data|
       text = data.text
 
-      Reply.new(data) if text =~ @case
+      Reply.new(data) if text =~ /^(ener[abrs])/i
     end
 
     @client.start!
