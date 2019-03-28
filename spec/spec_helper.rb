@@ -3,7 +3,6 @@ require './enercore'
 
 # Represents a beautiful incoming user message
 class UserData
-
   def self.text
     'hola'
   end

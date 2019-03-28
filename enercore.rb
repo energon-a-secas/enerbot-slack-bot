@@ -51,7 +51,6 @@ class EnerCore
     @client.on :hello do
       EnerCore.send(log_channel, 'Beginning LERN sequence')
     end
-
   end
 
   def listen
