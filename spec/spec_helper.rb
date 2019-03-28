@@ -3,14 +3,12 @@ require './enercore'
 
 # Represents a beautiful incoming user message
 class UserData
-  attr_accessor(:val)
-
   def self.message(text)
     @text = text
   end
 
-  def self.text
-    @text
+  class << self
+    attr_reader :text
   end
 
   def self.user
