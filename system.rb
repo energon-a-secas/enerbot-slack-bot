@@ -51,17 +51,17 @@ class Redirect
   def shift
     if @check_admin == false && @check_super == true
       Redirect.remember(@user) if @command =~ /enerban/
-      Enerbot.message(ADM_LOG, "User <@#{@user}> is trying to do something nasty on <##{@channel}|#{@channel}>")
+      EnerCore.send(ADM_LOG, "User <@#{@user}> is trying to do something nasty on <##{@channel}|#{@channel}>")
     elsif @check_ban == false
-      Enerbot.message(@channel, "*User:* <@#{@user}> is banned until i forget it :x:")
+      EnerCore.send(@channel, "*User:* <@#{@user}> is banned until i forget it :x:")
     elsif @check_channel == false
-      Enerbot.message(ADM_LOG, "User <@#{@user}> is making me work on <##{@channel}|#{@channel}>")
+      EnerCore.send(ADM_LOG, "User <@#{@user}> is making me work on <##{@channel}|#{@channel}>")
       nil
     end
   end
 end
 
-# Send message with response if it's valid
+# Send send with response if it's valid
 class Reply
   extend Admin
 
@@ -83,16 +83,16 @@ class Reply
         if (match = text.match(/eneradd (.*png)$/))
           image = match.captures[0]
         end
-        Enerbot.message(data, image)
+        EnerCore.send(data, image)
       when /enershut/
-        Enerbot.message(data, Case.kill(text)) && abort('bye')
+        EnerCore.send(data, Case.kill(text)) && abort('bye')
       when /enersay/
         match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i)
         unless match.nil?
           chan = match.captures[2] || match.captures[3]
           message = match.captures[5]
         end
-        Enerbot.message(chan, message)
+        EnerCore.send(chan, message)
       end
     else
       value = Case.bot(data)
@@ -101,7 +101,7 @@ class Reply
       Reply.remember(user) if attempts > 4
       unless value.nil?
 
-        Enerbot.message(data, value) if check.nil?
+        EnerCore.send(data, value) if check.nil?
       end
     end
   end

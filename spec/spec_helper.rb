@@ -1,11 +1,14 @@
 require 'slack-ruby-client'
-require './enerbot'
+require './enercore'
 
 # Represents a beautiful incoming user message
 class UserData
+  def self.message(text)
+    @text = text
+  end
 
-  def self.text
-    'hola'
+  class << self
+    attr_reader :text
   end
 
   def self.user

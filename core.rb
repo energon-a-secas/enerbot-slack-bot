@@ -178,7 +178,7 @@ module Case
                    [6, :op2]
                  end
     mess = dc[file]
-    Enerbot.message(data, mess[:file], mess[info])
+    EnerCore.send(data, mess[:file], mess[info])
   end
 
   def self.kill(text)

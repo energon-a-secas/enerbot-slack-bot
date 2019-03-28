@@ -1,4 +1,5 @@
-require './enerbot'
+require './enercore'
 
 # Don't ask
-Enerbot.listen
+enerbot = EnerCore.new
+enerbot.listen
