@@ -1,9 +1,9 @@
 require 'slack-ruby-client'
-require './message'
 require './core'
+require './message'
 require './system'
 
-# Obtains channel, thread, ts and file from incoming data
+# Obtains channel, thread, ts and attachments from incoming data
 module DataSelector
   def attach_check(text, attach)
     if attach != ''
