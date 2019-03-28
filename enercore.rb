@@ -47,6 +47,11 @@ class EnerCore
     @case = bot_case
     @client = Slack::RealTime::Client.new
     @web_client = Slack::Web::Client.new
+
+    @client.on :hello do
+      EnerCore.send(log_channel, 'Beginning LERN sequence')
+    end
+
   end
 
   def listen
