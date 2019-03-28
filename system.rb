@@ -90,9 +90,9 @@ class Reply
         match = text.match(/enersay (\<[#@])?((.*)\|)?(.*?)(\>)? (.*?)$/i)
         unless match.nil?
           chan = match.captures[2] || match.captures[3]
-          send = match.captures[5]
+          message = match.captures[5]
         end
-        EnerCore.send(chan, send)
+        EnerCore.send(chan, message)
       end
     else
       value = Case.bot(data)
