@@ -1,5 +1,5 @@
 require 'slack-ruby-client'
-require './enerbot'
+require './enercore'
 
 # Represents a beautiful incoming user message
 class UserData

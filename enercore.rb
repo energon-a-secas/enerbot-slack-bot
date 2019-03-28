@@ -3,10 +3,6 @@ require './message'
 require './core'
 require './system'
 
-BOT_TOKEN = ENV['SLACK_API_TOKEN']
-BOT_CHANNEL = ENV['SLACK_LOG_BOT']
-BOT_CASE = /^(ener[abrs])/i
-
 # Checks the text for selecting the correct method
 module PeyosRegex
   def attach_check(text, attach)
@@ -38,28 +34,32 @@ module PeyosRegex
 end
 
 # Takes care about the client interactions
-class Enerbot
+class EnerCore
   extend PeyosRegex
+  attr_accessor(:log_channel, :token, :bot_case)
 
-  Slack.configure do |config|
-    config.token = BOT_TOKEN
-    config.raise 'Missing Bot token' unless config.token
+  def initialize(log_channel = ENV['SLACK_LOG_BOT'], token = ENV['SLACK_API_TOKEN'], bot_case = /^(ener[abrs])/i)
+    Slack.configure do |config|
+      config.token = token
+      config.raise 'Missing Bot token' unless config.token
+    end
+
+    @case = bot_case
+    @client = Slack::RealTime::Client.new
+    @web_client = Slack::Web::Client.new
   end
 
-  @client = Slack::RealTime::Client.new
-  @web_client = Slack::Web::Client.new
-
-  def self.listen
+  def listen
     @client.on :message do |data|
       text = data.text
 
-      Reply.new(data) if text =~ BOT_CASE
+      Reply.new(data) if text =~ @case
     end
 
     @client.start!
   end
 
-  def self.message(data, text, attach = '')
+  def self.send(data, text, attach = '')
     p data
     target_check(data)
     find = attach_check(text, attach)

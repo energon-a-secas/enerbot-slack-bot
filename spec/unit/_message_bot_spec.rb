@@ -9,15 +9,15 @@ describe '#core' do
 
   context 'when bot receive data' do
     it 'send message' do
-      Enerbot.message(UserData, 'hola')
+      EnerCore.send(UserData, 'hola')
     end
 
     it 'send custom message' do
-      Enerbot.message('#bot_monitoring', 'Holiwis')
+      EnerCore.send('#bot_monitoring', 'Holiwis')
     end
 
     it 'send image' do
-      Enerbot.message(UserData, 'enerbot.png')
+      EnerCore.send(UserData, 'enerbot.png')
     end
   end
 end
