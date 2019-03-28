@@ -1,6 +1,6 @@
 require_relative '../spec_helper'
 
-describe 'core functions' do
+describe 'case functions' do
   before(:each) do
     Slack.configure do |config|
       config.token = ENV['SLACK_API_TOKEN']
@@ -9,8 +9,13 @@ describe 'core functions' do
 
   context 'when bot receive data' do
     # TODO
-    it 'send function' do
+    it 'does nothing' do
       UserData.message('enerbot cuando pagan?')
+      Case.bot(UserData)
+    end
+
+    it 'return a quote' do
+      UserData.message('enershut')
       Case.bot(UserData)
     end
 
