@@ -134,8 +134,6 @@ module Case
         Google.safebrowsing(text)
       when /dame feedback$/i
         Feedback.quote
-      when /has (joined|left|leave) the channel/
-        Quote.welcome(user, text)
       end
     end
   end
