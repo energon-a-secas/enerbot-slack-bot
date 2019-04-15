@@ -8,7 +8,7 @@ module Feedback
       'Eres parte de la comunidad de seguridad. *Excepcional*',
       'No incluiste ninguna palabra en ingles en tus frases. *Bajo lo esperado*',
       'Pusiste solo emojis tristes en slack. *Bajo lo esperado*',
-      'Saliste 2 veces en el latam noticias hablando sobre la importancia de los terraplanistas. *Excepcional*',
+      'Saliste 2 veces en el _NEWS_ hablando sobre la importancia de los terraplanistas. *Excepcional*',
       'Fuiste el mejor en el baile para romper el hielo en el workshop. *Excepcional*'
     ]
 
