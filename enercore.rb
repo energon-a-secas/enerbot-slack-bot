@@ -56,6 +56,10 @@ class EnerCore
     @client.on :message do |data|
       text = data.text
 
+      result = Event.select(data)
+
+      EnerCore.send(data, result) unless result.nil?
+
       Reply.new(data) if text =~ /^(ener[abrs])/i
     end
 
