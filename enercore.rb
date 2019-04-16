@@ -55,10 +55,11 @@ class EnerCore
   def listen
     @client.on :message do |data|
       text = data.text
+      chan = data.channel
 
       result = Event.select(data)
 
-      EnerCore.send(data, result) unless result.nil?
+      EnerCore.send(data, result) unless result.nil? && chan != ENV['SLACK_COMMUNITY']
 
       Reply.new(data) if text =~ /^(ener[abrs])/i
     end
