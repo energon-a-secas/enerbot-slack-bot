@@ -206,7 +206,12 @@ module Event
 Este Canal les ofrecerá desde shitPosting :shit:, hasta temas de importancia a nivel global sobre la seguridad de la información :hack:. Donde todo mundo es bienvenido.
 Su Anfitrión, *Enerbot* :enerbot: está aqui para tomar su mano y llevarlo a través de la transformación digital :avenger_energon:.
 
-- Tenemos concursos, encuestas, blockchain, aceptamos sobornos y te regalamos una copia licenciada oficial de Antorcha :antorcha:
+*Tenemos:*
+- Concursos
+- Encuestas
+- Blockchain
+
+_También aceptamos sobornos y te regalamos una copia licenciada oficial de Antorcha_ :antorcha:
 
 Para mayor información consúltame: enerbot help`'
     when 'group_leave'
