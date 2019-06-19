@@ -31,6 +31,7 @@ require './scripts/fortune'
 require './scripts/google'
 require './scripts/love'
 require './scripts/feedback'
+require './scripts/more'
 
 # If you find yourself in a hole, stop digging
 module Case
@@ -133,6 +134,8 @@ module Case
         Google.safebrowsing(text)
       when /dame feedback$/i
         Feedback.quote
+      when /dame un mas/i
+        More.get
       end
     end
   end
