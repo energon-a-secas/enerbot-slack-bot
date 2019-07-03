@@ -13,10 +13,10 @@ module More
   'Más tostado que Cruz Johnson',
   'Más seco que piojo de muñeca',
   'Más inútil que bolsillo de pijama',
-  'Más  seco que escupo de momia',
+  'Más seco que escupo de momia',
   'Más helado que poto de pingüino',
   'Más raro que pescado con hombros',
-  'Más  asustado que pescado en Semana Santa',
+  'Más asustado que pescado en Semana Santa',
   'Más puntual que novia fea',
   'Más lento que patada de astronauta',
   'Más enredado que cachipún de pulpo',
@@ -27,7 +27,7 @@ module More
   'Más huasqueado que perro de trineo.',
   'Más doblado que boleta de motel.',
   'Más apretado que peo de visita',
-  'Más peludo que jabón de  paseo',
+  'Más peludo que jabón de paseo',
   'Más depilado que actor porno',
   'Más corto que beso de marido',
   'Más negro que piojo de minero',
@@ -36,7 +36,19 @@ module More
   'Más lento que pichanga de astronauta',
   'Más rayado q puerta de perrera',
   'Más ordinario que yoyo de almejas',
-  'Más falso que atún boliviano'
+  'Más falso que atún boliviano',
+  'Más helado que completo de bingo',
+  'Más aburrido que maratón de Jani Dueñas en Netflix',
+  'Más dramático que teleserie turca',
+  'Más explosivo que las flechas de Rambo',
+  'Más solitario que plaza de armas sin migrantes',
+  'Más inútil que Junior Fernández en la selección chilena',
+  'Más necesario que café de oficina',
+  'Más épico que la batalla del abismo de Helm',
+  'Más fuerte que sobaco de camionero',
+  'Más duro que Maradona en partido de selección',
+  'Más duro que virgen con viagra',
+  'Más chico que leñador de bonsai'
   ].sample
   end
 end
