@@ -1,1 +1,1 @@
-release: ruby client.rb
+worker: env QUEUE=* ruby client.rb
