@@ -42,7 +42,7 @@ module Case
       Case.events(data)
     else
       case text
-      when /softlayer/i
+      when /(softlayer|plataforma)/i
         TimeTo.progress
       when /\s(hello|hola)$/i
         '¡Hola!'
