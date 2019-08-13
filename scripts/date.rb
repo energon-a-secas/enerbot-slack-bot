@@ -84,7 +84,7 @@ module TimeTo
   def self.progress(text, user)
 
     case text
-    when /(softlayer esta arriba|se cay[oó] softlayer|y softlayer)/
+    when /softlayer/
       def status(per)
         case per
         when 1..10
