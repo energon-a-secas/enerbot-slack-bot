@@ -109,7 +109,7 @@ module TimeTo
            end
     case text
     when /(probabilidad|pronostico|turno|call|incidentes)/
-      "Probabilidad de incidentes para las próxima hora: #{per}% #{icon}"
+      "Probabilidad de incidentes para las próximas horas: #{per}% #{icon}"
     else
       ":softlayer-icon: Sin incidentes desde hace #{(Date.parse('4/8/2019')..Date.today).count} días."
     end
