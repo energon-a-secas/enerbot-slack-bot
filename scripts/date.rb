@@ -82,31 +82,36 @@ module TimeTo
     HEREDOC
   end
 
-  def self.progress
+  def self.progress(text)
     per = (1..100).to_a.shuffle![0]
 
     icon = case per
-            when 1..10
-              ':rainbow:'
-            when 11..20
-              ':cloud:'
-            when 21..30
-              ':partly_sunny:'
-            when 31..40
-              ':mostly_sunny:'
-            when 41..49
-              ':partly_sunny_rain:'
-            when 50
-              ':partly_sunny_rain:'
-            when 51..70
-              ':full_moon_with_face:'
-            when 71..80
-              ':rain_cloud:'
-            when 81..99
-              ':thunder_cloud_and_rain:'
-            when 100
-              ':newalert:'
-            end
-  ":softlayer-icon: Sin incidentes desde hace #{(Date.parse('4/8/2019')..Date.today).count} días.\n:calendar: Probabilidad de incidentes para las próximas horas: #{per}% #{icon}"
+           when 1..10
+             ':rainbow:'
+           when 11..20
+             ':cloud:'
+           when 21..30
+             ':partly_sunny:'
+           when 31..40
+             ':mostly_sunny:'
+           when 41..49
+             ':partly_sunny_rain:'
+           when 50
+             ':partly_sunny_rain:'
+           when 51..70
+             ':full_moon_with_face:'
+           when 71..80
+             ':rain_cloud:'
+           when 81..99
+             ':thunder_cloud_and_rain:'
+           when 100
+             ':newalert:'
+           end
+    case text
+    when /(probabilidad|pronostico|turno|call|incidentes)/
+      "Probabilidad de incidentes para las próxima hora: #{per}% #{icon}"
+    else
+      ":softlayer-icon: Sin incidentes desde hace #{(Date.parse('4/8/2019')..Date.today).count} días.\n:calendar:"
+    end
   end
 end
