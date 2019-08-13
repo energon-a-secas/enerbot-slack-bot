@@ -123,7 +123,7 @@ module Case
       when /santo sepulcro a/i
         Chimuelo.song(text, user)
       when /(softlayer esta arriba|se cay[oó] softlayer|y softlayer)/i
-        Quote.daily
+        Quote.progress
       when / roll /i
         Roleo.dados(text)
       when /fortune cookie$/i
