@@ -43,7 +43,7 @@ module Case
     else
       case text
       when /softlayer/i
-        TimeTo.progress
+        Quote.meh
       when /\s(hello|hola)$/i
         '¡Hola!'
       when /\s(holi)$/i
