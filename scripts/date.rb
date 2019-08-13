@@ -87,23 +87,23 @@ module TimeTo
 
     icon = case per
             when 1..10
-              ':thunder_cloud_and_rain:'
+              ':rainbow:'
             when 11..20
-              ':rain_cloud:'
-            when 21..30
               ':cloud:'
-            when 31..40
+            when 21..30
               ':partly_sunny:'
-            when 41..49
+            when 31..40
               ':mostly_sunny:'
+            when 41..49
+              ':partly_sunny_rain:'
             when 50
               ':partly_sunny_rain:'
             when 51..70
-              ':sunny:'
-            when 71..80
               ':full_moon_with_face:'
+            when 71..80
+              ':rain_cloud:'
             when 81..99
-              ':rainbow:'
+              ':thunder_cloud_and_rain:'
             when 100
               ':newalert:'
             end
