@@ -84,9 +84,9 @@ module TimeTo
   def self.progress(text, user)
     case text
     when /(softlayer esta arriba|se cay[oó] softlayer|y softlayer)/
-      "#{(Date.parse('4/8/2019')..Date.today).count} días y contando."
+      ":softlayer-icon: lleva #{(Date.parse('4/8/2019')..Date.today).count} días arriba y contando."
     else
-      "No sé a que te refieres <@#{user}> :softlayer: :heart:"
+      "No sé a que te refieres <@#{user}> :softlayer-icon: :heart:"
     end
   end
 end
