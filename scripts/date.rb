@@ -3,6 +3,7 @@ require 'json'
 require 'net/http'
 require 'holidays'
 require 'countries'
+require 'date'
 
 # Module for time related scripts
 module TimeTo
