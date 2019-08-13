@@ -83,30 +83,30 @@ module TimeTo
   end
 
   def self.progress
-    per = (1..100).to_a.shuffle!
+    per = (1..100).to_a.shuffle![0]
 
     icon = case per
-    when 1..10
-      ':thunder_cloud_and_rain:'
-    when 11..20
-      ':rain_cloud:'
-    when 21..30
-      ':cloud:'
-    when 31..40
-      ':partly_sunny:'
-    when 41..49
-      ':mostly_sunny:'
-    when 50
-      ':partly_sunny_rain:'
-    when 51..70
-      ':sunny:'
-    when 71..80
-      ':full_moon_with_face:'
-    when 81..99
-      ':rainbow:'
-    when 100
-      ':newalert:'
-    end
-  ":softlayer-icon: lleva #{(Date.parse('4/8/2019')..Date.today).count} días arriba y contando.\n:calendar: Pronóstico de incidentes para las próximas horas: #{per[0]}% #{icon}"
+            when 1..10
+              ':thunder_cloud_and_rain:'
+            when 11..20
+              ':rain_cloud:'
+            when 21..30
+              ':cloud:'
+            when 31..40
+              ':partly_sunny:'
+            when 41..49
+              ':mostly_sunny:'
+            when 50
+              ':partly_sunny_rain:'
+            when 51..70
+              ':sunny:'
+            when 71..80
+              ':full_moon_with_face:'
+            when 81..99
+              ':rainbow:'
+            when 100
+              ':newalert:'
+            end
+  ":softlayer-icon: lleva #{(Date.parse('4/8/2019')..Date.today).count} días arriba y contando.\n:calendar: Probabilidad de incidentes para las próximas horas: #{per}% #{icon}"
   end
 end
