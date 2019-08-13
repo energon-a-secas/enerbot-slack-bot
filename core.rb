@@ -123,7 +123,7 @@ module Case
       when /santo sepulcro a/i
         Chimuelo.song(text, user)
       when /softlayer/i
-        TimeTo.progress
+        TimeTo.progress(text, user)
       when / roll /i
         Roleo.dados(text)
       when /fortune cookie$/i

@@ -82,9 +82,36 @@ module TimeTo
   end
 
   def self.progress(text, user)
+
+    def status(per)
+      case per
+      when 1..10
+        ':thunder_cloud_and_rain:'
+      when 11..20
+        ':rain_cloud:'
+      when 21..30
+        ':cloud:'
+      when 31..40
+        ':partly_sunny:'
+      when 41..49
+        ':mostly_sunny:'
+      when 50
+        ':partly_sunny_rain:'
+      when 51..70
+        ':sunny:'
+      when 71..80
+        ':full_moon_with_face:'
+      when 81..99
+        ':rainbow:'
+      when 100
+        ':newalert:'
+      end
+    end
     case text
     when /(softlayer esta arriba|se cay[oó] softlayer|y softlayer)/
-      ":softlayer-icon: lleva #{(Date.parse('4/8/2019')..Date.today).count} días arriba y contando."
+      per = (1..100).to_a.shuffle!
+      icon = status(per)
+      ":softlayer-icon: lleva #{(Date.parse('4/8/2019')..Date.today).count} días arriba y contando.\nProbabilidad de incidente: #{per}% #{icon}"
     else
       "No sé a que te refieres <@#{user}> :softlayer-icon: :heart:"
     end
