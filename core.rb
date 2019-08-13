@@ -42,6 +42,8 @@ module Case
       Case.events(data)
     else
       case text
+      when /softlayer/i
+        TimeTo.progress
       when /\s(hello|hola)$/i
         '¡Hola!'
       when /\s(holi)$/i
@@ -122,8 +124,6 @@ module Case
         Acme.catalog
       when /santo sepulcro a/i
         Chimuelo.song(text, user)
-      when /softlayer/i
-        TimeTo.progress(text, user)
       when / roll /i
         Roleo.dados(text)
       when /fortune cookie$/i
