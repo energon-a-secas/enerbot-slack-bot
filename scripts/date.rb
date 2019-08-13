@@ -107,6 +107,6 @@ module TimeTo
             when 100
               ':newalert:'
             end
-  ":softlayer-icon: lleva #{(Date.parse('4/8/2019')..Date.today).count} días arriba y contando.\n:calendar: Probabilidad de incidentes para las próximas horas: #{per}% #{icon}"
+  ":softlayer-icon: Sin incidentes desde hace #{(Date.parse('4/8/2019')..Date.today).count} días.\n:calendar: Probabilidad de incidentes para las próximas horas: #{per}% #{icon}"
   end
 end
