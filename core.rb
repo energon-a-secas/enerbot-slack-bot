@@ -122,7 +122,7 @@ module Case
         Acme.catalog
       when /santo sepulcro a/i
         Chimuelo.song(text, user)
-      when /daily/i
+      when /(softlayer esta arriba|se cay[oó] softlayer|y softlayer)/i
         Quote.daily
       when / roll /i
         Roleo.dados(text)
