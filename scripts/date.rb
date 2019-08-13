@@ -111,7 +111,7 @@ module TimeTo
     when /(probabilidad|pronostico|turno|call|incidentes)/
       "Probabilidad de incidentes para las próxima hora: #{per}% #{icon}"
     else
-      ":softlayer-icon: Sin incidentes desde hace #{(Date.parse('4/8/2019')..Date.today).count} días.\n:calendar:"
+      ":softlayer-icon: Sin incidentes desde hace #{(Date.parse('4/8/2019')..Date.today).count} días."
     end
   end
 end
