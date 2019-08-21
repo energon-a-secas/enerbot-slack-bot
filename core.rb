@@ -32,6 +32,7 @@ require './scripts/google'
 require './scripts/love'
 require './scripts/feedback'
 require './scripts/more'
+require './scripts/paya'
 
 # If you find yourself in a hole, stop digging
 module Case
@@ -136,6 +137,10 @@ module Case
         Feedback.quote
       when /dame un mas/i
         More.get
+      when /(softlayer|plataforma)/i
+        TimeTo.progress(text)
+      when /tirate una paya/i
+        Paya.get
       end
     end
   end
