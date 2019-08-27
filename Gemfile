@@ -7,7 +7,7 @@ source 'https://rubygems.org' do
   gem 'holidays'
   gem 'net-dns'
   gem 'nokogiri'
-  gem 'passgen'
+  #gem 'passgen'
   gem 'pry'
   gem 'rotp'
   gem 'rubocop'

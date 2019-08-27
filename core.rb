@@ -63,8 +63,8 @@ module Case
         TimeTo.gardel
       when /cu[aá]nto para el 18/i
         TimeTo.september
-      when /password/i
-        Pass.gen(text)
+      #when /password/i
+      #  Pass.gen(text)
       when /(blockchain|blocchain|blocshain)/i
         'https://youtu.be/MHWBEK8w_YY'
       when / tc /i
