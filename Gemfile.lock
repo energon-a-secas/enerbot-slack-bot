@@ -14,18 +14,11 @@ GEM
       console (~> 1.0)
       nio4r (~> 2.3)
       timers (~> 4.1)
-    async-http (0.48.2)
-      async (~> 1.19)
-      async-io (~> 1.25)
-      protocol-http (~> 0.12.0)
-      protocol-http1 (~> 0.9.0)
-      protocol-http2 (~> 0.9.0)
     async-io (1.25.0)
       async (~> 1.14)
-    async-websocket (0.13.1)
-      async-http (~> 0.43)
-      async-io (~> 1.23)
-      protocol-websocket (~> 0.7.0)
+    async-websocket (0.8.0)
+      async-io
+      websocket-driver (~> 0.7.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
     console (1.4.0)
@@ -71,16 +64,6 @@ GEM
     parallel (1.17.0)
     parser (2.6.3.0)
       ast (~> 2.4.0)
-    protocol-hpack (1.4.1)
-    protocol-http (0.12.1)
-    protocol-http1 (0.9.0)
-      protocol-http (~> 0.5)
-    protocol-http2 (0.9.5)
-      protocol-hpack (~> 1.4)
-      protocol-http (~> 0.2)
-    protocol-websocket (0.7.3)
-      protocol-http (~> 0.2)
-      protocol-http1 (~> 0.2)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -137,7 +120,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  async-websocket!
+  async-websocket (~> 0.8.0)!
   countries!
   credy!
   faye-websocket!
@@ -156,4 +139,4 @@ DEPENDENCIES
   whois-parser!
 
 BUNDLED WITH
-   1.17.2
+   2.0.2
