@@ -33,6 +33,7 @@ require './scripts/love'
 require './scripts/feedback'
 require './scripts/more'
 require './scripts/paya'
+require './scripts/versus'
 
 # If you find yourself in a hole, stop digging
 module Case
@@ -139,6 +140,8 @@ module Case
         TimeTo.progress(text)
       when /tirate una paya/i
         Paya.get
+      when /dame un versus/i
+        Versus.get
       end
     end
   end
