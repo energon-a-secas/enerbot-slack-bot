@@ -142,6 +142,8 @@ module Case
         Paya.get
       when /dame un versus/i
         Versus.get
+      when /dame un torneo/i
+        Versus.tournament
       end
     end
   end
