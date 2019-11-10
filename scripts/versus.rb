@@ -2,7 +2,7 @@ module Versus
   def self.get
     character = [':godzilla:', ':peyo-blumel:', ':jadue:', ':olla: :ladle:', ':ru:', ':us:', ':peyo-hd:', ':enerbot-jalowin:', ':tepillamos:', ':emo-peter2:', ':digital-transformation-expert:', ':danilo:']
     selection = character.shuffle!
-    "#{selection[1]} :versus: #{selection[2]}"
+    "#{selection[1]} :versus3: #{selection[2]}"
   end
 
   def self.tournament
