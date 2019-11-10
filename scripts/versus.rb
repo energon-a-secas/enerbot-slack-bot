@@ -1,12 +1,12 @@
 module Versus
   def self.get
-    character = [':godzilla:', ':peyo-blumel:', ':jadue:', ':olla: :ladle:', ':ru:', ':us:', ':peyo2:', ':enerbot-jalowin:', ':oh_hai_mark:', ':emo-peter2:', ':digital-transformation-expert:', ':danilo:']
+    character = [':godzilla:', ':peyo-blumel:', ':jadue:', ':olla: :ladle:', ':ru:', ':us:', ':peyo-hd:', ':enerbot-jalowin:', ':tepillamos:', ':emo-peter2:', ':digital-transformation-expert:', ':danilo:']
     selection = character.shuffle!
     "#{selection[1]} :versus: #{selection[2]}"
   end
 
   def self.tournament
-    character = [':godzilla:', ':peyo-blumel:', ':jadue:', ':olla: :ladle:', ':ru:', ':us:', ':peyo2:', ':enerbot-jalowin:', ':oh_hai_mark:', ':emo-peter2:', ':digital-transformation-expert:', ':danilo:']
+    character = [':godzilla:', ':peyo-blumel:', ':jadue:', ':olla: :ladle:', ':ru:', ':us:', ':peyo-hd:', ':elbromas:', ':enerbot-jalowin:', ':tepillamos:', ':emo-peter2:', ':celery_dancer:', ':digital-transformation-expert:', ':danilo:']
     contest = character.shuffle![0..3]
     show = ":announcer:: Welcome to the Security Smash Tournament :final-smash: Our contestants are: \n"
     contest.each { |v| show += "- #{v}\n" }
