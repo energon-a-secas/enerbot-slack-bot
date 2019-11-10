@@ -20,7 +20,7 @@ module Versus
 
     show += "\n*First round:*\n#{contest[0]} :versus3: #{contest[1]} => #{round1}\n"
     show += "\n*Second round:*\n#{contest[2]} :versus3: #{contest[3]} => #{round2}\n"
-    show += "*Final round:* #{round1} :versus3: #{round2}\n"
+    show += "\n*Final round:* #{round1} :versus3: #{round2}\n"
     show += "\n:crown: *WINNER OF THE TOURNAMENT*: #{winner}"
   end
 end
