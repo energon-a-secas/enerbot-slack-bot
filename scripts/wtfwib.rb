@@ -91,8 +91,8 @@ module WtfwIb
                    'put a rotating lock GIF on our website']
 
     <<-HEREDOC
-          Why the f*ck were you breached?:
-          > The f*cking #{threat_actors.sample} used #{methods.sample} to #{targets.sample}. But we have since #{mitigations.sample}, so it will never happen again.
+          *Why the f*ck were you breached?:*
+          >>>The f*cking #{threat_actors.sample} used #{methods.sample} to #{targets.sample}. But we have since #{mitigations.sample}, so it will never happen again.
     HEREDOC
   end
 end
