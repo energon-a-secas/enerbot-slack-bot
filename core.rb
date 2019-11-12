@@ -34,6 +34,7 @@ require './scripts/feedback'
 require './scripts/more'
 require './scripts/paya'
 require './scripts/versus'
+require './scripts/wtfwib'
 
 # If you find yourself in a hole, stop digging
 module Case
@@ -144,6 +145,8 @@ module Case
         Versus.get
       when /dame un torneo/i
         Versus.tournament
+      when /give me a cybersecurity excuse/i
+        WtfwIb.generate_excuse
       end
     end
   end
