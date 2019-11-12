@@ -63,7 +63,14 @@ module System
  enerbot <fortune cookie>
  enerbot <dame amor>
  enerbot <safe browsing> <URL>
- enerbot <daily>```
+ enerbot <daily>
+ enerbot <dame feedback>
+ enerbot <dame un mas>
+ enrebot <status> <softlayer|plataforma>
+ enerbot <tirate una paya>
+ enerbot <dame un versus>
+ enerbot <dame un torneo>
+ enerbot <give me a cybersecurity excuse>```
 
     HEREDOC
   end
