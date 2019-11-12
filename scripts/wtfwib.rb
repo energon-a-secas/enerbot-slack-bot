@@ -90,9 +90,6 @@ module WtfwIb
                    'sent one of our guys to Defcon',
                    'put a rotating lock GIF on our website']
 
-    <<-HEREDOC
-          *Why the f*ck were you breached?:*
-          >>>The f*cking #{threat_actors.sample} used #{methods.sample} to #{targets.sample}. But we have since #{mitigations.sample}, so it will never happen again.
-    HEREDOC
+    "*Why the f*ck were you breached?:*\n>>>The f*cking #{threat_actors.sample} used #{methods.sample} to #{targets.sample}. But we have since #{mitigations.sample}, so it will never happen again."
   end
 end
