@@ -90,6 +90,6 @@ module WtfwIb
                    'sent one of our guys to Defcon',
                    'put a rotating lock GIF on our website']
 
-    "*Why the f*ck were you breached?:*\n>>>The f*cking #{threat_actors.sample} used #{methods.sample} to #{targets.sample}. But we have since #{mitigations.sample}, so it will never happen again."
+    "Why the f*ck were you breached?:\n>>>The f*cking #{threat_actors.sample} used #{methods.sample} to #{targets.sample}. But we have since #{mitigations.sample}, so it will never happen again."
   end
 end
