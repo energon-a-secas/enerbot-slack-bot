@@ -3,6 +3,7 @@ module Pedro
   def self.engel(text)
     require 'json'
     require 'net/http'
+    require 'date'
 
     option = text.split[2]
     signos = %w[aries
