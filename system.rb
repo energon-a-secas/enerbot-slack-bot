@@ -98,7 +98,7 @@ class Reply
       value = Case.bot(data)
       Reply.remember("-#{user}")
       attempts = Admin.times("-#{user}").size
-      Reply.remember(user) if attempts > 4
+      Reply.remember(user) if attempts > 50
       unless value.nil?
 
         EnerCore.send(data, value) if check.nil?
