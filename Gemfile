@@ -1,5 +1,5 @@
 source 'https://rubygems.org' do
-  gem 'async-websocket', '~> 0.8.0'
+  gem 'async-websocket'
   gem 'countries'
   gem 'credy'
   gem 'faye-websocket'
