@@ -108,7 +108,7 @@ GEM
     unicode_utils (1.4.0)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
     week_of_month (1.2.6)
     whois (5.0.0)
     whois-parser (1.2.0)
