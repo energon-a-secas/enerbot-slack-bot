@@ -41,6 +41,7 @@ module Case
   def self.bot(data)
     text = data.text
     user = data.user
+    event = data.subtype
     if text =~ /(f.q|info|bot[oó]n|activa)/
       Case.events(data)
     else
@@ -204,6 +205,35 @@ module Case
       System.kill
     when 'お前もう死んでいる'
       Quote.japanese
+    end
+  end
+end
+
+# Because H ask for it
+module Event
+  def self.select(event)
+    user = event.user
+
+    case event.subtype
+    when 'group_join'
+      '>>>Bienvenide a la Comunidad con más usuarios de Slack :slack:, donde la seguridad no es un valor agregado, La seguridad es Vida :life:, La seguridad es Amor :hearts:.
+Este Canal les ofrecerá desde shitPosting :shit:, hasta temas de importancia a nivel global sobre la seguridad de la información :hack:. Donde todo mundo es bienvenido.
+Su Anfitrión, *Enerbot* :enerbot: está aqui para tomar su mano y llevarlo a través de la transformación digital :avenger_energon:.
+
+*Tenemos:*
+- Concursos
+- Encuestas
+- Blockchain
+
+_También aceptamos sobornos y te regalamos una copia licenciada oficial de Antorcha_ :antorcha:
+
+Para mayor información consúltame: enerbot help`'
+    when 'group_leave'
+      "No soy yo, eres tu <@#{user}>"
+    when 'channel_leave'
+      "Besitos chau chau <@#{user}>"
+    when 'channel_join'
+      "Holi <@#{user}> :tinder:"
     end
   end
 end
